@@ -15,8 +15,8 @@ android {
         applicationId = "com.hitster.mobile"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.0.2"
+        versionCode = 4
+        versionName = "1.1.0"
         // Default sync server. Change here or in the app's settings screen.
         buildConfigField("String", "DEFAULT_SERVER_URL", "\"\"")
     }

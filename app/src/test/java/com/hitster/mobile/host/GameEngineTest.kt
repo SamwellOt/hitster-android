@@ -96,27 +96,31 @@ class GameEngineTest {
     @Test fun challengeSteals() {
         val g = fresh()
         g.apply("p1", Action("place", slot = 0)) // wrong
-        assertThrows(GameError::class.java) { g.apply("p1", Action("challenge", slot = 1)) }
-        assertThrows(GameError::class.java) { g.apply("p2", Action("challenge", slot = 0)) }
-        g.apply("p2", Action("challenge", slot = 1))
+        assertThrows(GameError::class.java) { g.apply("p1", Action("challenge")) }
+        g.apply("p2", Action("challenge"))         // p2 shouts first
         assertEquals(1, g.p("p2").tokens)
-        assertThrows(GameError::class.java) { g.apply("p3", Action("challenge", slot = 1)) }
-        g.apply("p3", Action("pass"))
+        assertThrows(GameError::class.java) { g.apply("p2", Action("challenge")) }
+        g.apply("p3", Action("challenge"))         // p3 also bets: spends the token, p2 was first
+        assertEquals(1, g.p("p3").tokens)
         assertEquals(Phase.RESULT, g.turn!!.phase)
         assertFalse(g.turn!!.result!!.correct)
         assertEquals("p2", g.turn!!.result!!.stolenBy)
+        assertTrue(g.turn!!.result!!.challenges.all { it.correct == true })
         assertEquals(listOf(1962, 1966), g.p("p2").timeline.map { it.year })
         assertEquals(1, g.p("p1").timeline.size)
+        assertEquals(1, g.p("p3").timeline.size)
     }
 
     @Test fun challengeLosesTokenWhenOwnerRight() {
         val g = fresh()
         g.apply("p1", Action("place", slot = 1))
-        g.apply("p2", Action("challenge", slot = 0))
+        g.apply("p2", Action("challenge"))
         g.apply("p3", Action("pass"))
         assertTrue(g.turn!!.result!!.correct)
         assertNull(g.turn!!.result!!.stolenBy)
+        assertEquals(false, g.turn!!.result!!.challenges[0].correct)
         assertEquals(1, g.p("p2").tokens)
+        assertEquals(2, g.p("p1").timeline.size)
     }
 
     @Test fun voteEarnsToken() {

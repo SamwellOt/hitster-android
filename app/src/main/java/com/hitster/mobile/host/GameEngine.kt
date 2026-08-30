@@ -22,7 +22,8 @@ class GameError(message: String) : Exception(message)
  *  • Each player starts with 2 HITSTER tokens and 1 face‑up card.
  *  • Turn: listen → place → (challenge window) → reveal → (vote on title/artist) → result.
  *  • Token 1 – your turn: skip the song (card to the bottom of the pile).
- *  • Token 2 – opponent's turn: shout HITSTER before the reveal, pick another position; steal the card if right.
+ *  • Token 2 – opponent's turn: shout HITSTER before the reveal = bet that the placement is wrong. The token is
+ *    spent either way; if the owner was wrong the (first) challenger takes the card into their own timeline.
  *  • Token 3 – any time: 3 tokens for the top card, placed correctly.
  *  • +1 token for naming title + artist (max 5). First to `cardsToWin` cards wins.
  */
@@ -134,15 +135,11 @@ class GameEngine(
                 if (t.phase != Phase.CHALLENGE) throw GameError("O desafio só vale antes da carta ser revelada.")
                 if (me.tokens < 1) throw GameError("Você precisa de 1 ficha HITSTER para desafiar.")
                 if (t.challenges.any { it.playerId == playerId }) throw GameError("Você já desafiou nesta rodada.")
-                val owner = player(t.playerId)
-                val slot = action.slot ?: throw GameError("Posição inválida.")
-                if (slot < 0 || slot > owner.timeline.size) throw GameError("Posição inválida.")
-                if (slot == t.slot) throw GameError("Escolha uma posição diferente da escolhida pelo jogador.")
-                if (t.challenges.any { it.slot == slot }) throw GameError("Já existe uma ficha nessa posição.")
+                // A bet that the active player is wrong. The token is spent either way (house rule).
                 me.tokens -= 1
-                t.challenges += Challenge(playerId, slot)
+                t.challenges += Challenge(playerId)
                 t.passed.remove(playerId)
-                events += GameEvent(kind = "challenge", playerId = playerId, slot = slot)
+                events += GameEvent(kind = "challenge", playerId = playerId)
                 if (everyoneDecided()) reveal(events)
             }
 
@@ -203,11 +200,12 @@ class GameEngine(
         val slot = t.slot ?: 0
         val correct = fits(owner.timeline, slot, card.year ?: 0)
         var stolenBy: String? = null
-        val results = t.challenges.map { it.copy(correct = fits(owner.timeline, it.slot, card.year ?: 0)) }
+        // every challenger bet on a mistake: the bet pays off iff the owner was wrong
+        val results = t.challenges.map { it.copy(correct = !correct) }
         if (correct) {
             owner.timeline.add(slot, card)
         } else {
-            val winner = results.firstOrNull { it.correct == true }
+            val winner = t.challenges.firstOrNull() // first to shout takes the card
             if (winner != null) {
                 stolenBy = winner.playerId
                 insertSorted(player(stolenBy).timeline, card)

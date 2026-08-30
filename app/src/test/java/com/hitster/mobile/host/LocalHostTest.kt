@@ -106,7 +106,7 @@ class LocalHostTest {
         current.action(Action("place", slot = slot, claimsTitle = true))
         others.forEach { o -> o.until { it.game.turn!!.phase == Phase.CHALLENGE } }
 
-        others[0].action(Action("challenge", slot = if (slot == 0) 1 else 0))
+        others[0].action(Action("challenge"))   // bets that the placement is wrong
         others[1].action(Action("pass"))
         current.until { it.game.turn!!.phase == Phase.VOTE }
         assertEquals("Song " + current.game.turn!!.card!!.id.removePrefix("trk"), current.game.turn!!.card!!.title)

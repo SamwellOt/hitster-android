@@ -135,8 +135,6 @@ data class GameUi(
     val previewReady: Boolean,
     val selectedSlot: Int?,
     val claimsTitle: Boolean,
-    val challengeMode: Boolean,
-    val challengeSlot: Int?,
     val viewingTimelineOf: String?,
 )
 
@@ -151,9 +149,6 @@ class GameActions(
     val replay: () -> Unit,
     val pass: () -> Unit,
     val startChallenge: () -> Unit,
-    val cancelChallenge: () -> Unit,
-    val pickChallengeSlot: (Int) -> Unit,
-    val confirmChallenge: () -> Unit,
     val vote: (Boolean) -> Unit,
     val continueGame: () -> Unit,
     val openTimeline: (String?) -> Unit,
@@ -331,7 +326,7 @@ private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: Ga
     val t = ui.game.turn ?: return
     if (current == null) return
     AnimatedContent(
-        targetState = "${t.phase}:${myTurn}:${ui.challengeMode}",
+        targetState = "${t.phase}:${myTurn}",
         transitionSpec = { (fadeIn(tween(220)) + slideInVertically { it / 12 }) togetherWith fadeOut(tween(150)) },
         label = "phase",
     ) { key ->
@@ -340,7 +335,6 @@ private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: Ga
             phase == Phase.LISTEN && myTurn -> ListenPanel(ui, a, me, lay)
             phase == Phase.LISTEN -> WaitingPanel(current, lay)
             phase == Phase.CHALLENGE && myTurn -> OwnerChallengePanel(ui, lay)
-            phase == Phase.CHALLENGE && ui.challengeMode -> ChallengePicker(ui, a, current, lay)
             phase == Phase.CHALLENGE -> OpponentChallengePanel(ui, a, current, me, lay)
             phase == Phase.VOTE -> VotePanel(ui, a, current, myTurn, lay)
             phase == Phase.RESULT -> ResultPanel(ui, a, current, lay)
@@ -511,7 +505,7 @@ private fun OwnerChallengePanel(ui: GameUi, lay: Layout) {
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 2.dp)) {
                     HitsterToken(color = parseHex(p?.color), size = 18.dp)
                     Spacer(Modifier.width(8.dp))
-                    Text("${p?.name} gritou HITSTER (posição ${c.slot + 1})", color = TextSecondary, style = MaterialTheme.typography.bodyMedium)
+                    Text("${p?.name} gritou HITSTER — aposta que você errou", color = TextSecondary, style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
@@ -532,7 +526,7 @@ private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlay
             Countdown(t.deadline, ui.clockOffset)
             Column(Modifier.weight(1f)) {
                 SectionLabel("${current.name} posicionou a carta", color = parseHex(current.color))
-                Text(if (lay.compact) "Linha do tempo de ${current.name}:" else "Segundos para gritar HITSTER", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+                Text(if (lay.compact) "Aposte 1 ficha que a posição está errada" else "Segundos para gritar HITSTER", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
             }
         }
         VSpace(if (lay.compact) 4.dp else 10.dp)
@@ -544,7 +538,7 @@ private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlay
         )
         VSpace(if (lay.compact) 6.dp else 14.dp)
         when {
-            alreadyChallenged -> Banner("Você gritou HITSTER! Ficha colocada na posição ${t.challenges.first { it.playerId == ui.myId }.slot + 1}.", color = NeonPink)
+            alreadyChallenged -> Banner("Você gritou HITSTER! Se ${current.name} errar, a carta é sua.", color = NeonPink)
             passed -> Banner("Você passou. Aguardando a revelação…", color = TextSecondary)
             lay.compact -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
                 Box(Modifier.weight(1.6f).scale(glow)) { NeonButton("GRITAR HITSTER!", enabled = tokens >= 1, height = 48.dp, onClick = a.startChallenge) }
@@ -556,7 +550,7 @@ private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlay
                 }
                 VSpace(6.dp)
                 Text(
-                    if (tokens >= 1) "Acha que ${current.name} errou? Pague 1 ficha, aponte a posição certa e roube a carta." else "Você precisa de 1 ficha HITSTER para desafiar.",
+                    if (tokens >= 1) "Aposta de 1 ficha que ${current.name} errou: se errar, a carta é sua; se acertar, a ficha é perdida." else "Você precisa de 1 ficha HITSTER para desafiar.",
                     color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center,
                 )
                 VSpace(10.dp)
@@ -566,43 +560,12 @@ private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlay
     }
 }
 
+/** Challenger tokens are drawn on the slot the owner chose – that is what they are betting against. */
 private fun challengeMarkers(ui: GameUi): Map<Int, List<String>> {
     val t = ui.game.turn ?: return emptyMap()
-    return t.challenges.groupBy({ it.slot }, { ui.game.player(it.playerId)?.color ?: "#FFFFFF" })
-}
-
-@Composable
-private fun ChallengePicker(ui: GameUi, a: GameActions, current: GamePlayer, lay: Layout) {
-    val t = ui.game.turn!!
-    val disabled = (t.challenges.map { it.slot } + listOfNotNull(t.slot)).toSet()
-    Panel(lay) {
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Countdown(t.deadline, ui.clockOffset)
-            Column(Modifier.weight(1f)) {
-                SectionLabel("HITSTER!", color = NeonPink)
-                Text("Onde a carta deveria estar? Toque em um  +  (a posição “?” de ${current.name} não vale).", color = TextSecondary, style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis)
-            }
-        }
-        VSpace(if (lay.compact) 4.dp else 10.dp)
-        Timeline(
-            cards = current.timeline, selectable = true, selectedSlot = ui.challengeSlot ?: t.slot,
-            disabledSlots = disabled, markers = challengeMarkers(ui) + mapOf((t.slot ?: -1) to listOf(current.color)),
-            onSlotSelected = a.pickChallengeSlot, cardWidth = if (lay.compact) 66.dp else 82.dp, cardHeight = if (lay.compact) 88.dp else 110.dp,
-            modifier = Modifier.fillMaxWidth(), autoScrollTo = ui.challengeSlot ?: t.slot,
-        )
-        VSpace(if (lay.compact) 6.dp else 14.dp)
-        val label = if (ui.challengeSlot != null) "COLOCAR FICHA NA ${ui.challengeSlot + 1}ª POSIÇÃO" else "ESCOLHA UMA POSIÇÃO"
-        if (lay.compact) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
-                NeonButton(label, modifier = Modifier.weight(1.6f), enabled = ui.challengeSlot != null, brush = PurpleBrush, height = 44.dp, onClick = a.confirmChallenge)
-                GhostButton("Cancelar", modifier = Modifier.weight(1f), color = TextSecondary, onClick = a.cancelChallenge)
-            }
-        } else {
-            NeonButton(label, enabled = ui.challengeSlot != null, brush = PurpleBrush, onClick = a.confirmChallenge)
-            VSpace(8.dp)
-            GhostButton("Cancelar", color = TextSecondary, modifier = Modifier.fillMaxWidth(), onClick = a.cancelChallenge)
-        }
-    }
+    val slot = t.slot ?: return emptyMap()
+    if (t.challenges.isEmpty()) return emptyMap()
+    return mapOf(slot to t.challenges.map { ui.game.player(it.playerId)?.color ?: "#FFFFFF" })
 }
 
 @Composable
@@ -662,7 +625,8 @@ private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: La
             val p = ui.game.player(c.playerId)
             val name = if (c.playerId == ui.myId) "Você" else p?.name
             Text(
-                if (c.correct == true) "$name desafiou na posição ${c.slot + 1} e acertou." else "$name desafiou na posição ${c.slot + 1} e errou: perdeu 1 ficha.",
+                if (c.correct == true) (if (c.playerId == r.stolenBy) "$name gritou HITSTER e levou a carta (1 ficha gasta)." else "$name também gritou HITSTER, mas ${ui.game.player(r.stolenBy)?.name ?: "outro jogador"} foi mais rápido (1 ficha gasta).")
+                else "$name gritou HITSTER e ${current.name} acertou: perdeu 1 ficha.",
                 color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = if (lay.compact) TextAlign.Start else TextAlign.Center,
             )
         }

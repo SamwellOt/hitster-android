@@ -108,7 +108,8 @@ data class Turn(
 )
 
 @Serializable
-data class Challenge(val playerId: String, val slot: Int, val correct: Boolean? = null)
+/** A HITSTER shout: a bet that the active player placed the card wrong. `correct` = the bet paid off. */
+data class Challenge(val playerId: String, val slot: Int? = null, val correct: Boolean? = null)
 
 @Serializable
 data class TurnResult(

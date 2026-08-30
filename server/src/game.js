@@ -181,16 +181,12 @@ export function apply(state, playerId, action, now = Date.now) {
       if (t.phase !== PHASE.CHALLENGE) throw new GameError('O desafio só vale antes da carta ser revelada.');
       if (me.tokens < 1) throw new GameError('Você precisa de 1 ficha HITSTER para desafiar.');
       if (t.challenges.some(c => c.playerId === playerId)) throw new GameError('Você já desafiou nesta rodada.');
-      const owner = player(state, t.playerId);
-      const slot = Number(action.slot);
-      if (!Number.isInteger(slot) || slot < 0 || slot > owner.timeline.length) throw new GameError('Posição inválida.');
-      if (slot === t.slot) throw new GameError('Escolha uma posição diferente da escolhida pelo jogador.');
-      if (t.challenges.some(c => c.slot === slot)) throw new GameError('Já existe uma ficha nessa posição.');
+      // A bet that the active player is wrong; the token is spent either way.
       me.tokens -= 1;
-      t.challenges.push({ playerId, slot });
+      t.challenges.push({ playerId });
       t.passed = t.passed.filter(id => id !== playerId);
-      log(state, { kind: 'challenge', playerId, slot });
-      events.push({ kind: 'challenge', playerId, slot });
+      log(state, { kind: 'challenge', playerId });
+      events.push({ kind: 'challenge', playerId });
       if (everyoneDecided(state)) reveal(state, events, now);
       return events;
     }
@@ -254,15 +250,12 @@ function reveal(state, events, now) {
   const card = t.card;
   const correct = fits(owner.timeline, t.slot, card.year);
   let stolenBy = null;
-  const challengeResults = t.challenges.map(c => {
-    // Challenger slots refer to the owner's timeline *before* the card was inserted.
-    const right = fits(owner.timeline, c.slot, card.year);
-    return { ...c, correct: right };
-  });
+  // every challenger bet on a mistake: the bet pays off iff the owner was wrong
+  const challengeResults = t.challenges.map(c => ({ ...c, correct: !correct }));
   if (correct) {
     owner.timeline.splice(t.slot, 0, card);
   } else {
-    const winner = challengeResults.find(c => c.correct);
+    const winner = t.challenges[0]; // first to shout takes the card
     if (winner) {
       stolenBy = winner.playerId;
       insertSorted(player(state, stolenBy).timeline, card);

@@ -256,7 +256,7 @@ def game_challenge():
              f'<span class="label">Linha do tempo de Bia</span>'
              f'{strip(BIA_CARDS, selected_at=2, w=78, h=104, offset=60)}'
              f'<div class="btn" style="width: 100%; min-height: 60px; background: {NEON}; box-shadow: 0 0 30px rgba(255,45,143,.4);">GRITAR HITSTER!</div>'
-             f'<div style="font-size: 12px; color: {T2}; text-align: center; line-height: 18px;">Acha que Bia errou? Pague 1 ficha, aponte a posição certa e roube a carta.</div>'
+             f'<div style="font-size: 12px; color: {T2}; text-align: center; line-height: 18px;">Aposta de 1 ficha que Bia errou: se errar, a carta é sua; se acertar, a ficha é perdida.</div>'
              f'<div class="ghost" style="width: 100%; box-sizing: border-box;">Não desafiar</div>'
              f'</div>')
     return phone(header() + players("Bia") + panel + my_timeline())
@@ -268,7 +268,7 @@ def result():
              f'<div style="position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; border-radius: 50%; background: {GREEN}; display: flex; align-items: center; justify-content: center;">{svg("check", 18)}</div></div>'
              f'<div style="width: 150px; display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 12px; font-weight: 700; letter-spacing: .8px; color: {T2};">Skank</div><div style="font-size: 16px; font-weight: 600;">Jackie Tequila</div><div class="display" style="font-size: 30px; color: {YELLOW};">1994</div></div></div>'
              f'<div style="font-size: 16px; font-weight: 600; text-align: center; color: {GREEN};">Você acertou! A carta fica na linha do tempo.</div>'
-             f'<div style="font-size: 12px; color: {T2}; text-align: center;">Caio desafiou na posição 2 e errou: perdeu 1 ficha.</div>'
+             f'<div style="font-size: 12px; color: {T2}; text-align: center;">Caio gritou HITSTER e Você acertou: perdeu 1 ficha.</div>'
              f'<div style="display: flex; align-items: center; gap: 6px;"><div class="token" style="width: 20px; height: 20px; font-size: 10px; border-color: {YELLOW}; color: {YELLOW};">H</div><span style="font-size: 12px; color: {YELLOW};">Você ganhou 1 ficha por dizer o nome e o artista!</span></div>'
              f'<div style="display: flex; align-items: center; gap: 6px;"><div class="timer">11</div><span style="font-size: 12px; color: {T2};">para a próxima rodada</span></div>'
              f'<div class="btn" style="width: 100%; background: {NEON};">PRÓXIMA RODADA</div>'
@@ -319,7 +319,7 @@ def waiting_landscape():
     return landscape(cpanel(inner), cur="Bia")
 
 def challenge_landscape():
-    inner = (timer_row(8, f'<span class="label" style="color: {CYAN};">Bia posicionou a carta</span><span style="font-size: 12px; color: {T2};">Linha do tempo de Bia:</span>')
+    inner = (timer_row(8, f'<span class="label" style="color: {CYAN};">Bia posicionou a carta</span><span style="font-size: 12px; color: {T2};">Aposte 1 ficha que a posição está errada</span>')
              + f'<div style="margin: 0 -12px;">{strip(BIA_CARDS, selected_at=2, w=60, h=80, offset=40)}</div>'
              + f'<div style="display: flex; gap: 10px; align-items: center;"><div class="btn" style="flex: 1.6; min-height: 48px; background: {NEON}; box-shadow: 0 0 24px rgba(255,45,143,.4);">GRITAR HITSTER!</div><div class="ghost" style="flex: 1;">Não desafiar</div></div>')
     return landscape(cpanel(inner, 6), cur="Bia")
@@ -330,7 +330,7 @@ def result_landscape():
     body = (f'<div style="display: flex; align-items: center; gap: 14px;"><div style="position: relative;">{card("Skank", 1994, "Jackie Tequila", 84, 112)}'
             f'<div style="position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; border-radius: 50%; background: {GREEN}; display: flex; align-items: center; justify-content: center;">{svg("check", 16)}</div></div>'
             f'<div style="flex: 1; display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 14px; font-weight: 600; color: {GREEN};">Você acertou! A carta fica na linha do tempo.</div>'
-            f'<div style="font-size: 12px; color: {T2};">Caio desafiou na posição 2 e errou: perdeu 1 ficha.</div>'
+            f'<div style="font-size: 12px; color: {T2};">Caio gritou HITSTER e Você acertou: perdeu 1 ficha.</div>'
             f'<div style="display: flex; align-items: center; gap: 6px;"><div class="token" style="width: 18px; height: 18px; font-size: 9px; border-color: {YELLOW}; color: {YELLOW};">H</div><span style="font-size: 12px; color: {YELLOW};">Você ganhou 1 ficha por dizer o nome e o artista!</span></div></div></div>')
     data = [("Ana", PINK, 3, 5), ("Bia", CYAN, 1, 3), ("Caio", GREEN, 2, 2)]
     return landscape(cpanel(head + body, 6), cur="Ana", data=data, strip_html=strip(MY_CARDS, w=78, h=104, highlight=1994, offset=90),

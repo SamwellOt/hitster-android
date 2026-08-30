@@ -69,8 +69,6 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     val selectedSlot = MutableStateFlow<Int?>(null)
     val claimsTitle = MutableStateFlow(false)
     val viewingTimelineOf = MutableStateFlow<String?>(null)
-    val challengeMode = MutableStateFlow(false)
-    val challengeSlot = MutableStateFlow<Int?>(null)
     val previewReady = MutableStateFlow<String?>(null) // resolved preview url for the current card
     val busy = MutableStateFlow(false)
 
@@ -196,15 +194,8 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun vote(v: Boolean) { client.action(Action("vote", value = v)) }
     fun continueGame() { client.action(Action("continue")) }
 
-    fun startChallenge() { challengeMode.value = true; challengeSlot.value = null }
-    fun cancelChallenge() { challengeMode.value = false; challengeSlot.value = null }
-    fun pickChallengeSlot(slot: Int) { challengeSlot.value = if (challengeSlot.value == slot) null else slot }
-    fun confirmChallenge() {
-        val slot = challengeSlot.value ?: return
-        client.action(Action("challenge", slot = slot))
-        challengeMode.value = false
-        challengeSlot.value = null
-    }
+    /** Shout HITSTER: a bet (1 token) that the active player placed the card wrong. */
+    fun startChallenge() { client.action(Action("challenge")) }
 
     fun openTimeline(playerId: String?) { viewingTimelineOf.value = playerId }
 
@@ -256,7 +247,6 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
         if (turn.phase != Phase.LISTEN && player.state.value.isPlaying) player.pause()
-        if (turn.phase != Phase.CHALLENGE) { challengeMode.value = false; challengeSlot.value = null }
         // keep local toggle in sync with the server copy
         if (turn.playerId == myId) claimsTitle.value = turn.claimsTitle
     }
@@ -264,8 +254,6 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private fun resetTurnUi() {
         selectedSlot.value = null
         claimsTitle.value = false
-        challengeMode.value = false
-        challengeSlot.value = null
         previewReady.value = null
         resolveJob?.cancel()
     }

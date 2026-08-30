@@ -76,8 +76,6 @@ class MainActivity : ComponentActivity() {
                 val previewReady by vm.previewReady.collectAsStateWithLifecycle()
                 val selectedSlot by vm.selectedSlot.collectAsStateWithLifecycle()
                 val claimsTitle by vm.claimsTitle.collectAsStateWithLifecycle()
-                val challengeMode by vm.challengeMode.collectAsStateWithLifecycle()
-                val challengeSlot by vm.challengeSlot.collectAsStateWithLifecycle()
                 val viewingTimelineOf by vm.viewingTimelineOf.collectAsStateWithLifecycle()
                 val sessions by vm.sessions.collectAsStateWithLifecycle()
                 val hostAddress by vm.hostAddress.collectAsStateWithLifecycle()
@@ -110,9 +108,6 @@ class MainActivity : ComponentActivity() {
                         replay = vm::replay,
                         pass = vm::pass,
                         startChallenge = vm::startChallenge,
-                        cancelChallenge = vm::cancelChallenge,
-                        pickChallengeSlot = vm::pickChallengeSlot,
-                        confirmChallenge = vm::confirmChallenge,
                         vote = vm::vote,
                         continueGame = vm::continueGame,
                         openTimeline = vm::openTimeline,
@@ -130,7 +125,6 @@ class MainActivity : ComponentActivity() {
                     }
                     BackHandler(enabled = screen != "home") {
                         if (viewingTimelineOf != null) vm.openTimeline(null)
-                        else if (challengeMode) vm.cancelChallenge()
                         else confirmLeave = true
                     }
                     AnimatedContent(targetState = screen, transitionSpec = { fadeIn() togetherWith fadeOut() }, label = "screen") { s ->
@@ -153,7 +147,7 @@ class MainActivity : ComponentActivity() {
                                 ui = GameUi(
                                     room = rr, game = game, myId = vm.myId, isHost = isHost, clockOffset = vm.clockOffset,
                                     playback = playback, previewReady = previewReady != null, selectedSlot = selectedSlot,
-                                    claimsTitle = claimsTitle, challengeMode = challengeMode, challengeSlot = challengeSlot,
+                                    claimsTitle = claimsTitle,
                                     viewingTimelineOf = viewingTimelineOf,
                                 ),
                                 a = actions,

@@ -81,27 +81,31 @@ test('skip costs a token and puts the card at the bottom', () => {
 test('HITSTER challenge steals the card when the owner is wrong and the challenger is right', () => {
   const g = fresh();
   apply(g, 'p1', { type: 'place', slot: 0 }, now); // wrong (1966 after 1960)
-  assert.throws(() => apply(g, 'p1', { type: 'challenge', slot: 1 }, now), /si mesmo/);
-  assert.throws(() => apply(g, 'p2', { type: 'challenge', slot: 0 }, now), /diferente/);
-  apply(g, 'p2', { type: 'challenge', slot: 1 }, now);
+  assert.throws(() => apply(g, 'p1', { type: 'challenge' }, now), /si mesmo/);
+  apply(g, 'p2', { type: 'challenge' }, now);       // p2 shouts first
   assert.equal(g.players[1].tokens, 1);
-  assert.throws(() => apply(g, 'p3', { type: 'challenge', slot: 1 }, now), /Já existe/);
-  apply(g, 'p3', { type: 'pass' }, now);
+  assert.throws(() => apply(g, 'p2', { type: 'challenge' }, now), /já desafiou/i);
+  apply(g, 'p3', { type: 'challenge' }, now);       // p3 also bets – spends a token, but p2 was first
+  assert.equal(g.players[2].tokens, 1);
   assert.equal(g.turn.phase, PHASE.RESULT);
   assert.equal(g.turn.result.correct, false);
   assert.equal(g.turn.result.stolenBy, 'p2');
+  assert.ok(g.turn.result.challenges.every(c => c.correct === true));
   assert.deepEqual(g.players[1].timeline.map(c => c.year), [1962, 1966]);
   assert.equal(g.players[0].timeline.length, 1);
+  assert.equal(g.players[2].timeline.length, 1);
 });
 
 test('challenge token is lost when the owner was right', () => {
   const g = fresh();
   apply(g, 'p1', { type: 'place', slot: 1 }, now);
-  apply(g, 'p2', { type: 'challenge', slot: 0 }, now);
+  apply(g, 'p2', { type: 'challenge' }, now);
   apply(g, 'p3', { type: 'pass' }, now);
   assert.equal(g.turn.result.correct, true);
   assert.equal(g.turn.result.stolenBy, null);
+  assert.equal(g.turn.result.challenges[0].correct, false);
   assert.equal(g.players[1].tokens, 1);
+  assert.equal(g.players[0].timeline.length, 2);
 });
 
 test('naming title+artist earns a token via opponents vote (max 5)', () => {

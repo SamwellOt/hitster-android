@@ -68,6 +68,9 @@ Everything is one process; the roles are separated by package:
 
 Rules reference: the manual in `/root/hitster_manual_com_detalhes_nao_ofi_342510.pdf` (pages are images).
 Implemented rules are listed in README.md; tests in `app/src/test` encode them – update both together.
+House rule (user decision, 2026‑08‑30): shouting HITSTER is a pure bet — no position is chosen; the token
+is spent either way, and if the active player was wrong the *first* challenger takes the card. `Challenge.slot`
+is therefore always null; keep the JS engine (`server/src/game.js`) in sync with `GameEngine.kt`.
 
 ## Catalog (`catalog/`, `tools/`)
 

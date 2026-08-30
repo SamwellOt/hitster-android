@@ -37,10 +37,11 @@ hitster/
 5. O anfitrião escolhe os baralhos (pode combinar) e as opções e toca **INICIAR PARTIDA**.
 6. Na sua vez o preview toca sozinho; ouça, toque em um **+** da sua linha do tempo e confirme.
    Marque **"Sei o nome da música e o artista"** e diga em voz alta para tentar ganhar 1 ficha.
-7. Enquanto a carta está escondida, os oponentes têm alguns segundos para **GRITAR HITSTER!**
-   (1 ficha) e apontar outra posição na sua linha do tempo.
-8. Revelação: acertou → a carta fica; errou → descarte, a menos que um desafiante tenha acertado
-   (ele rouba a carta). Os outros confirmam se título/artista estavam certos (+1 ficha, máx. 5).
+7. Enquanto a carta está escondida, os oponentes têm alguns segundos para **GRITAR HITSTER!** —
+   uma aposta de 1 ficha de que a posição está errada.
+8. Revelação: acertou → a carta fica e quem gritou perdeu a ficha; errou → a carta vai para quem
+   gritou primeiro (a ficha é gasta de qualquer forma; sem desafio, vai para o descarte). Os outros
+   confirmam se título/artista estavam certos (+1 ficha, máx. 5).
 9. A qualquer momento, **3 fichas → carta** coloca a carta do topo direto na sua linha do tempo.
 10. Primeiro a chegar a **10 cartas** é o HITSTER. Equipes: um celular por equipe.
 
@@ -53,9 +54,9 @@ de novo na sessão: o jogador volta com as mesmas cartas e fichas.
 * Preparação: 2 fichas HITSTER e 1 carta inicial com o ano virado para cada jogador.
 * Vez: ouvir → posicionar → virar. Cartas do mesmo ano podem ficar em qualquer ordem entre si.
 * Ficha 1 (na sua vez): pular a música; a carta vai para o final da pilha.
-* Ficha 2 (na vez do adversário): gritar HITSTER **antes da revelação**, colocar 1 ficha em outra
-  posição; não pode haver duas fichas na mesma posição; quem gritou primeiro coloca primeiro;
-  se o dono errou e você acertou, rouba a carta. A ficha é descartada de qualquer forma.
+* Ficha 2 (na vez do adversário): gritar HITSTER **antes da revelação** é apostar 1 ficha que a
+  posição está errada (regra da casa: sem escolher posição). Se o adversário errou, a carta vai para
+  quem gritou primeiro; se acertou, nada. A ficha é gasta nos dois casos.
 * Ficha 3 (a qualquer momento): 3 fichas pela carta do topo, sem adivinhar o ano.
 * Ganhar ficha: dizer título e artista corretamente, mesmo errando a posição. Máximo 5 fichas.
 * Vitória: 10 cartas corretamente posicionadas (ajustável no lobby: 5–20).
