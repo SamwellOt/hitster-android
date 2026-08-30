@@ -1,0 +1,24 @@
+sku,card,artist,title,year,spotifyYear,itunes,musicbrainz,confidence
+aaaq0003,00007,Armandinho,Desenho De Deus,2004,2007,"[2004, 2006, 2007, 2009]","[2004, 2006, 2007, 2016, 2019]",low
+aaaq0003,00010,Simple Minds,Don't You (Forget About Me),1985,2025,"[1985, 1987, 1990, 2016, 2023]","[1986, 1992, 1998, 2004, 2005, 2009, 2014, 2016, 2023, 2025]",low
+aaaq0003,00017,Kid Abelha,Grand' hotel,1991,1991,"[1994, 1997, 2002]","[1994, 2000, 2001, 2002, 2005, 2015]",medium
+aaaq0003,00024,"Mc Bola, DJ Gao",Ela É Top,2012,2016,"[2012, 2013, 2014, 2016, 2020, 2022, 2023]",[2012],low
+aaaq0003,00028,"Soul II Soul, Caron Wheeler",Back To Life (However Do You Want Me),1989,1995,[1989],"[1995, 1997, 2000, 2004, 2009, 2019, 2025]",low
+aaaq0003,00039,Apache Indian,Boom Shack-A-Lak,1993,1995,"[1993, 2016]","[1993, 1994, 1997, 2012, 2013]",medium
+aaaq0003,00045,"Chico Buarque, MPB4, Quarteto Em Cy",Apesar De Você,1970,1978,"[1970, 1978, 1994, 1997, 2000]","[1970, 2003, 2004, 2008, 2016, 2019, 2022]",low
+aaaq0003,00075,Daniela Mercury,Swing da Cor,1991,1999,"[1991, 1998, 2016, 2024, 2025]",[],low
+aaaq0003,00082,Parangolé,Rebolation,2009,2011,"[2009, 2011]",[],low
+aaaq0003,00084,Olodum,Nossa Gente (Avisa Lá),1992,1999,"[1992, 2000, 2025]","[1995, 1999, 2014, 2016, 2025]",low
+aaaq0003,00089,Sisqo,Thong Song,1999,1999,[],[2015],medium
+aaaq0003,00101,"Furacão 2000, Os Leleks",Passinho do Volante,2012,2015,"[2012, 2013, 2022]",[],medium
+aaaq0003,00108,Leci Brandao,Isso É Fundo De Quintal,1985,1985,[],[],medium
+aaaq0003,00129,Vanessa Da Mata,"Ai, Ai, Ai...",2004,2004,"[2006, 2007, 2017, 2018, 2020]",[],medium
+aaaq0003,00166,Village People,In the Navy - Original Version 1979,1979,1979,[],[],medium
+aaaq0003,00196,Zara Larsson,Lush Life,2015,2017,"[2015, 2016, 2017, 2021, 2024]","[2015, 2016, 2021]",low
+aaaq0003,00210,Luiz Gonzaga,Ovo de Codorna,1971,1971,[],"[1996, 1999, 2015]",medium
+aaaq0003,00216,Cidade Negra,Onde Você Mora? (Acústico),1994,1994,"[1998, 2002]",[],medium
+aaaq0003,00220,Katrina & The Waves,Walking On Sunshine,1985,1985,[],"[2000, 2007]",medium
+aaaq0003,00238,Righeira,Vamos a la Playa,1983,2017,"[1983, 1999, 2015]","[1983, 1997, 1999, 2000, 2002, 2004, 2006, 2011, 2017]",low
+aaaq0003,00252,"Fernanda Abreu, Fausto Fawcett",Rio 40 Graus (feat. Fausto Fawcett),1992,2016,"[1992, 1997]",[],low
+aaaq0003,00270,Anita Ward,Ring My Bell,1979,2005,"[1979, 1995, 2005, 2021]","[1988, 1996, 1997, 1998, 1999, 2000, 2002, 2007, 2009]",low
+aaaq0003,00304,Phil Collins,Sussudio,1985,1985,[],[],medium

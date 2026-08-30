@@ -1,0 +1,308 @@
+7wbPfd2mXbStoZZSnHNd2V | 1 | Peaches & Herb - Reunited | auto=1978 | sp=1978 it=1978,1993,1995,2002,2010 mb=1978,1994,2000,2001,2005,2006,2011,2026 | high
+5vnizrbjvijNg3Eaq3Y5Hu | 2 | Os Paralamas Do Sucesso - O Beco | auto=1988 | sp=1988 it=1988,1996,1998,2004,2008,2011,2014,2024 mb=1988,1991,1992,2004,2009,2011,2014,2015 | high
+4y1LsJpmMti1PfRQV9AWWe | 3 | Cyndi Lauper - Girls Just Want to Have Fun | auto=1983 | sp=1983 it=1983,2005 mb=1988,1994,1998,2007,2016,2017,2019 | high
+2qhASBzpbFhPRtrnZ5lLnz | 4 | The Righteous Brothers - Unchained Melody | auto=1955 | sp=1965 it=1955,1965,1990,2004 mb=1965,1968,1991,1993,2003,2014,2016,2020 | low
+3oiMJQAWVaxSubJ7b2VUtX | 5 | Iggy Azalea, Charli xcx - Fancy | auto=2014 | sp=2014 it=2014 mb=2014 | high
+6Ulh9GPYz6JKdv04qc3q2U | 6 | João Gomes - Dengo | auto=2022 | sp=2022 it=2022 mb=- | high
+6Fio8lHyfNCopZA3Qg9HfL | 7 | KLB - A Dor Desse Amor | auto=2000 | sp=2000 it=2000,2003,2004,2015,2023 mb=2000,2003 | high
+0uppYCG86ajpV2hSR3dJJ0 | 8 | Red Hot Chili Peppers - Give It Away | auto=1991 | sp=1991 it=1991 mb=1994,1995,1996,2002,2003,2004,2012,2022 | high
+2WElktskrNJEwgpp5Vouxk | 9 | Right Said Fred - I'm Too Sexy | auto=1991 | sp=1992 it=1991,1992,2001,2023 mb=- | high
+3EYOJ48Et32uATr9ZmLnAo | 10 | The Police - Roxanne | auto=1978 | sp=1978 it=1978,1995,1997,2008 mb=1989,1992 | high
+3gsCAGsWr6pUm1Vy7CPPob | 11 | Roberta Flack - Killing Me Softly With His Song | auto=1970 | sp=1973 it=1970,1973,1980,2006 mb=- | low
+5mHzMlVi8OMJKnK5SmRK7a | 12 | Chitãozinho & Xororó - Evidências | auto=1986 | sp=1990 it=1986,2004,2013,2016,2017,2019,2020 mb=1990,1993,1995,1998,1999,2000,2012,2013,2017 | low
+3MrRksHupTVEQ7YbA0FsZK | 13 | Europe - The Final Countdown | auto=1986 | sp=1986 it=1986,2008,2011,2017 mb=- | high
+37ZJ0p5Jm13JPevGcx4SkF | 14 | Bon Jovi - Livin' On A Prayer | auto=1986 | sp=1986 it=1986,2001,2003,2010,2012 mb=1986,1987,1991,1996,2000,2001,2013,2016 | high
+1SAkL1mYNJlaqnBQxVZrRl | 15 | Sir Mix-A-Lot - Baby Got Back | auto=1992 | sp=1992 it=1992,2025 mb=1992,2000,2007,2009,2010,2015,2020 | high
+0COqiPhxzoWICwFCS4eZcp | 16 | Evanescence - Bring Me To Life | auto=2003 | sp=2003 it=2003,2004,2017,2018,2023 mb=2003,2004,2006,2007,2026 | high
+0ikz6tENMONtK6qGkOrU3c | 17 | Wham! - Wake Me Up Before You Go-Go | auto=1984 | sp=1984 it=1984,2019 mb=1994,2001,2002,2004,2005,2006,2007,2011 | high
+0UAEHlFR79k9CJvknSGUNf | 18 | Technotronic, Felly - Pump Up The Jam - Edit | auto=1989 | sp=2011 it=1989,1996,2011,2020,2021 mb=2021 | low
+1OSWO1hDuwzs1Xh2v5rNAF | 19 | Karol Conká, Tropkillaz - Tombei | auto=2014 | sp=2014 it=2014,2015,2019 mb=- | high
+1vLqigPHwiFnXsfrLMehV1 | 20 | Sabrina Carpenter - Espresso | auto=2024 | sp=2024 it=2024,2026 mb=- | high
+6uFwhB7gVs7ExCAfJD5BWg | 21 | Banda do Mar - Mais Ninguém | auto=2014 | sp=2014 it=2014 mb=2014 | high
+4cluDES4hQEUhmXj6TXkSo | 22 | One Direction - What Makes You Beautiful | auto=2011 | sp=2012 it=2011,2012 mb=- | high
+74VR3AkGPhbYXnxcOYa16x | 23 | Frank Sinatra - Strangers In The Night | auto=1966 | sp=1966 it=1966,2008,2009,2011,2014,2016 mb=1966,1995,2001,2003,2008,2009,2016 | high
+0HPD5WQqrq7wPWR7P7Dw1i | 24 | Kesha - TiK ToK | auto=2009 | sp=2010 it=2009,2010,2023 mb=2010,2014,2016 | high
+2gVRDshVuLTKslwTequSO1 | 25 | Olodum - Requebra - Ao vivo | auto=1993 | sp=1994 it=1993 mb=- | high
+7zrpoAJte9o12TzawqgdD0 | 26 | Andrea Bocelli - Con Te Partirò | auto=1995 | sp=1995 it=1995,1997 mb=1996,1997,1998,2000,2007,2015 | high
+1yjY7rpaAQvKwpdUliHx0d | 27 | Paramore - Still into You | auto=2013 | sp=2013 it=2013,2014 mb=2013,2014,2016,2023 | high
+3A8Ia0McOSj8xlUF5OZHSk | 28 | Gang 90 & Absurdetes - Perdidos Na Selva | auto=1983 | sp=1983 it=1983 mb=- | high
+5QpaGzWp0hwB5faV8dkbAz | 29 | The Calling - Wherever You Will Go | auto=2001 | sp=2001 it=2001 mb=- | high
+5Szi2uEs1VFFiJvI3E4Q1J | 30 | Ivan Lins - Bandeira Do Divino | auto=1978 | sp=1978 it=1978,1994,1995 mb=- | high
+59qF0PwTCEJkL4MvAzyyEO | 31 | Wanessa Camargo - Amor, Amor | auto=2005 | sp=2005 it=2005,2013 mb=2005 | high
+4u7ZqpIkq2sDdQD22JOFLZ | 32 | The Jackson 5 - ABC | auto=1970 | sp=2022 it=1970,2010 mb=- | low
+39lSeqnyjZJejRuaREfyLL | 33 | Duran Duran - Hungry Like the Wolf - 2009 Remaster | auto=1982 | sp=1982 it=1982 mb=- | high
+7wf1lnd9PUysUud3V3Bwrn | 34 | Gerson King Combo - Mandamentos Black | auto=1977 | sp=1977 it=1977,2010,2022 mb=1977,2004,2012 | high
+3Z2Thcr0SrxKcQpvouDpR8 | 35 | Emílio Santiago - Bananeira (Remastered) | auto=1975 | sp=1975 it=1975 mb=- | high
+2CoKGyZavJWTFUPyvWoj0b | 36 | Gonzaguinha - O Que É O Que É? | auto=1982 | sp=1982 it=1982,1999 mb=1982,1994,2000,2004,2005 | high
+7w5AOd6HrDIHewHfpABEss | 37 | Chris Isaak - Wicked Game | auto=1989 | sp=1989 it=1989,2010,2016,2024 mb=- | high
+2IvetNzSZMH5gwjInoyr18 | 38 | The Weather Girls - It's Raining Men | auto=1982 | sp=1982 it=1982,1983,2009,2023,2024 mb=1984,1995,2002,2003,2004,2008 | high
+54b8qPFqYqIndfdxiLApea | 39 | Heart - Alone | auto=1987 | sp=1987 it=1987,2016 mb=1987,2008,2010,2013,2014,2023,2026 | high
+7qiZfU4dY1lWllzX7mPBI3 | 40 | Ed Sheeran - Shape of You | auto=2017 | sp=2017 it=2017,2024 mb=- | high
+5DiXcVovI0FcY2s0icWWUu | 41 | Counting Crows - Mr. Jones | auto=1993 | sp=1993 it=1993,2006,2023,2026 mb=- | high
+0wYqEYGKhZHfc92SLHbD4J | 42 | Marina Lima - À Francesa | auto=1989 | sp=1989 it=1989,1992,2022 mb=- | high
+01DBoQsngOhbcVFWKkiFOz | 43 | Billy Joel - Uptown Girl | auto=1983 | sp=2001 it=1983,1987,2022 mb=1983,1993,2006,2013,2018,2019,2020,2022,2026 | low
+1M2nd8jNUkkwrc1dgBPTJz | 44 | Robbie Williams - Angels | auto=1997 | sp=1997 it=1997,1998,2003,2005,2022 mb=2000,2002,2007,2012,2014,2015,2017,2022 | high
+7zf5JVR1AiPa9snspPRUD0 | 45 | Tim Maia - Primavera (Vai Chuva) | auto=1970 | sp=1970 it=1970,1978,1992,1998,2007 mb=1993,1998,2000,2002,2007,2009 | high
+4bJygwUKrRgq1stlNXcgMg | 46 | t.A.T.u. - All The Things She Said | auto=2002 | sp=2002 it=2002,2017 mb=- | high
+7oo3L1ZPEQSavDVSnlOvDa | 47 | Belchior - Apenas Um Rapaz Latino Americano | auto=1976 | sp=1976 it=1976,1978,1995,1999,2006 mb=1976,1991,1992,1994,1998,2001,2005,2017 | high
+2J0nljHgO5EfqN4tW7rftk | 48 | Cheiro de Amor - Vai Sacudir, Vai Abalar | auto=1996 | sp=1996 it=1996,1997,1998,1999,2023,2024,2025 mb=1996,1997,1998,2006,2014,2023,2024 | high
+2kQ8vjePBUExw1zC8shTpg | 49 | Xuxa - Ilariê | auto=1988 | sp=1988 it=1988,2005,2006 mb=- | high
+21KbWPoY3MTpI5byU6d0dl | 50 | Calcinha Preta - Louca por Ti "Dust in the Wind" | auto=2003 | sp=2006 it=2003,2006,2022,2024 mb=- | low
+4HoMdqRml6sVw9pa1cMqyX | 51 | Judy Garland - Over The Rainbow | auto=1939 | sp=1994 it=1939,1955,1961,1984 mb=- | low
+4dleXVjZz9M1pQEm6IYICL | 52 | Scalene - Amanheceu | auto=2013 | sp=2013 it=2013,2015,2016 mb=2013,2015,2016 | high
+3QA7VF91ehKfoYEDa5wcJb | 53 | Seu Jorge - Mina do Condomínio | auto=2007 | sp=2007 it=2007,2009,2012 mb=- | high
+4qO03RMQm88DdpTJcxlglY | 54 | Blondie - Call Me | auto=1980 | sp=1999 it=1980,1981,1999,2015 mb=- | low
+2eDUcjS6SSDJd6Rcx4TFkd | 55 | Lô Borges - Um Girassol Da Cor Do Seu Cabelo | auto=1972 | sp=1972 it=1972,2003,2004,2013,2016,2018,2023 mb=2001,2003,2008,2010,2013,2016,2018,2019,2023 | high
+5xEM5hIgJ1jjgcEBfpkt2F | 56 | Avril Lavigne - Complicated | auto=2002 | sp=2002 it=2002,2010 mb=- | high
+3nxRHGSdTr6lwc2QCrRAEv | 57 | Sampa Crew - Eterno Amor | auto=1990 | sp=1994 it=1990,1999,2002,2007,2012,2024 mb=1994,1999 | low
+0C8AukgPKKwZjSKH9kEWK3 | 58 | Michel Teló - Fugidinha - Ao Vivo | auto=2010 | sp=2013 it=2010,2011 mb=- | medium
+2MPWT0QPx9lrnp51Emu3Hn | 59 | Pop Royals - (Un, Dos, Tres) Maria - Original | auto=2009 | sp=2009 it=- mb=- | medium
+3hlksXnvbKogFdPbpO9vel | 60 | Nicki Minaj - Super Bass | auto=2010 | sp=2010 it=2010 mb=2010,2011,2012,2013,2016,2019,2022 | high
+2TxCwUlqaOH3TIyJqGgR91 | 61 | ABBA - Mamma Mia | auto=1975 | sp=1975 it=1975,1980 mb=1981,1989,1990,2002,2004,2006,2010,2021,2023 | high
+2LTlykcdu0gwb7zcKneo2a | 62 | KayBlack, Baco Exu do Blues, Marquinho no Beat - Melhor Só | auto=2016 | sp=2023 it=2016 mb=- | high
+0oXHNB2l01b1zJxZpz1Nxr | 63 | Gretchen - Conga, Conga, Conga | auto=1981 | sp=1981 it=1981,1998,2008,2017,2022 mb=- | high
+4YrqYj6xEFgmgdNA8d6wIQ | 64 | Baby Do Brasil - Menino do Rio | auto=1978 | sp=1979 it=1978,2015,2022 mb=- | high
+0KXcsCinixGmfcXjBqfEis | 65 | LMFAO - Sexy And I Know It | auto=2011 | sp=2013 it=2011,2026 mb=2011,2012,2014 | low
+7DSAEUvxU8FajXtRloy8M0 | 66 | Miley Cyrus - Flowers | auto=2023 | sp=2023 it=2023 mb=- | high
+013AWvizllIUEC2FOBzOnh | 67 | Savage Garden - Truly Madly Deeply | auto=1997 | sp=1997 it=1997 mb=1997,1998,1999,2002,2008,2010,2020 | high
+4RVwu0g32PAqgUiJoXsdF8 | 68 | Billie Eilish - Happier Than Ever | auto=2021 | sp=2021 it=2021 mb=2021,2022,2026 | high
+3xdmFwG1jTUs0T8BqfRxLk | 69 | Asa De Águia - Manivela | auto=1997 | sp=1997 it=1997,1998,2021,2023 mb=1998,2002,2005 | high
+6pnkvJgJIKiHTYHpMpL6IS | 70 | Barão Vermelho - Billy Negão | auto=1982 | sp=1982 it=1982,1990 mb=1982,2018 | high
+52NFgCjGw7oZKIBABYKLPG | 71 | Arlindo Cruz - Meu Lugar | auto=2007 | sp=2007 it=2007,2009,2012,2025 mb=- | high
+0CAfXk7DXMnon4gLudAp7J | 72 | Flo Rida, T-Pain - Low (feat. T-Pain) | auto=None | sp=2008 it=- mb=- | ?
+3L7RtEcu1Hw3OXrpnthngx | 73 | The Human League - Don't You Want Me | auto=None | sp=1981 it=- mb=- | ?
+28HOJYBwwLn2NhuXLDoziY | 74 | Pery Ribeiro - Garota De Ipanema | auto=None | sp=1963 it=- mb=- | ?
+4d0DpU7Odiv0ztvX2GxJlk | 75 | Cazuza - Exagerado | auto=None | sp=1985 it=- mb=- | ?
+5qWXXF3On2xUfVu1ND1NLN | 76 | Fred Astaire - Cheek to Cheek | auto=None | sp=2004 it=- mb=- | ?
+6EmC6JFwF0Aq92ajBPKYiO | 77 | Supercombo - Piloto Automático | auto=None | sp=2014 it=- mb=- | ?
+0jWgAnTrNZmOGmqgvHhZEm | 78 | 4 Non Blondes - What's Up? | auto=None | sp=1992 it=- mb=- | ?
+0cGG2EouYCEEC3xfa0tDFV | 79 | Soft Cell - Tainted Love | auto=None | sp=1981 it=- mb=- | ?
+4Re2QjCSOP2sgVx3cnfI9Y | 80 | Blitz - Você Não Soube Me Amar | auto=None | sp=2005 it=- mb=- | ?
+74jZhGv0fdLaf9q8AZZ15k | 81 | Carpenters - Please Mr. Postman | auto=None | sp=1975 it=- mb=- | ?
+7lQ8MOhq6IN2w8EYcFNSUk | 82 | Eminem - Without Me | auto=None | sp=2002 it=- mb=- | ?
+4CzYeo7qbwbnjyS5rW1UhK | 83 | Nat King Cole - Unforgettable | auto=None | sp=2010 it=- mb=- | ?
+4eyuRxgyF3emFVTBjnCqM8 | 84 | Lobão E Os Ronaldos - Decadence Avec Elegance | auto=None | sp=2001 it=- mb=- | ?
+4k3HBeh98WWN2ybGHC0WQI | 85 | Valesca Popozuda - Beijinho no Ombro | auto=None | sp=2013 it=- mb=- | ?
+5t6QgW9guk6MRptJJWgsFY | 86 | Skank - Vou Deixar | auto=None | sp=2003 it=- mb=- | ?
+623rRTKwGmgjH6sjE9uWLh | 87 | Scatman John - Scatman (ski-ba-bop-ba-dop-bop) | auto=None | sp=1995 it=- mb=- | ?
+17jeydgAjtqPxUjmp6n0pW | 88 | Naldo Benny - Amor de Chocolate | auto=None | sp=2011 it=- mb=- | ?
+5bxQHscWvyaQbm37igKP4K | 89 | Laura Pausini - La solitudine | auto=None | sp=1993 it=- mb=- | ?
+2iXcvnD3d1gfLBum0cE5Eg | 90 | Little Richard - Tutti Frutti | auto=None | sp=1957 it=- mb=- | ?
+2WfaOiMkCvy7F5fcp2zZ8L | 91 | a-ha - Take on Me | auto=None | sp=1985 it=- mb=- | ?
+4ePP9So5xRzspjLFVVbj90 | 92 | Spin Doctors - Two Princes | auto=None | sp=1991 it=- mb=- | ?
+1ONnn6GrKQoGuHUYQ3eTyv | 93 | João Penca E Seus Miquinhos Amestrados - Lágrimas de Crocodilo | auto=None | sp=2000 it=- mb=- | ?
+5inhNJDsdUL02QKh4nCfwa | 94 | Benito Di Paula - Retalhos De Cetim | auto=None | sp=1974 it=- mb=- | ?
+6kvoHl80mfCVTv7XnZkjQn | 95 | Roxette - It Must Have Been Love - From the Film "Pretty Woman" | auto=None | sp=1990 it=- mb=- | ?
+5R8l7J6Lv9dJqd7qileQ9Q | 96 | Os Virgulóides - Bagulho no Bumba | auto=None | sp=1997 it=- mb=- | ?
+6mhw2fEPH4fMF0wolNm96e | 97 | Los Del Rio - Macarena | auto=None | sp=2002 it=- mb=- | ?
+1CmUZGtH29Kx36C1Hleqlz | 98 | Macklemore & Ryan Lewis, Macklemore, Ryan Lewis, Wanz - Thrift Shop (feat. Wanz) | auto=None | sp=2013 it=- mb=- | ?
+28UMiBhn383n9S7GL4tsxD | 99 | Céline Dion - Because You Loved Me (Theme from "Up Close and Personal") | auto=None | sp=1996 it=- mb=- | ?
+6jysfqaB2IoM2sua07Y00b | 100 | Odair Jose - Vou Tirar Você Desse Lugar | auto=None | sp=2002 it=- mb=- | ?
+36JLbOILRf2ELnpByw44qk | 101 | Babado Novo, Claudia Leitte - Bola De Sabão | auto=None | sp=2005 it=- mb=- | ?
+2olVm1lHicpveMAo4AUDRB | 102 | Huey Lewis & The News - The Power Of Love | auto=None | sp=2006 it=- mb=- | ?
+3E7ZwUMJFqpsDOJzEkBrQ7 | 103 | Kylie Minogue - Can't Get You out of My Head | auto=None | sp=2002 it=- mb=- | ?
+31AOj9sFz2gM0O3hMARRBx | 104 | R.E.M. - Losing My Religion | auto=None | sp=1991 it=- mb=- | ?
+3sK8wGT43QFpWrvNQsrQya | 105 | Bad Bunny - DtMF | auto=None | sp=2025 it=- mb=- | ?
+5G9KcZaxfCysfv4EryCB9b | 106 | Toni Basil - Hey Mickey | auto=None | sp=2020 it=- mb=- | ?
+7eYhN6ciVsXBfb7kVjmvgt | 107 | Shaggy - Mr Boombastic | auto=None | sp=2020 it=- mb=- | ?
+2zMJN9JvDlvGP4jB03l1Bz | 108 | Donna Summer - Hot Stuff | auto=None | sp=1979 it=- mb=- | ?
+4kgsoM4wTP2HAOQoEyNyTL | 109 | Reginaldo Rossi - Garçon | auto=None | sp=1987 it=- mb=- | ?
+3OHfY25tqY28d16oZczHc8 | 110 | SZA - Kill Bill | auto=None | sp=2022 it=- mb=- | ?
+1Hgvy8kokRufdMCTGQ5JkQ | 111 | The Foundations - Build Me Up Buttercup | auto=None | sp=2016 it=- mb=- | ?
+6nWPzkaAjRdjAGSFhpGc3O | 112 | Os Barões Da Pisadinha - Já Que Me Ensinou a Beber | auto=None | sp=2019 it=- mb=- | ?
+18zXw7VA97aovBwbxSpPqH | 113 | POLLO, Ivo Mozart - Vagalumes | auto=None | sp=2012 it=- mb=- | ?
+7E94k52snpTIROpLVAg9tg | 114 | Maysa - Meu Mundo Caiu | auto=None | sp=1958 it=- mb=- | ?
+1Wsyt5It2PYnht0aDYcNyR | 115 | MC Bin Laden - Tá Tranquilo, Tá Favorável | auto=None | sp=2016 it=- mb=- | ?
+4rr3eBCjY9XtHME1LoRiqW | 116 | Jair Rodrigues - Deixa Isso Pra Lá | auto=None | sp=1964 it=- mb=- | ?
+2OInahzMoibpPd2TSFhBNv | 117 | Jota Quest, Seu Jorge - Na Moral (feat. Seu Jorge) | auto=None | sp=2002 it=- mb=- | ?
+0O45fw2L5vsWpdsOdXwNAR | 118 | Justin Timberlake, Timbaland - SexyBack (feat. Timbaland) | auto=None | sp=2006 it=- mb=- | ?
+5OC7GbXAbWXM1rvSpobLai | 119 | Raul Seixas - Al Capone | auto=None | sp=1973 it=- mb=- | ?
+0HOZvGTL28ri6bKek8Fq03 | 120 | Nelson Ned - Tudo Passará | auto=None | sp=1998 it=- mb=- | ?
+4esOae7i4rqTbAu9o5Pxco | 121 | Alicia Keys - Girl on Fire | auto=None | sp=2012 it=- mb=- | ?
+7r7BLG1FiZTNYtFuyLMtFa | 122 | Fergie, will.i.am - Fergalicious | auto=None | sp=2006 it=- mb=- | ?
+1j15Ar0qGDzIR0v3CQv3JL | 123 | KATSEYE - Gnarly | auto=None | sp=2025 it=- mb=- | ?
+5R9a4t5t5O0IsznsrKPVro | 124 | Beyoncé - Single Ladies (Put a Ring on It) | auto=None | sp=2008 it=- mb=- | ?
+3fIy2ZzXyyNPpyz6q5KMKD | 125 | Roberto Carlos - Quero Que Vá Tudo Pro Inferno - Versão Remasterizada | auto=None | sp=1975 it=- mb=- | ?
+3FvQH46A4B37eNHjooIXcu | 126 | Michael Jackson - Bad | auto=None | sp=1995 it=- mb=- | ?
+6Qyc6fS4DsZjB2mRW9DsQs | 127 | The Goo Goo Dolls - Iris | auto=None | sp=1998 it=- mb=- | ?
+57E1ka54d8zrIy0VzE1EAV | 128 | Martinho Da Vila - Canta Canta, Minha Gente | auto=None | sp=1974 it=- mb=- | ?
+1Cwsd5xI8CajJz795oy4XF | 129 | New Radicals - You Get What You Give | auto=None | sp=1998 it=- mb=- | ?
+7nEUBejP3dtRQTkMYOKn7H | 130 | Rosana - O Amor e o Poder (The Power of Love) | auto=None | sp=1988 it=- mb=- | ?
+2BnJUYbPtL3yauZKmay0ko | 131 | Roupa Nova - Whisky a Go-Go | auto=None | sp=1985 it=- mb=- | ?
+5F4SvW0GTQVlTUMstJEOyG | 132 | Jorge Vercillo - Que Nem Maré | auto=None | sp=2002 it=- mb=- | ?
+2lnzGkdtDj5mtlcOW2yRtG | 133 | Shakira - Whenever, Wherever | auto=None | sp=2001 it=- mb=- | ?
+0yp3TvJNlG50Q4tAHWNCRm | 134 | Depeche Mode - Enjoy the Silence | auto=None | sp=2022 it=- mb=- | ?
+4eHbdreAnSOrDDsFfc4Fpm | 135 | Whitney Houston - I Will Always Love You | auto=None | sp=1992 it=- mb=- | ?
+5lWRaa0fBxDE5yU91npPq7 | 136 | No Doubt - Just A Girl | auto=None | sp=1995 it=- mb=- | ?
+2vz1CsL5WBsbpBcwgboTAw | 137 | Kenny Loggins - Footloose - From "Footloose" Soundtrack | auto=None | sp=1984 it=- mb=- | ?
+1nDCZBI8MaHXI2f36dnQyG | 138 | Tierry - Rita | auto=None | sp=2020 it=- mb=- | ?
+6J6RWKCPN5RFKHUKEUFjxS | 139 | New Kids On The Block - Step by Step | auto=None | sp=1990 it=- mb=- | ?
+3Z2tPWiNiIpg8UMMoowHIk | 140 | U.S.A. For Africa - We Are The World | auto=None | sp=1985 it=- mb=- | ?
+7xk1Cm7f9gVYUdbAnwoFpy | 141 | Gian & Giovani - O Grande Amor da Minha Vida (Convite de Casamento) | auto=None | sp=2005 it=- mb=- | ?
+4HVYGbAg8IbWudHiasSNUb | 142 | Vinny, Guilherme Dias Gomes - Heloisa mexe a cadeira | auto=None | sp=1998 it=- mb=- | ?
+5awDvzxWfd53SSrsRZ8pXO | 143 | Rammstein - Du hast | auto=None | sp=1997 it=- mb=- | ?
+5U3MkUWTpzj37A33GboDtv | 144 | Gene Kelly - Singin' In The Rain | auto=None | sp=1952 it=- mb=- | ?
+3yUcJwYu7fXAfqMj9krY6l | 145 | Dido - Thank You | auto=None | sp=1999 it=- mb=- | ?
+4X0OLLcdALCRPCJo6tteuL | 146 | Wilson Simonal - Mamãe Passou Açúcar Em Mim | auto=None | sp=1966 it=- mb=- | ?
+4NqNudDnnxbjp7KpjWoEqE | 147 | Moacyr Franco - Me Dá Um Dinheiro Aí | auto=None | sp=1999 it=- mb=- | ?
+4RC2nzqaQygxoVQOVv3XlT | 148 | Léo Santana, Anitta - Contatinho - Ao Vivo | auto=None | sp=2019 it=- mb=- | ?
+7cj3mQ5XeEQq8Zfa1O5CXB | 149 | Pabllo Vittar - São Amores | auto=None | sp=2024 it=- mb=- | ?
+6epn3r7S14KUqlReYr77hA | 150 | Justin Bieber, Ludacris - Baby | auto=None | sp=2010 it=- mb=- | ?
+3LlAyCYU26dvFZBDUIMb7a | 151 | Imagine Dragons - Demons | auto=None | sp=2012 it=- mb=- | ?
+5EYdTPdJD74r9EVZBztqGG | 152 | Bloodhound Gang - The Bad Touch | auto=None | sp=1999 it=- mb=- | ?
+2VVhfEtGPMSbYZI2qW0fNr | 153 | Tchakabum - Avião | auto=None | sp=1999 it=- mb=- | ?
+1HOMkjp0nHMaTnfAkslCQj | 154 | The Knack - My Sharona | auto=None | sp=1979 it=- mb=- | ?
+1QFh8OH1e78dGd3VyJZCAC | 155 | The Cure - Boys Don't Cry | auto=None | sp=1979 it=- mb=- | ?
+0rywmdqLgV4ebmnzPvSqmP | 156 | Joelma - Voando Pro Pará | auto=None | sp=2016 it=- mb=- | ?
+6ursmCnbc9oDRGa2yHKkoZ | 157 | Sepultura - Roots Bloody Roots | auto=None | sp=1996 it=- mb=- | ?
+1B75hgRqe7A4fwee3g3Wmu | 158 | MC Hammer - U Can't Touch This | auto=None | sp=1990 it=- mb=- | ?
+7HW5WIw7ZgZORCzUxv5gW5 | 159 | Elton John, Kiki Dee - Don't Go Breaking My Heart | auto=None | sp=1975 it=- mb=- | ?
+17VWTx7LD7liGlpnlGhUbn | 160 | LaBelle - Lady Marmalade | auto=None | sp=1974 it=- mb=- | ?
+5uuJruktM9fMdN9Va0DUMl | 161 | Wild Cherry - Play That Funky Music | auto=None | sp=1976 it=- mb=- | ?
+6egmD7auKp3N7gy72uBnFQ | 162 | Olivia Newton-John - Physical - Remastered 2021 | auto=None | sp=1981 it=- mb=- | ?
+2Mz7HwloqFNdA6iZeZk5PJ | 163 | Gipsy Kings - Djobi, Djoba | auto=None | sp=1987 it=- mb=- | ?
+4elODsbH5WrDbGnrccxvGw | 164 | Herva Doce - Amante Profissional | auto=None | sp=1985 it=- mb=- | ?
+5wANPM4fQCJwkGd4rN57mH | 165 | Olivia Rodrigo - drivers license | auto=None | sp=2021 it=- mb=- | ?
+5ki6IqIs9f5FAYrKSBiB8N | 166 | Toquinho, Vinícius de Moraes, Monsueto Menezes - A Tonga da Mironga do Kabuletê | auto=None | sp=2016 it=- mb=- | ?
+4aR9bPMAOFySBuQSbVWF3d | 167 | Lily Allen - Smile | auto=None | sp=2006 it=- mb=- | ?
+4wyOJpXk7qexhGv10cXUPr | 168 | José Augusto - Aguenta Coração | auto=None | sp=1990 it=- mb=- | ?
+3mwvKOyMmG77zZRunnxp9E | 169 | Weezer - Buddy Holly | auto=None | sp=1994 it=- mb=- | ?
+0SiywuOBRcynK0uKGWdCnn | 170 | Lady Gaga - Bad Romance | auto=None | sp=2009 it=- mb=- | ?
+0WSO3rLrwKWLTR5TtZRN0X | 171 | MC Leozinho, DJ Marlboro - Ela Só Pensa Em Beijar | auto=None | sp=2006 it=- mb=- | ?
+64B4UbGRLtGRBtiN2m8OvF | 172 | The B-52's - Love Shack - Edit | auto=None | sp=1989 it=- mb=- | ?
+54OR1VDpfkBuOY5zZjhZAY | 173 | Village People - YMCA - Original Version 1978 | auto=None | sp=1978 it=- mb=- | ?
+0RClguMsTbVPYKzY27TzyL | 174 | Marjorie Estiano - Espirais | auto=None | sp=2007 it=- mb=- | ?
+0by19mYM0du6rkzugAogN9 | 175 | Caetano Veloso - O Leãozinho - Nova Mixagem | auto=None | sp=1977 it=- mb=- | ?
+5HCyWlXZPP0y6Gqq8TgA20 | 176 | The Kid LAROI, Justin Bieber - STAY (with Justin Bieber) | auto=None | sp=2021 it=- mb=- | ?
+7KBfjlQ85Fqs2MCCvXSW0c | 177 | MC Fioti, Novo Império - Bum Bum Tam Tam | auto=None | sp=2017 it=- mb=- | ?
+3GfOAdcoc3X5GPiiXmpBjK | 178 | Blur - Song 2 | auto=None | sp=2000 it=- mb=- | ?
+2UeJXZ4W2gQw94Jcm2BlQ9 | 179 | DJ Marlboro, MC Marcinho - Glamourosa (Rap Glamurosa) | auto=None | sp=2017 it=- mb=- | ?
+0YBq701BXkMaK6V5UyvOpT | 180 | A Banda Mais Bonita da Cidade - Oração | auto=None | sp=2011 it=- mb=- | ?
+14iN3o8ptQ8cFVZTEmyQRV | 181 | Katy Perry - I Kissed A Girl | auto=None | sp=2008 it=- mb=- | ?
+0G3PPOWMMPwBJIEH7Udnsu | 182 | Art Popular - Pimpolho | auto=None | sp=1996 it=- mb=- | ?
+0d28khcov6AiegSCpG5TuT | 183 | Gorillaz, De La Soul - Feel Good Inc. | auto=None | sp=2005 it=- mb=- | ?
+38DgNqC7TQkZ3Ih5Vz6K0Q | 184 | Carly Rae Jepsen - Call Me Maybe | auto=None | sp=2012 it=- mb=- | ?
+3pUQEJXwmnooceL5DqluNA | 185 | Fagner - Borbulhas de Amor (Tenho um Coração) [Borbujas de Amor] | auto=None | sp=1991 it=- mb=- | ?
+1Eb90nmqTrxylKFhcUzW8P | 186 | Bryan Adams - (Everything I Do) I Do It For You | auto=None | sp=1991 it=- mb=- | ?
+4w1lzcaoZ1IC2K5TwjalRP | 187 | Vanessa Carlton - A Thousand Miles | auto=None | sp=2002 it=- mb=- | ?
+6x4tKaOzfNJpEJHySoiJcs | 188 | Lou Bega - Mambo No. 5 (a Little Bit of...) | auto=None | sp=1999 it=- mb=- | ?
+6lfDlHdveFFxM67BZNMTU6 | 189 | Sérgio Reis - O Menino da Porteira | auto=None | sp=1973 it=- mb=- | ?
+7EknynLJTt9YMm1HL37s5D | 190 | Grupo Menos É Mais, Simone Mendes - P do Pecado - Ao Vivo | auto=None | sp=2025 it=- mb=- | ?
+4tBZUrAviVgUzeTIiJLEe9 | 191 | Zélia Duncan - Catedral | auto=None | sp=1994 it=- mb=- | ?
+6kWJvPfC4DgUpRsXKNa9z9 | 192 | Ace of Base - All That She Wants | auto=None | sp=1993 it=- mb=- | ?
+4OSBTYWVwsQhGLF9NHvIbR | 193 | Adele - Rolling in the Deep | auto=None | sp=2011 it=- mb=- | ?
+01XFgRZfZI7oBagNf1Loml | 194 | Baauer - Harlem Shake | auto=None | sp=2013 it=- mb=- | ?
+02jcEwywffn3Tsb48fXmlW | 195 | P!nk - Get the Party Started | auto=None | sp=2001 it=- mb=- | ?
+2L7olK36yxdqHnNpvXhPdN | 196 | Mallu Magalhães - Tchubaruba - Bonus Track | auto=None | sp=2008 it=- mb=- | ?
+1H5tvpoApNDxvxDexoaAUo | 197 | Baha Men - Who Let The Dogs Out | auto=None | sp=2000 it=- mb=- | ?
+2UUTsZ8uY9kAXGawvp4OeP | 198 | Sambô - Sunday Bloody Sunday - Ao Vivo | auto=None | sp=2011 it=- mb=- | ?
+7N3PAbqfTjSEU1edb2tY8j | 199 | Van Halen - Jump - 2015 Remaster | auto=None | sp=1984 it=- mb=- | ?
+1zf8Xmj66XRiI6Etw2Ddu7 | 200 | Barbra Streisand - Don't Rain On My Parade | auto=None | sp=1968 it=- mb=- | ?
+3YKptz29AsOlm7WAVnztBh | 201 | Seal - Kiss from a Rose | auto=None | sp=1994 it=- mb=- | ?
+0KjWEUxJHS78pGOWLR2ZkW | 202 | Ultraje a Rigor - Nós vamos invadir sua praia | auto=None | sp=2012 it=- mb=- | ?
+5nX5RLzxc6nw5SpGWl181Q | 203 | Gabriel Valim - Piradinha | auto=None | sp=2013 it=- mb=- | ?
+7qQ6Wp7uu44QpfKZHdC15I | 204 | Leandro & Leonardo, Continental - Entre tapas e beijos | auto=None | sp=1989 it=- mb=- | ?
+1Jwc3ODLQxtbnS8M9TflSP | 205 | The Bangles - Walk Like an Egyptian | auto=None | sp=2004 it=- mb=- | ?
+03UrZgTINDqvnUMbbIMhql | 206 | PSY - Gangnam Style (강남스타일) | auto=None | sp=2012 it=- mb=- | ?
+3TlIt0ReIxPsVZcOEivT5U | 207 | Tom Jones - It's Not Unusual | auto=None | sp=1965 it=- mb=- | ?
+5WgnqMS5UHZqnHoJ4XrrjH | 208 | Raimundos - I Saw You Saying - That You Say That You Saw | auto=None | sp=1995 it=- mb=- | ?
+2RzJwBCXsS1VnjDm2jKKAa | 209 | R. Kelly - I Believe I Can Fly | auto=None | sp=1998 it=- mb=- | ?
+71hIekopkrYCGgggsBOpVG | 210 | Domenico Modugno - Volare | auto=None | sp=2020 it=- mb=- | ?
+3kdPjbnYQTWT8Pc1Df3FSD | 211 | Bruno & Marrone, Continental - Dormi na praça | auto=None | sp=1994 it=- mb=- | ?
+27mZQOo1KoYewC9fVTgg5y | 212 | Sula Miranda, Continental - Com o pé na estrada | auto=None | sp=1992 it=- mb=- | ?
+6sxptembJVty4sNtcPMAVz | 213 | Shania Twain - Man! I Feel Like A Woman! | auto=None | sp=1997 it=- mb=- | ?
+7sapKrjDij2fpDVj0GxP66 | 214 | Maroon 5 - She Will Be Loved | auto=None | sp=2002 it=- mb=- | ?
+0rRboI6IRuGx56Dq3UdYY4 | 215 | Afroman - Because I Got High | auto=None | sp=2001 it=- mb=- | ?
+5YbgcwHjQhdT1BYQ4rxWlD | 216 | Bobby McFerrin - Don't Worry Be Happy | auto=None | sp=1997 it=- mb=- | ?
+14EUcXXpqrC03Dzzdj8bGr | 217 | Enya - Orinoco Flow | auto=None | sp=1988 it=- mb=- | ?
+5ZlJhOdlJgirkABaecXJQa | 218 | Companhia do Pagode - Na Boquinha da Garrafa | auto=None | sp=1995 it=- mb=- | ?
+7Hxn53rQRmBETCbhIxFp44 | 219 | João Paulo & Daniel, Continental - Eu me amarrei | auto=None | sp=1995 it=- mb=- | ?
+1AlDa4Cn86XcUrTFgxkJI8 | 220 | Boney M. - Rasputin - Single Version | auto=None | sp=1991 it=- mb=- | ?
+77Oww6V7jooOd7aNEMnFJ3 | 221 | Berlin - Take My Breath Away - Love Theme from "Top Gun" | auto=None | sp=1986 it=- mb=- | ?
+1vxw6aYJls2oq3gW0DujAo | 222 | Gnarls Barkley, CeeLo Green, Danger Mouse - Crazy | auto=None | sp=2007 it=- mb=- | ?
+0mrP69xWBmlnixuVLFqCSl | 223 | Os Incríveis - Era um Garoto Que Como Eu Amava os Beatles e os Rolling Stones (C'era un ragazzo) | auto=None | sp=1970 it=- mb=- | ?
+3nZiCfdFj6xsCIBGydkxDG | 224 | Grupo Raça - Tô Legal | auto=None | sp=1993 it=- mb=- | ?
+31Tp5iKrVUayn65qhg06nE | 225 | Elvis Costello - She | auto=None | sp=2012 it=- mb=- | ?
+2xF0GzAiDMEugLYqLZFWLr | 226 | Salt-N-Pepa - Push It | auto=None | sp=1986 it=- mb=- | ?
+1eT2CjXwFXNx6oY5ydvzKU | 227 | The Beatles - Hey Jude | auto=None | sp=2006 it=- mb=- | ?
+2sUhjzuc6w4SRFwoC3LvXZ | 228 | Jovem Dionisio - ACORDA PEDRINHO | auto=None | sp=2022 it=- mb=- | ?
+4sCSUQnWQ6HJsOMjfPicdn | 229 | Don Omar, Lucenzo - Danza Kuduro | auto=None | sp=2011 it=- mb=- | ?
+6jIXbhXH68WuTHkVYowty1 | 230 | Wanderléa - Pare o Casamento (Stop The Wedding) | auto=None | sp=1965 it=- mb=- | ?
+2qzvVh6WD7pP0DUkSyANNf | 231 | Timbalada - Beija-Flor | auto=None | sp=1993 it=- mb=- | ?
+4Lc8ecN5ATCmPhBblBI4OO | 232 | DJ Marlboro, Bola de Fogo, As Fogosas - Atoladinha | auto=None | sp=2004 it=- mb=- | ?
+5prTs2HAw2G4idHZyeFp8o | 233 | Bonnie Tyler - Total Eclipse of the Heart | auto=None | sp=1999 it=- mb=- | ?
+0n2SEXB2qoRQg171q7XqeW | 234 | Santana, Rob Thomas - Smooth (feat. Rob Thomas) | auto=None | sp=1999 it=- mb=- | ?
+2HHtWyy5CgaQbC7XSoOb0e | 235 | Survivor - Eye of the Tiger | auto=None | sp=1982 it=- mb=- | ?
+6A3Q8BVAAI2PW1s6MX4ZGF | 236 | Vanessa Da Mata, Ben Harper - Boa Sorte / Good Luck (feat. Ben Harper) | auto=None | sp=2007 it=- mb=- | ?
+7gSyKlI3GTxrhlFkukgDz0 | 237 | Absyntho - Meu Ursinho Blau Blau | auto=None | sp=1983 it=- mb=- | ?
+7tFiyTwD0nx5a1eklYtX2J | 238 | Queen - Bohemian Rhapsody - Remastered 2011 | auto=None | sp=1975 it=- mb=- | ?
+5Ihd9HrPvOADyVoonH9ZjB | 239 | Toni Braxton - Un-Break My Heart | auto=None | sp=1996 it=- mb=- | ?
+05XkMS2YVNfPNXepMScPRJ | 240 | Dionne Warwick - I Say a Little Prayer | auto=None | sp=1967 it=- mb=- | ?
+7c7X9kFUTP83CJ9Ptqd8Kk | 241 | Angélica - Blue Jeans | auto=None | sp=1992 it=- mb=- | ?
+6JY1IdkZGeIcPegKxjSKeb | 242 | Kelly Clarkson - Since U Been Gone | auto=None | sp=2004 it=- mb=- | ?
+1ZPlNanZsJSPK5h9YZZFbZ | 243 | Madonna - Like a Virgin | auto=None | sp=1984 it=- mb=- | ?
+6SvpFmoAAehspS8RTmguFp | 244 | Belo - Tua Boca | auto=None | sp=2000 it=- mb=- | ?
+6xNwKNYZcvgV3XTIwsgNio | 245 | Elvis Presley - Heartbreak Hotel | auto=None | sp=1958 it=- mb=- | ?
+2Y0R8ey56JBZj6Au3HenCq | 246 | Pitty - Máscara | auto=None | sp=2003 it=- mb=- | ?
+6UelLqGlWMcVH1E5c4H7lY | 247 | Harry Styles - Watermelon Sugar | auto=None | sp=2019 it=- mb=- | ?
+5IZXB5IKAD2qlvTPJYDCFB | 248 | Post Malone, Morgan Wallen - I Had Some Help (Feat. Morgan Wallen) | auto=None | sp=2024 it=- mb=- | ?
+56bWd9eEu5xsIWETPBIA8k | 249 | Katinguelê - Inaraí | auto=None | sp=1998 it=- mb=- | ?
+0ySHkodPWa8XD6vzoImba1 | 250 | Ira! - Rubro zorro | auto=None | sp=1988 it=- mb=- | ?
+3cfOd4CMv2snFaKAnMdnvK | 251 | Smash Mouth - All Star | auto=None | sp=1999 it=- mb=- | ?
+1CvlVbRa6qKEvS8YL8YliV | 252 | Simone - Iolanda | auto=None | sp=1986 it=- mb=- | ?
+10MsXPpQLz5ZrOEZxTtkIm | 253 | Ana Castela - Olha Onde Eu Tô | auto=None | sp=2025 it=- mb=- | ?
+6habFhsOp2NvshLv26DqMb | 254 | Luis Fonsi, Daddy Yankee - Despacito | auto=None | sp=2019 it=- mb=- | ?
+4ppxp8rJB8eOhM9TFm6dK2 | 255 | Ike & Tina Turner - Proud Mary | auto=None | sp=1970 it=- mb=- | ?
+1heR9QDRERteiqBBsi3fLM | 256 | Só Pra Contrariar - A Barata | auto=None | sp=2005 it=- mb=- | ?
+2s1sdSqGcKxpPr5lCl7jAV | 257 | Sia - Chandelier | auto=None | sp=2015 it=- mb=- | ?
+4jDmJ51x1o9NZB5Nxxc7gY | 258 | George Michael - Careless Whisper | auto=None | sp=1998 it=- mb=- | ?
+6I9VzXrHxO9rA9A5euc8Ak | 259 | Britney Spears - Toxic | auto=None | sp=2003 it=- mb=- | ?
+6Uj1ctrBOjOas8xZXGqKk4 | 260 | Doja Cat - Woman | auto=None | sp=2021 it=- mb=- | ?
+7gEFZ2FzhVzLLzsPasKQKg | 261 | Alcides Gerardi - Cabecinha no Ombro | auto=None | sp=1996 it=- mb=- | ?
+5mgCMlxQW7fmHbrdJuowbB | 262 | Mariah Carey - Hero | auto=None | sp=1993 it=- mb=- | ?
+3DRSpgSfeQlPVqPQ7YQiK3 | 263 | As Meninas - Xibom Bombom | auto=None | sp=1999 it=- mb=- | ?
+1syj5noYd0GUqHflMH6zda | 264 | Braga Boys - A Bomba | auto=None | sp=2004 it=- mb=- | ?
+7hkQhMFq4EOTYwX3I7cgmA | 265 | Legião Urbana - Será | auto=None | sp=1985 it=- mb=- | ?
+0ZPquQV2aKmDfwPjvMdvRp | 266 | Los Hermanos - Último Romance | auto=None | sp=2003 it=- mb=- | ?
+2yQMmtem48vOjB1OXAvbKD | 267 | Ana Carolina - Quem de nós Dois (La Mia Storia Tra Le Dita) | auto=None | sp=2001 it=- mb=- | ?
+2DAGCHu5aoo2FOjmtU9ojo | 268 | Naiara Azevedo, Maiara & Maraisa - 50 Reais | auto=None | sp=2016 it=- mb=- | ?
+0HZlND4giwzgolBpaNIRGV | 269 | The 5th Dimension - Aquarius/Let The Sunshine In (The Flesh Failures) - From the Musical "Hair" | auto=None | sp=1969 it=- mb=- | ?
+127twwy3iCo1xBRQHyWetU | 270 | Chico Buarque - Cotidiano | auto=None | sp=1971 it=- mb=- | ?
+4hfIVhq0F0zFUcrbecsYmo | 271 | Black Eyed Peas - Let's Get It Started - Spike Mix | auto=None | sp=2003 it=- mb=- | ?
+2Wb9ejnmy27DUTUe9YF5Ew | 272 | Lionel Richie - All Night Long (All Night) - Single Version | auto=None | sp=2003 it=- mb=- | ?
+3PR79C1jVvLLLmgdyHkXl3 | 273 | KC & The Sunshine Band - That's the Way (I Like It) - 2004 Remaster | auto=None | sp=1975 it=- mb=- | ?
+5MMnwYs0hIxkENRsbkWJ2G | 274 | Deep Purple - Smoke On The Water - Remastered 2012 | auto=None | sp=1972 it=- mb=- | ?
+5LgtJshfcCKoi4LQ40ym4d | 275 | Ney Matogrosso - Homem Com H | auto=None | sp=1981 it=- mb=- | ?
+5ubvP9oKmxLUVq506fgLhk | 276 | Bee Gees - Stayin Alive | auto=None | sp=2020 it=- mb=- | ?
+79f21uRzn79zWCxrsF17hj | 277 | Ls Jack - Carla | auto=None | sp=2002 it=- mb=- | ?
+5QQzvk1759dAwL4T7jxDhg | 278 | Inezita Barroso - Marvada Pinga (Moda Da Pinga) | auto=None | sp=1998 it=- mb=- | ?
+75FYqcxt1YEAtqDLrOeIJn | 279 | Bob Marley & The Wailers - Three Little Birds | auto=None | sp=1977 it=- mb=- | ?
+49MHCPzvMLXhRjDantBMVH | 280 | Billy Joel - Just the Way You Are | auto=None | sp=1977 it=- mb=- | ?
+0AQqrtK1pULuwZUXhwaaDz | 281 | Eric Carmen - All By Myself | auto=None | sp=1975 it=- mb=- | ?
+3CwnUKUnWDAVbEyxBY1Zc4 | 282 | MD Chefe, Offlei Sounds, DomLaike - Rei Lacoste | auto=None | sp=2021 it=- mb=- | ?
+71iogkuXi7nAfFbqMGDTri | 283 | Vanguart - Meu Sol | auto=None | sp=2013 it=- mb=- | ?
+4JfuiOWlWCkjP6OKurHjSn | 284 | Aerosmith - Walk This Way | auto=None | sp=1975 it=- mb=- | ?
+4xISjdYpFEMsAFC2ax7OVE | 285 | Maria Gadú - Shimbalaiê | auto=None | sp=2009 it=- mb=- | ?
+7pu8AhGUxHZSCWTkQ2eb5M | 286 | Joan Jett & the Blackhearts - Bad Reputation | auto=None | sp=1981 it=- mb=- | ?
+1gZ7i4qxXkHZb1r6eioaAP | 287 | The Pussycat Dolls, Busta Rhymes - Don't Cha | auto=None | sp=2005 it=- mb=- | ?
+55ZjdmU2X8iClV61wAdHX6 | 288 | Daniela Mercury - O Canto da Cidade | auto=None | sp=1992 it=- mb=- | ?
+1b95iTuFa05xohamPS1qzK | 289 | Oswaldo Montenegro - Lua e flor | auto=None | sp=1994 it=- mb=- | ?
+1j5N75y26nH2l0uPa9JlKe | 290 | Vitor Kley - O Sol | auto=None | sp=2018 it=- mb=- | ?
+3iYYzy24uam6YzRgAbG0KD | 291 | Banda Uó, Mateus Carrilho, Candy Mel, Davi Sabbag - Cremosa | auto=None | sp=2015 it=- mb=- | ?
+3zHq9ouUJQFQRf3cm1rRLu | 292 | Ellie Goulding - Love Me Like You Do - From "Fifty Shades Of Grey" | auto=None | sp=2015 it=- mb=- | ?
+2gam98EZKrF9XuOkU13ApN | 293 | Nelly Furtado, Timbaland - Promiscuous | auto=None | sp=2006 it=- mb=- | ?
+3nI0piSOxAik2RCpHGloB7 | 294 | Charlie Brown Jr. - Só Os Loucos Sabem | auto=None | sp=2009 it=- mb=- | ?
+1CPZ5BxNNd0n0nF4Orb9JS | 295 | HUNTR/X, EJAE, AUDREY NUNA, REI AMI, KPop Demon Hunters Cast - Golden | auto=None | sp=2025 it=- mb=- | ?
+228BxWXUYQPJrJYHDLOHkj | 296 | Daddy Yankee - Gasolina | auto=None | sp=2004 it=- mb=- | ?
+7K8QsHbmUpSX37oOCL4e2g | 297 | Carl Douglas - Kung Fu Fighting | auto=None | sp=1974 it=- mb=- | ?
+4DIabg0zSDn6xoq810Spqn | 298 | Rita Lee, Roberto De Carvalho - Chega Mais | auto=None | sp=1979 it=- mb=- | ?
+2AW37v0bDyuOzGP3XnmFuA | 299 | *NSYNC - It's Gonna Be Me | auto=None | sp=2000 it=- mb=- | ?
+7K5rZnp7C07SVotXqMaKFp | 300 | Zizi Possi - Asa Morena | auto=None | sp=1982 it=- mb=- | ?
+0cqRj7pUJDkTCEsJkx8snD | 301 | Taylor Swift - Shake It Off | auto=None | sp=2014 it=- mb=- | ?
+1wfzOH54LylpiG8hAOjKcS | 302 | Joni Mitchell - Big Yellow Taxi | auto=None | sp=2019 it=- mb=- | ?
+2Z2xeJsAOVmTy0UTYA21C5 | 303 | Os Cariocas - Ela É Carioca | auto=None | sp=1989 it=- mb=- | ?
+7cv28LXcjAC3GsXbUvXKbX | 304 | Gloria Gaynor - I Will Survive - Single Version | auto=None | sp=2000 it=- mb=- | ?
+6yEBV6MlSODqJPXK6BilZo | 305 | Sérgio Sampaio - Eu Quero É Botar Meu Bloco Na Rua | auto=None | sp=1973 it=- mb=- | ?
+0HuRTyI3kEP5K1ecfVKRyP | 306 | Luiz Melodia - Juventude Transviada | auto=None | sp=1976 it=- mb=- | ?
+7gVzhRCrLRUBEGdS7zNTp0 | 307 | Zé Felipe - Malvada | auto=None | sp=2022 it=- mb=- | ?
+1EzrEOXmMH3G43AXT1y7pA | 308 | Jason Mraz - I'm Yours | auto=None | sp=2008 it=- mb=- | ?

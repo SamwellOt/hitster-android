@@ -1,0 +1,31 @@
+# Android / Gradle
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+captures/
+.cxx/
+*.apk
+*.aab
+
+# Release signing – never commit keys
+keystore/
+keystore.properties
+
+# Node
+node_modules/
+
+# Catalog pipeline – derived / third‑party data (see README: regenerate with tools/build_catalog.py)
+catalog/_cache.json
+tools/gameset_database.json
+tools/__pycache__/
+
+# Design canvas – generated bundle and screenshots (sources are the .dc.html files + make_artboards.py)
+design/hitster-mobile-telas.html
+design/shots/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,2780 @@
+{
+ "sku": "aaaq0002",
+ "name": "Hitster Lado B",
+ "subtitle": "Brasil · Guilty Pleasures",
+ "lang": "pt-BR",
+ "cards": [
+  {
+   "n": 1,
+   "id": "7wbPfd2mXbStoZZSnHNd2V",
+   "title": "Reunited",
+   "artist": "Peaches & Herb",
+   "year": 1978,
+   "preview": "https://p.scdn.co/mp3-preview/4cd8bd2718a767ad127dfca11af478c465f179b3",
+   "cover": null
+  },
+  {
+   "n": 2,
+   "id": "5vnizrbjvijNg3Eaq3Y5Hu",
+   "title": "O Beco",
+   "artist": "Os Paralamas Do Sucesso",
+   "year": 1988,
+   "preview": "https://p.scdn.co/mp3-preview/2627bd2b85f4b2ef57c8750f1505492f4a3137f6",
+   "cover": null
+  },
+  {
+   "n": 3,
+   "id": "4y1LsJpmMti1PfRQV9AWWe",
+   "title": "Girls Just Want to Have Fun",
+   "artist": "Cyndi Lauper",
+   "year": 1983,
+   "preview": "https://p.scdn.co/mp3-preview/7f0a39e2981e2dcbf75783cef812e7d84726f650",
+   "cover": null
+  },
+  {
+   "n": 4,
+   "id": "2qhASBzpbFhPRtrnZ5lLnz",
+   "title": "Unchained Melody",
+   "artist": "The Righteous Brothers",
+   "year": 1965,
+   "preview": "https://p.scdn.co/mp3-preview/6bf5e54931ce622e2e5b402b2d5959353de8cb10",
+   "cover": null
+  },
+  {
+   "n": 5,
+   "id": "3oiMJQAWVaxSubJ7b2VUtX",
+   "title": "Fancy",
+   "artist": "Iggy Azalea, Charli xcx",
+   "year": 2014,
+   "preview": "https://p.scdn.co/mp3-preview/077ffd490b5c65dfdcdc9d77b2a4cb607a8563b9",
+   "cover": null
+  },
+  {
+   "n": 6,
+   "id": "6Ulh9GPYz6JKdv04qc3q2U",
+   "title": "Dengo",
+   "artist": "João Gomes",
+   "year": 2022,
+   "preview": "https://p.scdn.co/mp3-preview/d466c3d909e3367890a87c2f26ca5cb6e40026e8",
+   "cover": null
+  },
+  {
+   "n": 7,
+   "id": "6Fio8lHyfNCopZA3Qg9HfL",
+   "title": "A Dor Desse Amor",
+   "artist": "KLB",
+   "year": 2000,
+   "preview": "https://p.scdn.co/mp3-preview/360d62c33617313e2996b36f3428cb908b0e94f8",
+   "cover": null
+  },
+  {
+   "n": 8,
+   "id": "0uppYCG86ajpV2hSR3dJJ0",
+   "title": "Give It Away",
+   "artist": "Red Hot Chili Peppers",
+   "year": 1991,
+   "preview": "https://p.scdn.co/mp3-preview/e0c62e6fb378167d40ab941124f9ed7b9911a35e",
+   "cover": null
+  },
+  {
+   "n": 9,
+   "id": "2WElktskrNJEwgpp5Vouxk",
+   "title": "I'm Too Sexy",
+   "artist": "Right Said Fred",
+   "year": 1991,
+   "preview": "https://p.scdn.co/mp3-preview/7ed360ab4ecbd6548755b203eab0179ad2bfdfe9",
+   "cover": null
+  },
+  {
+   "n": 10,
+   "id": "3EYOJ48Et32uATr9ZmLnAo",
+   "title": "Roxanne",
+   "artist": "The Police",
+   "year": 1978,
+   "preview": "https://p.scdn.co/mp3-preview/0e03a027992294c5c49cf64fcaf9a48e89139556",
+   "cover": null
+  },
+  {
+   "n": 11,
+   "id": "3gsCAGsWr6pUm1Vy7CPPob",
+   "title": "Killing Me Softly With His Song",
+   "artist": "Roberta Flack",
+   "year": 1973,
+   "preview": "https://p.scdn.co/mp3-preview/86f729251aeaa50bbbb8c022de6861091c0cb180",
+   "cover": null
+  },
+  {
+   "n": 12,
+   "id": "5mHzMlVi8OMJKnK5SmRK7a",
+   "title": "Evidências",
+   "artist": "Chitãozinho & Xororó",
+   "year": 1990,
+   "preview": "https://p.scdn.co/mp3-preview/4ebc08f20aae9d80bf32dcea9f828fe8054e09f1",
+   "cover": null
+  },
+  {
+   "n": 13,
+   "id": "3MrRksHupTVEQ7YbA0FsZK",
+   "title": "The Final Countdown",
+   "artist": "Europe",
+   "year": 1986,
+   "preview": "https://p.scdn.co/mp3-preview/eaa4589de811f47326f5a15013ed58bd62a9e96a",
+   "cover": null
+  },
+  {
+   "n": 14,
+   "id": "37ZJ0p5Jm13JPevGcx4SkF",
+   "title": "Livin' On A Prayer",
+   "artist": "Bon Jovi",
+   "year": 1986,
+   "preview": "https://p.scdn.co/mp3-preview/2a84c209d6bfe17da820bbc28d1e610a5d304a53",
+   "cover": null
+  },
+  {
+   "n": 15,
+   "id": "1SAkL1mYNJlaqnBQxVZrRl",
+   "title": "Baby Got Back",
+   "artist": "Sir Mix-A-Lot",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/9a1d617b9ff3cda69d84aceb5cfcd3918f462536",
+   "cover": null
+  },
+  {
+   "n": 16,
+   "id": "0COqiPhxzoWICwFCS4eZcp",
+   "title": "Bring Me To Life",
+   "artist": "Evanescence",
+   "year": 2003,
+   "preview": "https://p.scdn.co/mp3-preview/d318a788a3a6a1ecb8cd0f1c924cef18832ff8d2",
+   "cover": null
+  },
+  {
+   "n": 17,
+   "id": "0ikz6tENMONtK6qGkOrU3c",
+   "title": "Wake Me Up Before You Go-Go",
+   "artist": "Wham!",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/48ce25ff385552880371a3c460f0b90ecbcfceea",
+   "cover": null
+  },
+  {
+   "n": 18,
+   "id": "0UAEHlFR79k9CJvknSGUNf",
+   "title": "Pump Up The Jam",
+   "artist": "Technotronic, Felly",
+   "year": 1989,
+   "preview": "https://p.scdn.co/mp3-preview/6f7f1a807709276c4e67a7eb4f95b3fa99397217",
+   "cover": null
+  },
+  {
+   "n": 19,
+   "id": "1OSWO1hDuwzs1Xh2v5rNAF",
+   "title": "Tombei",
+   "artist": "Karol Conká, Tropkillaz",
+   "year": 2014,
+   "preview": "https://p.scdn.co/mp3-preview/9a79d6d9603ef1dddf9918baa604c9a84b07d80a",
+   "cover": null
+  },
+  {
+   "n": 20,
+   "id": "1vLqigPHwiFnXsfrLMehV1",
+   "title": "Espresso",
+   "artist": "Sabrina Carpenter",
+   "year": 2024,
+   "preview": "https://p.scdn.co/mp3-preview/2280f84efde8a1127e2d3b6b6440d0284a0b9778",
+   "cover": null
+  },
+  {
+   "n": 21,
+   "id": "6uFwhB7gVs7ExCAfJD5BWg",
+   "title": "Mais Ninguém",
+   "artist": "Banda do Mar",
+   "year": 2014,
+   "preview": "https://p.scdn.co/mp3-preview/c21af52ba96e6c1c79b1407c2fd6942105b08f8f",
+   "cover": null
+  },
+  {
+   "n": 22,
+   "id": "4cluDES4hQEUhmXj6TXkSo",
+   "title": "What Makes You Beautiful",
+   "artist": "One Direction",
+   "year": 2011,
+   "preview": "https://p.scdn.co/mp3-preview/3abcba42a4cb3566c4840c29fd6695459065b1ae",
+   "cover": null
+  },
+  {
+   "n": 23,
+   "id": "74VR3AkGPhbYXnxcOYa16x",
+   "title": "Strangers In The Night",
+   "artist": "Frank Sinatra",
+   "year": 1966,
+   "preview": "https://p.scdn.co/mp3-preview/f33a1903e93b0d95332a12e85841698cfb4534e7",
+   "cover": null
+  },
+  {
+   "n": 24,
+   "id": "0HPD5WQqrq7wPWR7P7Dw1i",
+   "title": "TiK ToK",
+   "artist": "Kesha",
+   "year": 2009,
+   "preview": "https://p.scdn.co/mp3-preview/64365720909482d7f460492a49565a87e9969344",
+   "cover": null
+  },
+  {
+   "n": 25,
+   "id": "2gVRDshVuLTKslwTequSO1",
+   "title": "Requebra",
+   "artist": "Olodum",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/839d89dc39fc055d6609836555b98e2a9b4b475b",
+   "cover": null
+  },
+  {
+   "n": 26,
+   "id": "7zrpoAJte9o12TzawqgdD0",
+   "title": "Con Te Partirò",
+   "artist": "Andrea Bocelli",
+   "year": 1995,
+   "preview": "https://p.scdn.co/mp3-preview/b5687ce31c66f0fbbf5dc38a17335cb634425de6",
+   "cover": null
+  },
+  {
+   "n": 27,
+   "id": "1yjY7rpaAQvKwpdUliHx0d",
+   "title": "Still into You",
+   "artist": "Paramore",
+   "year": 2013,
+   "preview": "https://p.scdn.co/mp3-preview/4abdea56e053fe7d0f4f4e446b43d404b28edf69",
+   "cover": null
+  },
+  {
+   "n": 28,
+   "id": "3A8Ia0McOSj8xlUF5OZHSk",
+   "title": "Perdidos Na Selva",
+   "artist": "Gang 90 & Absurdetes",
+   "year": 1983,
+   "preview": "https://p.scdn.co/mp3-preview/3416ec63dd879975dcbac7c63896475dc6ff74f8",
+   "cover": null
+  },
+  {
+   "n": 29,
+   "id": "5QpaGzWp0hwB5faV8dkbAz",
+   "title": "Wherever You Will Go",
+   "artist": "The Calling",
+   "year": 2001,
+   "preview": "https://p.scdn.co/mp3-preview/8b0fe841dac27e19dd6b26b8f480f39c96891350",
+   "cover": null
+  },
+  {
+   "n": 30,
+   "id": "5Szi2uEs1VFFiJvI3E4Q1J",
+   "title": "Bandeira Do Divino",
+   "artist": "Ivan Lins",
+   "year": 1978,
+   "preview": "https://p.scdn.co/mp3-preview/4465fd712782718c52d46363aa012af0820c6596",
+   "cover": null
+  },
+  {
+   "n": 31,
+   "id": "59qF0PwTCEJkL4MvAzyyEO",
+   "title": "Amor, Amor",
+   "artist": "Wanessa Camargo",
+   "year": 2005,
+   "preview": "https://p.scdn.co/mp3-preview/faec061ec7d8be6d5d1fecfb6710ccbfa94ed817",
+   "cover": null
+  },
+  {
+   "n": 32,
+   "id": "4u7ZqpIkq2sDdQD22JOFLZ",
+   "title": "ABC",
+   "artist": "The Jackson 5",
+   "year": 1970,
+   "preview": "https://p.scdn.co/mp3-preview/b111890c9feb83f8e1b72a138961c09bd025a254",
+   "cover": null
+  },
+  {
+   "n": 33,
+   "id": "39lSeqnyjZJejRuaREfyLL",
+   "title": "Hungry Like the Wolf",
+   "artist": "Duran Duran",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/2a75c1b7c9d5aa716edc8162b19da4d627e0be43",
+   "cover": null
+  },
+  {
+   "n": 34,
+   "id": "7wf1lnd9PUysUud3V3Bwrn",
+   "title": "Mandamentos Black",
+   "artist": "Gerson King Combo",
+   "year": 1977,
+   "preview": "https://p.scdn.co/mp3-preview/1382abd8dddce13894debc7dce7af5269ae7ef83",
+   "cover": null
+  },
+  {
+   "n": 35,
+   "id": "3Z2Thcr0SrxKcQpvouDpR8",
+   "title": "Bananeira",
+   "artist": "Emílio Santiago",
+   "year": 1975,
+   "preview": "https://p.scdn.co/mp3-preview/c7f23104e38044093aed6ea531dde0d8f62ff43c",
+   "cover": null
+  },
+  {
+   "n": 36,
+   "id": "2CoKGyZavJWTFUPyvWoj0b",
+   "title": "O Que É O Que É?",
+   "artist": "Gonzaguinha",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/879b8b5fb438ca2054ac392556f0f0f1a6d44e2c",
+   "cover": null
+  },
+  {
+   "n": 37,
+   "id": "7w5AOd6HrDIHewHfpABEss",
+   "title": "Wicked Game",
+   "artist": "Chris Isaak",
+   "year": 1989,
+   "preview": "https://p.scdn.co/mp3-preview/116da575b713d8fe2c698dbb3bbd31c065bff4c3",
+   "cover": null
+  },
+  {
+   "n": 38,
+   "id": "2IvetNzSZMH5gwjInoyr18",
+   "title": "It's Raining Men",
+   "artist": "The Weather Girls",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/adb84904d9e4e2ada1bc4974f50b8e7da31e369d",
+   "cover": null
+  },
+  {
+   "n": 39,
+   "id": "54b8qPFqYqIndfdxiLApea",
+   "title": "Alone",
+   "artist": "Heart",
+   "year": 1987,
+   "preview": "https://p.scdn.co/mp3-preview/2c4286990387cbb419d7456dc9805feadfc32b20",
+   "cover": null
+  },
+  {
+   "n": 40,
+   "id": "7qiZfU4dY1lWllzX7mPBI3",
+   "title": "Shape of You",
+   "artist": "Ed Sheeran",
+   "year": 2017,
+   "preview": "https://p.scdn.co/mp3-preview/7339548839a263fd721d01eb3364a848cad16fa7",
+   "cover": null
+  },
+  {
+   "n": 41,
+   "id": "5DiXcVovI0FcY2s0icWWUu",
+   "title": "Mr. Jones",
+   "artist": "Counting Crows",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/66350d687f6596c2d75205b8a7ae507ebd19511d",
+   "cover": null
+  },
+  {
+   "n": 42,
+   "id": "0wYqEYGKhZHfc92SLHbD4J",
+   "title": "À Francesa",
+   "artist": "Marina Lima",
+   "year": 1989,
+   "preview": "https://p.scdn.co/mp3-preview/7f4adb0a990b7af63aa203e4877f7b98752e82dc",
+   "cover": null
+  },
+  {
+   "n": 43,
+   "id": "01DBoQsngOhbcVFWKkiFOz",
+   "title": "Uptown Girl",
+   "artist": "Billy Joel",
+   "year": 1983,
+   "preview": "https://p.scdn.co/mp3-preview/13fbf3eed96eefbb31a73638927a2911e0aa2748",
+   "cover": null
+  },
+  {
+   "n": 44,
+   "id": "1M2nd8jNUkkwrc1dgBPTJz",
+   "title": "Angels",
+   "artist": "Robbie Williams",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/c89e3caa6786ae5625f622d6b0b90ca2d7a9c4c4",
+   "cover": null
+  },
+  {
+   "n": 45,
+   "id": "7zf5JVR1AiPa9snspPRUD0",
+   "title": "Primavera (Vai Chuva)",
+   "artist": "Tim Maia",
+   "year": 1970,
+   "preview": "https://p.scdn.co/mp3-preview/ee67165b771cf093172a8718f11d99691c60f855",
+   "cover": null
+  },
+  {
+   "n": 46,
+   "id": "4bJygwUKrRgq1stlNXcgMg",
+   "title": "All The Things She Said",
+   "artist": "t.A.T.u.",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/83c9f53e1a532bd05e3cb088c4112c7fe8c2ffab",
+   "cover": null
+  },
+  {
+   "n": 47,
+   "id": "7oo3L1ZPEQSavDVSnlOvDa",
+   "title": "Apenas Um Rapaz Latino Americano",
+   "artist": "Belchior",
+   "year": 1976,
+   "preview": "https://p.scdn.co/mp3-preview/6e25ba1f9dda52fa93b6feaea2b4179a30da7c88",
+   "cover": null
+  },
+  {
+   "n": 48,
+   "id": "2J0nljHgO5EfqN4tW7rftk",
+   "title": "Vai Sacudir, Vai Abalar",
+   "artist": "Cheiro de Amor",
+   "year": 1996,
+   "preview": "https://p.scdn.co/mp3-preview/60597bdc2abc6906d735e91882f5924c3ac82186",
+   "cover": null
+  },
+  {
+   "n": 49,
+   "id": "2kQ8vjePBUExw1zC8shTpg",
+   "title": "Ilariê",
+   "artist": "Xuxa",
+   "year": 1988,
+   "preview": "https://p.scdn.co/mp3-preview/cfdc8ca9a8a868dc3c13632d812d695b921d1b16",
+   "cover": null
+  },
+  {
+   "n": 50,
+   "id": "21KbWPoY3MTpI5byU6d0dl",
+   "title": "Louca por Ti \"Dust in the Wind\"",
+   "artist": "Calcinha Preta",
+   "year": 2000,
+   "preview": "https://p.scdn.co/mp3-preview/134b33cf6e79d44b10224e4983d87bb5acca52bf",
+   "cover": null
+  },
+  {
+   "n": 51,
+   "id": "4HoMdqRml6sVw9pa1cMqyX",
+   "title": "Over The Rainbow",
+   "artist": "Judy Garland",
+   "year": 1939,
+   "preview": "https://p.scdn.co/mp3-preview/93fadefe58768b75908f2d66d2e935155497cd7a",
+   "cover": null
+  },
+  {
+   "n": 52,
+   "id": "4dleXVjZz9M1pQEm6IYICL",
+   "title": "Amanheceu",
+   "artist": "Scalene",
+   "year": 2013,
+   "preview": "https://p.scdn.co/mp3-preview/0eb77ae99eef96b37512b97601aec5b72e36d422",
+   "cover": null
+  },
+  {
+   "n": 53,
+   "id": "3QA7VF91ehKfoYEDa5wcJb",
+   "title": "Mina do Condomínio",
+   "artist": "Seu Jorge",
+   "year": 2007,
+   "preview": "https://p.scdn.co/mp3-preview/e8813fc4af1bb3306d762cd2db62780f23b2acef",
+   "cover": null
+  },
+  {
+   "n": 54,
+   "id": "4qO03RMQm88DdpTJcxlglY",
+   "title": "Call Me",
+   "artist": "Blondie",
+   "year": 1980,
+   "preview": "https://p.scdn.co/mp3-preview/eb33ca5844d02b09c10c367d734551ff5d720f18",
+   "cover": null
+  },
+  {
+   "n": 55,
+   "id": "2eDUcjS6SSDJd6Rcx4TFkd",
+   "title": "Um Girassol Da Cor Do Seu Cabelo",
+   "artist": "Lô Borges",
+   "year": 1972,
+   "preview": "https://p.scdn.co/mp3-preview/913f37351259e788e05b32ba0a8789d9ca4fcfe3",
+   "cover": null
+  },
+  {
+   "n": 56,
+   "id": "5xEM5hIgJ1jjgcEBfpkt2F",
+   "title": "Complicated",
+   "artist": "Avril Lavigne",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/34657059f6a40050f96e3cbf3d929aa595f5dd60",
+   "cover": null
+  },
+  {
+   "n": 57,
+   "id": "3nxRHGSdTr6lwc2QCrRAEv",
+   "title": "Eterno Amor",
+   "artist": "Sampa Crew",
+   "year": 1994,
+   "preview": "https://p.scdn.co/mp3-preview/44a02d64d512fbb129faa41d82d2fb0a1e83897f",
+   "cover": null
+  },
+  {
+   "n": 58,
+   "id": "0C8AukgPKKwZjSKH9kEWK3",
+   "title": "Fugidinha",
+   "artist": "Michel Teló",
+   "year": 2010,
+   "preview": "https://p.scdn.co/mp3-preview/74606644493c1b70c9ba2f955b4c0d2bafe953c3",
+   "cover": null
+  },
+  {
+   "n": 59,
+   "id": "2MPWT0QPx9lrnp51Emu3Hn",
+   "title": "(Un, Dos, Tres) Maria - Original",
+   "artist": "Pop Royals",
+   "year": 2009,
+   "preview": "https://p.scdn.co/mp3-preview/96f4b272be5488b2a3e02cf6a08485fcf72d0539",
+   "cover": null
+  },
+  {
+   "n": 60,
+   "id": "3hlksXnvbKogFdPbpO9vel",
+   "title": "Super Bass",
+   "artist": "Nicki Minaj",
+   "year": 2010,
+   "preview": "https://p.scdn.co/mp3-preview/35b028e2715bda58ffaabb3b8bde86f40d9288e6",
+   "cover": null
+  },
+  {
+   "n": 61,
+   "id": "2TxCwUlqaOH3TIyJqGgR91",
+   "title": "Mamma Mia",
+   "artist": "ABBA",
+   "year": 1975,
+   "preview": "https://p.scdn.co/mp3-preview/b578f8867804a1545b49ef6aea52bd0b8ec766d4",
+   "cover": null
+  },
+  {
+   "n": 62,
+   "id": "2LTlykcdu0gwb7zcKneo2a",
+   "title": "Melhor Só",
+   "artist": "KayBlack, Baco Exu do Blues, Marquinho no Beat",
+   "year": 2023,
+   "preview": "https://p.scdn.co/mp3-preview/f369d2a4939ea19437d2d87bffaa6d14e63fa915",
+   "cover": null
+  },
+  {
+   "n": 63,
+   "id": "0oXHNB2l01b1zJxZpz1Nxr",
+   "title": "Conga, Conga, Conga",
+   "artist": "Gretchen",
+   "year": 1980,
+   "preview": "https://p.scdn.co/mp3-preview/920a9fe05c30d8fa7b3c20f42e49649a7d901cb7",
+   "cover": null
+  },
+  {
+   "n": 64,
+   "id": "4YrqYj6xEFgmgdNA8d6wIQ",
+   "title": "Menino do Rio",
+   "artist": "Baby Do Brasil",
+   "year": 1979,
+   "preview": "https://p.scdn.co/mp3-preview/2023e4f7644c70cbfe176ae28c0b371bd30c87d7",
+   "cover": null
+  },
+  {
+   "n": 65,
+   "id": "0KXcsCinixGmfcXjBqfEis",
+   "title": "Sexy And I Know It",
+   "artist": "LMFAO",
+   "year": 2011,
+   "preview": "https://p.scdn.co/mp3-preview/dd70b7db98aa5b41e43172e64c39737acacd04b1",
+   "cover": null
+  },
+  {
+   "n": 66,
+   "id": "7DSAEUvxU8FajXtRloy8M0",
+   "title": "Flowers",
+   "artist": "Miley Cyrus",
+   "year": 2023,
+   "preview": "https://p.scdn.co/mp3-preview/698a0cb24c5839039bf9485f58fe4a104647d1f0",
+   "cover": null
+  },
+  {
+   "n": 67,
+   "id": "013AWvizllIUEC2FOBzOnh",
+   "title": "Truly Madly Deeply",
+   "artist": "Savage Garden",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/304927122d9ce05a4ac0e2399ba4109a77f605fb",
+   "cover": null
+  },
+  {
+   "n": 68,
+   "id": "4RVwu0g32PAqgUiJoXsdF8",
+   "title": "Happier Than Ever",
+   "artist": "Billie Eilish",
+   "year": 2021,
+   "preview": "https://p.scdn.co/mp3-preview/667e62a782667b01e98006cd3ba42c9852b62bea",
+   "cover": null
+  },
+  {
+   "n": 69,
+   "id": "3xdmFwG1jTUs0T8BqfRxLk",
+   "title": "Manivela",
+   "artist": "Asa De Águia",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/7f90a8785ed265e71720aa7977b029fd29b52bf2",
+   "cover": null
+  },
+  {
+   "n": 70,
+   "id": "6pnkvJgJIKiHTYHpMpL6IS",
+   "title": "Billy Negão",
+   "artist": "Barão Vermelho",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/13d45b893f964a83dc78f7931ae627f0c00ff61e",
+   "cover": null
+  },
+  {
+   "n": 71,
+   "id": "52NFgCjGw7oZKIBABYKLPG",
+   "title": "Meu Lugar",
+   "artist": "Arlindo Cruz",
+   "year": 2007,
+   "preview": "https://p.scdn.co/mp3-preview/044dd53252defedef92a8a03aba8ab8175c34842",
+   "cover": null
+  },
+  {
+   "n": 72,
+   "id": "0CAfXk7DXMnon4gLudAp7J",
+   "title": "Low (feat. T-Pain)",
+   "artist": "Flo Rida, T-Pain",
+   "year": 2007,
+   "preview": "https://p.scdn.co/mp3-preview/328d15426dd8b5e128341b72d0826ff0b32d1eb4",
+   "cover": null
+  },
+  {
+   "n": 73,
+   "id": "3L7RtEcu1Hw3OXrpnthngx",
+   "title": "Don't You Want Me",
+   "artist": "The Human League",
+   "year": 1981,
+   "preview": "https://p.scdn.co/mp3-preview/37e6049e5c604a5a0b0c0c5ef68208f72e0fed38",
+   "cover": null
+  },
+  {
+   "n": 74,
+   "id": "28HOJYBwwLn2NhuXLDoziY",
+   "title": "Garota De Ipanema",
+   "artist": "Pery Ribeiro",
+   "year": 1963,
+   "preview": "https://p.scdn.co/mp3-preview/a156676dca0fcd7cd0d531fc1297cb7e12269e77",
+   "cover": null
+  },
+  {
+   "n": 75,
+   "id": "4d0DpU7Odiv0ztvX2GxJlk",
+   "title": "Exagerado",
+   "artist": "Cazuza",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/fe7cb86b056e2ca805f8c31d369d1e583469d3c6",
+   "cover": null
+  },
+  {
+   "n": 76,
+   "id": "5qWXXF3On2xUfVu1ND1NLN",
+   "title": "Cheek to Cheek",
+   "artist": "Fred Astaire",
+   "year": 1935,
+   "preview": "https://p.scdn.co/mp3-preview/1c20cc5427fe65af20078aac56cddbe0490693a2",
+   "cover": null
+  },
+  {
+   "n": 77,
+   "id": "6EmC6JFwF0Aq92ajBPKYiO",
+   "title": "Piloto Automático",
+   "artist": "Supercombo",
+   "year": 2013,
+   "preview": "https://p.scdn.co/mp3-preview/8164ed949b8f2bb4c9b40c1fa9895791c96184ae",
+   "cover": null
+  },
+  {
+   "n": 78,
+   "id": "0jWgAnTrNZmOGmqgvHhZEm",
+   "title": "What's Up?",
+   "artist": "4 Non Blondes",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/e24bda8c6ed805bc0c0cf62059034c0010f36b1e",
+   "cover": null
+  },
+  {
+   "n": 79,
+   "id": "0cGG2EouYCEEC3xfa0tDFV",
+   "title": "Tainted Love",
+   "artist": "Soft Cell",
+   "year": 1981,
+   "preview": "https://p.scdn.co/mp3-preview/03f13a169368253ffeb3a9ff37f69659e5c7d728",
+   "cover": null
+  },
+  {
+   "n": 80,
+   "id": "4Re2QjCSOP2sgVx3cnfI9Y",
+   "title": "Você Não Soube Me Amar",
+   "artist": "Blitz",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/1b8165f5276e9d71c3b93b5d4e11f69c41a071c4",
+   "cover": null
+  },
+  {
+   "n": 81,
+   "id": "74jZhGv0fdLaf9q8AZZ15k",
+   "title": "Please Mr. Postman",
+   "artist": "Carpenters",
+   "year": 1974,
+   "preview": "https://p.scdn.co/mp3-preview/e974f7c6e9efd0c3d50de0e03e01123c24f2895b",
+   "cover": null
+  },
+  {
+   "n": 82,
+   "id": "7lQ8MOhq6IN2w8EYcFNSUk",
+   "title": "Without Me",
+   "artist": "Eminem",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/35fc7456c892c11867fe1513b92dc44e9664eaba",
+   "cover": null
+  },
+  {
+   "n": 83,
+   "id": "4CzYeo7qbwbnjyS5rW1UhK",
+   "title": "Unforgettable",
+   "artist": "Nat King Cole",
+   "year": 1951,
+   "preview": "https://p.scdn.co/mp3-preview/7266322f80e27717b7d1378fd97844b030b3eea3",
+   "cover": null
+  },
+  {
+   "n": 84,
+   "id": "4eyuRxgyF3emFVTBjnCqM8",
+   "title": "Decadence Avec Elegance",
+   "artist": "Lobão E Os Ronaldos",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/53fe1673be0f8d484c889148ff85ca1fd3e1a452",
+   "cover": null
+  },
+  {
+   "n": 85,
+   "id": "4k3HBeh98WWN2ybGHC0WQI",
+   "title": "Beijinho no Ombro",
+   "artist": "Valesca Popozuda",
+   "year": 2013,
+   "preview": "https://p.scdn.co/mp3-preview/5bd7eb48423fb0bbd80b791895d9c6a88ad076de",
+   "cover": null
+  },
+  {
+   "n": 86,
+   "id": "5t6QgW9guk6MRptJJWgsFY",
+   "title": "Vou Deixar",
+   "artist": "Skank",
+   "year": 2003,
+   "preview": "https://p.scdn.co/mp3-preview/706071d6a53988570d0791f1997f70757c13ffce",
+   "cover": null
+  },
+  {
+   "n": 87,
+   "id": "623rRTKwGmgjH6sjE9uWLh",
+   "title": "Scatman (ski-ba-bop-ba-dop-bop)",
+   "artist": "Scatman John",
+   "year": 1995,
+   "preview": "https://p.scdn.co/mp3-preview/d6c8867a70c9c6f6bee4f6b9249d078c3df20896",
+   "cover": null
+  },
+  {
+   "n": 88,
+   "id": "17jeydgAjtqPxUjmp6n0pW",
+   "title": "Amor de Chocolate",
+   "artist": "Naldo Benny",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/41fb0b324f341baec8c2bca3fd31758d1bc2853a",
+   "cover": null
+  },
+  {
+   "n": 89,
+   "id": "5bxQHscWvyaQbm37igKP4K",
+   "title": "La solitudine",
+   "artist": "Laura Pausini",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/fccfbcdf7ee1671f5465be5ec193eb691900c0c8",
+   "cover": null
+  },
+  {
+   "n": 90,
+   "id": "2iXcvnD3d1gfLBum0cE5Eg",
+   "title": "Tutti Frutti",
+   "artist": "Little Richard",
+   "year": 1955,
+   "preview": "https://p.scdn.co/mp3-preview/0ab99dc9866e1f12b943b7848c78de38a37b3151",
+   "cover": null
+  },
+  {
+   "n": 91,
+   "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+   "title": "Take on Me",
+   "artist": "a-ha",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/d1427dd0a300eeccfc53b99a2ebf3c664a67414a",
+   "cover": null
+  },
+  {
+   "n": 92,
+   "id": "4ePP9So5xRzspjLFVVbj90",
+   "title": "Two Princes",
+   "artist": "Spin Doctors",
+   "year": 1991,
+   "preview": "https://p.scdn.co/mp3-preview/b741259c548773ebdec00064db7c82cf1b9aab1d",
+   "cover": null
+  },
+  {
+   "n": 93,
+   "id": "1ONnn6GrKQoGuHUYQ3eTyv",
+   "title": "Lágrimas de Crocodilo",
+   "artist": "João Penca E Seus Miquinhos Amestrados",
+   "year": 1986,
+   "preview": "https://p.scdn.co/mp3-preview/01450d3afc16e15e291577de9397ee622ead04f4",
+   "cover": null
+  },
+  {
+   "n": 94,
+   "id": "5inhNJDsdUL02QKh4nCfwa",
+   "title": "Retalhos De Cetim",
+   "artist": "Benito Di Paula",
+   "year": 1973,
+   "preview": "https://p.scdn.co/mp3-preview/ab2e7e632a9ec6a33821e71b36efe4809b4d07e2",
+   "cover": null
+  },
+  {
+   "n": 95,
+   "id": "6kvoHl80mfCVTv7XnZkjQn",
+   "title": "It Must Have Been Love - From the Film \"Pretty Woman\"",
+   "artist": "Roxette",
+   "year": 1990,
+   "preview": "https://p.scdn.co/mp3-preview/6f82b3a62a58ce5f13af2f17f5b53033a68e4b83",
+   "cover": null
+  },
+  {
+   "n": 96,
+   "id": "5R8l7J6Lv9dJqd7qileQ9Q",
+   "title": "Bagulho no Bumba",
+   "artist": "Os Virgulóides",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/fd6dd188dd08c735487dfa9f0de50a1a660e8e5d",
+   "cover": null
+  },
+  {
+   "n": 97,
+   "id": "6mhw2fEPH4fMF0wolNm96e",
+   "title": "Macarena",
+   "artist": "Los Del Rio",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/ce0bf47aa90ae1508581952c3b66d3d5766ea2c1",
+   "cover": null
+  },
+  {
+   "n": 98,
+   "id": "1CmUZGtH29Kx36C1Hleqlz",
+   "title": "Thrift Shop (feat. Wanz)",
+   "artist": "Macklemore & Ryan Lewis, Macklemore, Ryan Lewis, Wanz",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/6dee231c782e195395a3b072af3252a9691a2040",
+   "cover": null
+  },
+  {
+   "n": 99,
+   "id": "28UMiBhn383n9S7GL4tsxD",
+   "title": "Because You Loved Me (Theme from \"Up Close and Personal\")",
+   "artist": "Céline Dion",
+   "year": 1996,
+   "preview": "https://p.scdn.co/mp3-preview/0eb419f98637381b3d5ef232c909eb541231ee37",
+   "cover": null
+  },
+  {
+   "n": 100,
+   "id": "6jysfqaB2IoM2sua07Y00b",
+   "title": "Vou Tirar Você Desse Lugar",
+   "artist": "Odair Jose",
+   "year": 1972,
+   "preview": "https://p.scdn.co/mp3-preview/f61cd4824589a1cf7b7f2d630488f0015f4d05fd",
+   "cover": null
+  },
+  {
+   "n": 101,
+   "id": "36JLbOILRf2ELnpByw44qk",
+   "title": "Bola De Sabão",
+   "artist": "Babado Novo, Claudia Leitte",
+   "year": 2005,
+   "preview": "https://p.scdn.co/mp3-preview/707f0362d0975e0307c142680d82bd97025e3c68",
+   "cover": null
+  },
+  {
+   "n": 102,
+   "id": "2olVm1lHicpveMAo4AUDRB",
+   "title": "The Power Of Love",
+   "artist": "Huey Lewis & The News",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/1102e37c79ea611a0afa20f454da9f6ccb7a58a8",
+   "cover": null
+  },
+  {
+   "n": 103,
+   "id": "3E7ZwUMJFqpsDOJzEkBrQ7",
+   "title": "Can't Get You out of My Head",
+   "artist": "Kylie Minogue",
+   "year": 2001,
+   "preview": "https://p.scdn.co/mp3-preview/80a42bfd505424a41c3e43b66b4e64571e36d49c",
+   "cover": null
+  },
+  {
+   "n": 104,
+   "id": "31AOj9sFz2gM0O3hMARRBx",
+   "title": "Losing My Religion",
+   "artist": "R.E.M.",
+   "year": 1991,
+   "preview": "https://p.scdn.co/mp3-preview/184d86f6c2b531830190011f00c5780fa7a2e1f2",
+   "cover": null
+  },
+  {
+   "n": 105,
+   "id": "3sK8wGT43QFpWrvNQsrQya",
+   "title": "DtMF",
+   "artist": "Bad Bunny",
+   "year": 2025,
+   "preview": "https://p.scdn.co/mp3-preview/e41ce6b82410d81c08baacca2a7169e5ace4287d",
+   "cover": null
+  },
+  {
+   "n": 106,
+   "id": "5G9KcZaxfCysfv4EryCB9b",
+   "title": "Hey Mickey",
+   "artist": "Toni Basil",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/677264adb54cf40c6f42d9e4c19e663f8ec59946",
+   "cover": null
+  },
+  {
+   "n": 107,
+   "id": "7eYhN6ciVsXBfb7kVjmvgt",
+   "title": "Mr Boombastic",
+   "artist": "Shaggy",
+   "year": 1995,
+   "preview": "https://p.scdn.co/mp3-preview/33a793642dfda292ae3e763faae27b255eff8427",
+   "cover": null
+  },
+  {
+   "n": 108,
+   "id": "2zMJN9JvDlvGP4jB03l1Bz",
+   "title": "Hot Stuff",
+   "artist": "Donna Summer",
+   "year": 1979,
+   "preview": "https://p.scdn.co/mp3-preview/b48b9f29b11d9821fc4f34e1307bf2d94867cc7b",
+   "cover": null
+  },
+  {
+   "n": 109,
+   "id": "4kgsoM4wTP2HAOQoEyNyTL",
+   "title": "Garçon",
+   "artist": "Reginaldo Rossi",
+   "year": 1987,
+   "preview": "https://p.scdn.co/mp3-preview/ceb5098a7dc414393abf2602f3966d74a66a0407",
+   "cover": null
+  },
+  {
+   "n": 110,
+   "id": "3OHfY25tqY28d16oZczHc8",
+   "title": "Kill Bill",
+   "artist": "SZA",
+   "year": 2022,
+   "preview": "https://p.scdn.co/mp3-preview/9a6461e572b562f5c36a7cb188cfde85f9c03999",
+   "cover": null
+  },
+  {
+   "n": 111,
+   "id": "1Hgvy8kokRufdMCTGQ5JkQ",
+   "title": "Build Me Up Buttercup",
+   "artist": "The Foundations",
+   "year": 1968,
+   "preview": "https://p.scdn.co/mp3-preview/f158eede118a009c4f50c2434f2c0f3213827e7a",
+   "cover": null
+  },
+  {
+   "n": 112,
+   "id": "6nWPzkaAjRdjAGSFhpGc3O",
+   "title": "Já Que Me Ensinou a Beber",
+   "artist": "Os Barões Da Pisadinha",
+   "year": 2019,
+   "preview": "https://p.scdn.co/mp3-preview/b482213723ce878cc526557109b12e30651a9472",
+   "cover": null
+  },
+  {
+   "n": 113,
+   "id": "18zXw7VA97aovBwbxSpPqH",
+   "title": "Vagalumes",
+   "artist": "POLLO, Ivo Mozart",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/b4119e789cbbc3b86ff1998cdae1f9f6315e80a5",
+   "cover": null
+  },
+  {
+   "n": 114,
+   "id": "7E94k52snpTIROpLVAg9tg",
+   "title": "Meu Mundo Caiu",
+   "artist": "Maysa",
+   "year": 1958,
+   "preview": "https://p.scdn.co/mp3-preview/fceb86584db8bc953fcdb313bae403a0f9b64f0b",
+   "cover": null
+  },
+  {
+   "n": 115,
+   "id": "1Wsyt5It2PYnht0aDYcNyR",
+   "title": "Tá Tranquilo, Tá Favorável",
+   "artist": "MC Bin Laden",
+   "year": 2015,
+   "preview": "https://p.scdn.co/mp3-preview/c68f16ef0a94d85e67edac6777731ed874524e7d",
+   "cover": null
+  },
+  {
+   "n": 116,
+   "id": "4rr3eBCjY9XtHME1LoRiqW",
+   "title": "Deixa Isso Pra Lá",
+   "artist": "Jair Rodrigues",
+   "year": 1964,
+   "preview": "https://p.scdn.co/mp3-preview/5c207e50f81addb3cc8049129d1377f4cffb0b38",
+   "cover": null
+  },
+  {
+   "n": 117,
+   "id": "2OInahzMoibpPd2TSFhBNv",
+   "title": "Na Moral (feat. Seu Jorge)",
+   "artist": "Jota Quest, Seu Jorge",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/e07ab2b97e25ca579699cd555a706fe79e062a19",
+   "cover": null
+  },
+  {
+   "n": 118,
+   "id": "0O45fw2L5vsWpdsOdXwNAR",
+   "title": "SexyBack (feat. Timbaland)",
+   "artist": "Justin Timberlake, Timbaland",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/3093705825f1c799e2de0064a2c775ef5c56d503",
+   "cover": null
+  },
+  {
+   "n": 119,
+   "id": "5OC7GbXAbWXM1rvSpobLai",
+   "title": "Al Capone",
+   "artist": "Raul Seixas",
+   "year": 1973,
+   "preview": "https://p.scdn.co/mp3-preview/78eff5d5da1e1321c63f054b86de9972a5cafc10",
+   "cover": null
+  },
+  {
+   "n": 120,
+   "id": "0HOZvGTL28ri6bKek8Fq03",
+   "title": "Tudo Passará",
+   "artist": "Nelson Ned",
+   "year": 1969,
+   "preview": "https://p.scdn.co/mp3-preview/0eb2750b013ad92c703ae188fc25a61680924428",
+   "cover": null
+  },
+  {
+   "n": 121,
+   "id": "4esOae7i4rqTbAu9o5Pxco",
+   "title": "Girl on Fire",
+   "artist": "Alicia Keys",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/916d773784dcfeaf0a3f47b0c6b58101615a5700",
+   "cover": null
+  },
+  {
+   "n": 122,
+   "id": "7r7BLG1FiZTNYtFuyLMtFa",
+   "title": "Fergalicious",
+   "artist": "Fergie, will.i.am",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/640ba31face4f1692149e19e0231fbf990f9491e",
+   "cover": null
+  },
+  {
+   "n": 123,
+   "id": "1j15Ar0qGDzIR0v3CQv3JL",
+   "title": "Gnarly",
+   "artist": "KATSEYE",
+   "year": 2025,
+   "preview": "https://p.scdn.co/mp3-preview/d86751b48a612271609b69f011dde00d003010b0",
+   "cover": null
+  },
+  {
+   "n": 124,
+   "id": "5R9a4t5t5O0IsznsrKPVro",
+   "title": "Single Ladies (Put a Ring on It)",
+   "artist": "Beyoncé",
+   "year": 2008,
+   "preview": "https://p.scdn.co/mp3-preview/c2ded1a34c261f0a980ffa0f65bbb5f3dde28c24",
+   "cover": null
+  },
+  {
+   "n": 125,
+   "id": "3fIy2ZzXyyNPpyz6q5KMKD",
+   "title": "Quero Que Vá Tudo Pro Inferno - Versão Remasterizada",
+   "artist": "Roberto Carlos",
+   "year": 1965,
+   "preview": "https://p.scdn.co/mp3-preview/c8fa12cd38528c77231059050fc0c796807ad063",
+   "cover": null
+  },
+  {
+   "n": 126,
+   "id": "3FvQH46A4B37eNHjooIXcu",
+   "title": "Bad",
+   "artist": "Michael Jackson",
+   "year": 1987,
+   "preview": "https://p.scdn.co/mp3-preview/2f00f359ca16acdd20eabd068c8b6b5798118b0a",
+   "cover": null
+  },
+  {
+   "n": 127,
+   "id": "6Qyc6fS4DsZjB2mRW9DsQs",
+   "title": "Iris",
+   "artist": "The Goo Goo Dolls",
+   "year": 1998,
+   "preview": "https://p.scdn.co/mp3-preview/30e2a899a94a089d5c341b782b00aa802fd87610",
+   "cover": null
+  },
+  {
+   "n": 128,
+   "id": "57E1ka54d8zrIy0VzE1EAV",
+   "title": "Canta Canta, Minha Gente",
+   "artist": "Martinho Da Vila",
+   "year": 1974,
+   "preview": "https://p.scdn.co/mp3-preview/1bedd68ea97c514c4afa6fde47f28aa69bfbbff5",
+   "cover": null
+  },
+  {
+   "n": 129,
+   "id": "1Cwsd5xI8CajJz795oy4XF",
+   "title": "You Get What You Give",
+   "artist": "New Radicals",
+   "year": 1998,
+   "preview": "https://p.scdn.co/mp3-preview/f60a92f1f0759c66eb1092cd6cd09aab791a6518",
+   "cover": null
+  },
+  {
+   "n": 130,
+   "id": "7nEUBejP3dtRQTkMYOKn7H",
+   "title": "O Amor e o Poder (The Power of Love)",
+   "artist": "Rosana",
+   "year": 1987,
+   "preview": "https://p.scdn.co/mp3-preview/fd3bf64f42b59a0afe914d363b2b2b2ee355c8c3",
+   "cover": null
+  },
+  {
+   "n": 131,
+   "id": "2BnJUYbPtL3yauZKmay0ko",
+   "title": "Whisky a Go-Go",
+   "artist": "Roupa Nova",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/71f1baccb382170a9b9cb065b399e1f52ffe1c69",
+   "cover": null
+  },
+  {
+   "n": 132,
+   "id": "5F4SvW0GTQVlTUMstJEOyG",
+   "title": "Que Nem Maré",
+   "artist": "Jorge Vercillo",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/70546cfbc88f63d604c1021136c5ca479e583a4b",
+   "cover": null
+  },
+  {
+   "n": 133,
+   "id": "2lnzGkdtDj5mtlcOW2yRtG",
+   "title": "Whenever, Wherever",
+   "artist": "Shakira",
+   "year": 2001,
+   "preview": "https://p.scdn.co/mp3-preview/93dc52d836150fba41afeb6df2e9167875c7d8fb",
+   "cover": null
+  },
+  {
+   "n": 134,
+   "id": "0yp3TvJNlG50Q4tAHWNCRm",
+   "title": "Enjoy the Silence",
+   "artist": "Depeche Mode",
+   "year": 1990,
+   "preview": "https://p.scdn.co/mp3-preview/52914be143f0dac1fad0f9bf11b079487bbac6f1",
+   "cover": null
+  },
+  {
+   "n": 135,
+   "id": "4eHbdreAnSOrDDsFfc4Fpm",
+   "title": "I Will Always Love You",
+   "artist": "Whitney Houston",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/5896e539e24ae2394d2bec6ea2cf42e4608b68f5",
+   "cover": null
+  },
+  {
+   "n": 136,
+   "id": "5lWRaa0fBxDE5yU91npPq7",
+   "title": "Just A Girl",
+   "artist": "No Doubt",
+   "year": 1995,
+   "preview": "https://p.scdn.co/mp3-preview/1cd97aefe74cf314ed91011a50adec3cc4e81918",
+   "cover": null
+  },
+  {
+   "n": 137,
+   "id": "2vz1CsL5WBsbpBcwgboTAw",
+   "title": "Footloose - From \"Footloose\" Soundtrack",
+   "artist": "Kenny Loggins",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/1e7776bbe23530e26f7947e52b0bd8555b9fc604",
+   "cover": null
+  },
+  {
+   "n": 138,
+   "id": "1nDCZBI8MaHXI2f36dnQyG",
+   "title": "Rita",
+   "artist": "Tierry",
+   "year": 2020,
+   "preview": "https://p.scdn.co/mp3-preview/31b890c9cd06f529f775bedcde203f96bb9d2b73",
+   "cover": null
+  },
+  {
+   "n": 139,
+   "id": "6J6RWKCPN5RFKHUKEUFjxS",
+   "title": "Step by Step",
+   "artist": "New Kids On The Block",
+   "year": 1990,
+   "preview": "https://p.scdn.co/mp3-preview/cb54d50e12569744bc69d08a13216865574168fa",
+   "cover": null
+  },
+  {
+   "n": 140,
+   "id": "3Z2tPWiNiIpg8UMMoowHIk",
+   "title": "We Are The World",
+   "artist": "U.S.A. For Africa",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/2157889701d1e849f5ee7c5c2b58578d9a9652d4",
+   "cover": null
+  },
+  {
+   "n": 141,
+   "id": "7xk1Cm7f9gVYUdbAnwoFpy",
+   "title": "O Grande Amor da Minha Vida (Convite de Casamento)",
+   "artist": "Gian & Giovani",
+   "year": 1998,
+   "preview": "https://p.scdn.co/mp3-preview/67b9857cf5e34a2e9e609e5492807f465cd99968",
+   "cover": null
+  },
+  {
+   "n": 142,
+   "id": "4HVYGbAg8IbWudHiasSNUb",
+   "title": "Heloisa mexe a cadeira",
+   "artist": "Vinny, Guilherme Dias Gomes",
+   "year": 1998,
+   "preview": "https://p.scdn.co/mp3-preview/ba0372ec04e36208f41604907cc6f195eb46cd09",
+   "cover": null
+  },
+  {
+   "n": 143,
+   "id": "5awDvzxWfd53SSrsRZ8pXO",
+   "title": "Du hast",
+   "artist": "Rammstein",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/2145709202c48f888a51122569cb04a57f4e2032",
+   "cover": null
+  },
+  {
+   "n": 144,
+   "id": "5U3MkUWTpzj37A33GboDtv",
+   "title": "Singin' In The Rain",
+   "artist": "Gene Kelly",
+   "year": 1952,
+   "preview": "https://p.scdn.co/mp3-preview/3fdfa924563965e0ab29710dcec2416a8b57cd7f",
+   "cover": null
+  },
+  {
+   "n": 145,
+   "id": "3yUcJwYu7fXAfqMj9krY6l",
+   "title": "Thank You",
+   "artist": "Dido",
+   "year": 1998,
+   "preview": "https://p.scdn.co/mp3-preview/9827bf18795cdecafe0bd571487f6fcd858cb805",
+   "cover": null
+  },
+  {
+   "n": 146,
+   "id": "4X0OLLcdALCRPCJo6tteuL",
+   "title": "Mamãe Passou Açúcar Em Mim",
+   "artist": "Wilson Simonal",
+   "year": 1966,
+   "preview": "https://p.scdn.co/mp3-preview/3668b67bd822c797c5528ed39637fc9d5a05eaa8",
+   "cover": null
+  },
+  {
+   "n": 147,
+   "id": "4NqNudDnnxbjp7KpjWoEqE",
+   "title": "Me Dá Um Dinheiro Aí",
+   "artist": "Moacyr Franco",
+   "year": 1959,
+   "preview": "https://p.scdn.co/mp3-preview/ddc96ec947856a08d38016e3d36f711ced69d8ff",
+   "cover": null
+  },
+  {
+   "n": 148,
+   "id": "4RC2nzqaQygxoVQOVv3XlT",
+   "title": "Contatinho",
+   "artist": "Léo Santana, Anitta",
+   "year": 2019,
+   "preview": "https://p.scdn.co/mp3-preview/e096dd5c442c0aadae5836f07b175f099dfb5b98",
+   "cover": null
+  },
+  {
+   "n": 149,
+   "id": "7cj3mQ5XeEQq8Zfa1O5CXB",
+   "title": "São Amores",
+   "artist": "Pabllo Vittar",
+   "year": 2024,
+   "preview": "https://p.scdn.co/mp3-preview/3da57631ff2eb63cf64d478da4692fd7781f362c",
+   "cover": null
+  },
+  {
+   "n": 150,
+   "id": "6epn3r7S14KUqlReYr77hA",
+   "title": "Baby",
+   "artist": "Justin Bieber, Ludacris",
+   "year": 2010,
+   "preview": "https://p.scdn.co/mp3-preview/6f57db4d7d782298f0d2de9097a45f4671cb2fd6",
+   "cover": null
+  },
+  {
+   "n": 151,
+   "id": "3LlAyCYU26dvFZBDUIMb7a",
+   "title": "Demons",
+   "artist": "Imagine Dragons",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/dffa47dbbfe06cff32e8b676e66e7d50ad358ca7",
+   "cover": null
+  },
+  {
+   "n": 152,
+   "id": "5EYdTPdJD74r9EVZBztqGG",
+   "title": "The Bad Touch",
+   "artist": "Bloodhound Gang",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/61e0ed385aa272cbd70dc5f1c0b319933ee713db",
+   "cover": null
+  },
+  {
+   "n": 153,
+   "id": "2VVhfEtGPMSbYZI2qW0fNr",
+   "title": "Avião",
+   "artist": "Tchakabum",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/412a97f21dc40fc10217ca0556278b506acd2120",
+   "cover": null
+  },
+  {
+   "n": 154,
+   "id": "1HOMkjp0nHMaTnfAkslCQj",
+   "title": "My Sharona",
+   "artist": "The Knack",
+   "year": 1979,
+   "preview": "https://p.scdn.co/mp3-preview/5ef1f80be4197f4863d1e0f3f267259a97d26f15",
+   "cover": null
+  },
+  {
+   "n": 155,
+   "id": "1QFh8OH1e78dGd3VyJZCAC",
+   "title": "Boys Don't Cry",
+   "artist": "The Cure",
+   "year": 1979,
+   "preview": "https://p.scdn.co/mp3-preview/b028a7c3da10ef27d733cfbb4a279ddc65adfd21",
+   "cover": null
+  },
+  {
+   "n": 156,
+   "id": "0rywmdqLgV4ebmnzPvSqmP",
+   "title": "Voando Pro Pará",
+   "artist": "Joelma",
+   "year": 2016,
+   "preview": "https://p.scdn.co/mp3-preview/b06e92c3824303d6b148a1dddce50b0eee3e4409",
+   "cover": null
+  },
+  {
+   "n": 157,
+   "id": "6ursmCnbc9oDRGa2yHKkoZ",
+   "title": "Roots Bloody Roots",
+   "artist": "Sepultura",
+   "year": 1996,
+   "preview": "https://p.scdn.co/mp3-preview/6872c1cff7bdfa31df19ff6cad7c7f0e8e28b899",
+   "cover": null
+  },
+  {
+   "n": 158,
+   "id": "1B75hgRqe7A4fwee3g3Wmu",
+   "title": "U Can't Touch This",
+   "artist": "MC Hammer",
+   "year": 1990,
+   "preview": "https://p.scdn.co/mp3-preview/a95e93f6b7c1a54556508e3ebb9e15930133c710",
+   "cover": null
+  },
+  {
+   "n": 159,
+   "id": "7HW5WIw7ZgZORCzUxv5gW5",
+   "title": "Don't Go Breaking My Heart",
+   "artist": "Elton John, Kiki Dee",
+   "year": 1976,
+   "preview": "https://p.scdn.co/mp3-preview/a1ac078e1ebc26f93431ccd9b5eec2c8c6dc2272",
+   "cover": null
+  },
+  {
+   "n": 160,
+   "id": "17VWTx7LD7liGlpnlGhUbn",
+   "title": "Lady Marmalade",
+   "artist": "LaBelle",
+   "year": 1974,
+   "preview": "https://p.scdn.co/mp3-preview/728cb4223e7abf20c5dcbbc7088c358d1e7fd870",
+   "cover": null
+  },
+  {
+   "n": 161,
+   "id": "5uuJruktM9fMdN9Va0DUMl",
+   "title": "Play That Funky Music",
+   "artist": "Wild Cherry",
+   "year": 1976,
+   "preview": "https://p.scdn.co/mp3-preview/4b3c574d2e102bf5140c29d2934f2f0d5dc7bfcf",
+   "cover": null
+  },
+  {
+   "n": 162,
+   "id": "6egmD7auKp3N7gy72uBnFQ",
+   "title": "Physical",
+   "artist": "Olivia Newton-John",
+   "year": 1981,
+   "preview": "https://p.scdn.co/mp3-preview/45b2a63fd686de1f516df4c74fce28dc978ae597",
+   "cover": null
+  },
+  {
+   "n": 163,
+   "id": "2Mz7HwloqFNdA6iZeZk5PJ",
+   "title": "Djobi, Djoba",
+   "artist": "Gipsy Kings",
+   "year": 1987,
+   "preview": "https://p.scdn.co/mp3-preview/f425d9552b1a2361609e58bb9d473acc5b045179",
+   "cover": null
+  },
+  {
+   "n": 164,
+   "id": "4elODsbH5WrDbGnrccxvGw",
+   "title": "Amante Profissional",
+   "artist": "Herva Doce",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/a9418c302412a9ecc4e6f498c6432daa6b34be57",
+   "cover": null
+  },
+  {
+   "n": 165,
+   "id": "5wANPM4fQCJwkGd4rN57mH",
+   "title": "drivers license",
+   "artist": "Olivia Rodrigo",
+   "year": 2021,
+   "preview": "https://p.scdn.co/mp3-preview/8265999e85ac5e27aad154a8fdbdd502059e1d00",
+   "cover": null
+  },
+  {
+   "n": 166,
+   "id": "5ki6IqIs9f5FAYrKSBiB8N",
+   "title": "A Tonga da Mironga do Kabuletê",
+   "artist": "Toquinho, Vinícius de Moraes, Monsueto Menezes",
+   "year": 1971,
+   "preview": "https://p.scdn.co/mp3-preview/aa21ae985b933a4b2790e24564a237d0ab3b9b02",
+   "cover": null
+  },
+  {
+   "n": 167,
+   "id": "4aR9bPMAOFySBuQSbVWF3d",
+   "title": "Smile",
+   "artist": "Lily Allen",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/48a02fc16588c4c5c3ce6b51fc0b9387f2a67f86",
+   "cover": null
+  },
+  {
+   "n": 168,
+   "id": "4wyOJpXk7qexhGv10cXUPr",
+   "title": "Aguenta Coração",
+   "artist": "José Augusto",
+   "year": 1990,
+   "preview": "https://p.scdn.co/mp3-preview/a27461aae27e21cb851733e8b49a232af6ae8135",
+   "cover": null
+  },
+  {
+   "n": 169,
+   "id": "3mwvKOyMmG77zZRunnxp9E",
+   "title": "Buddy Holly",
+   "artist": "Weezer",
+   "year": 1994,
+   "preview": "https://p.scdn.co/mp3-preview/47099a618e82bd35261b69467f03214ae56d31e9",
+   "cover": null
+  },
+  {
+   "n": 170,
+   "id": "0SiywuOBRcynK0uKGWdCnn",
+   "title": "Bad Romance",
+   "artist": "Lady Gaga",
+   "year": 2009,
+   "preview": "https://p.scdn.co/mp3-preview/a58b8677ea3858185308224d36808920e587cec5",
+   "cover": null
+  },
+  {
+   "n": 171,
+   "id": "0WSO3rLrwKWLTR5TtZRN0X",
+   "title": "Ela Só Pensa Em Beijar",
+   "artist": "MC Leozinho, DJ Marlboro",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/ada3d19022be3722f242ffdc9050d023207938f4",
+   "cover": null
+  },
+  {
+   "n": 172,
+   "id": "64B4UbGRLtGRBtiN2m8OvF",
+   "title": "Love Shack",
+   "artist": "The B-52's",
+   "year": 1989,
+   "preview": "https://p.scdn.co/mp3-preview/088150c422add3061d0fbbe648c5046ccb0db38b",
+   "cover": null
+  },
+  {
+   "n": 173,
+   "id": "54OR1VDpfkBuOY5zZjhZAY",
+   "title": "YMCA - Original Version 1978",
+   "artist": "Village People",
+   "year": 1978,
+   "preview": "https://p.scdn.co/mp3-preview/1c02fc8adc1fddd45594e61e4dd2d3ab1d2a5525",
+   "cover": null
+  },
+  {
+   "n": 174,
+   "id": "0RClguMsTbVPYKzY27TzyL",
+   "title": "Espirais",
+   "artist": "Marjorie Estiano",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/8ffdde6247216dd6ca3e58090231872c32cc16b0",
+   "cover": null
+  },
+  {
+   "n": 175,
+   "id": "0by19mYM0du6rkzugAogN9",
+   "title": "O Leãozinho - Nova Mixagem",
+   "artist": "Caetano Veloso",
+   "year": 1977,
+   "preview": "https://p.scdn.co/mp3-preview/37b7d6fee3df14c0e913a802d7e19e70c6c306e9",
+   "cover": null
+  },
+  {
+   "n": 176,
+   "id": "5HCyWlXZPP0y6Gqq8TgA20",
+   "title": "STAY (with Justin Bieber)",
+   "artist": "The Kid LAROI, Justin Bieber",
+   "year": 2021,
+   "preview": "https://p.scdn.co/mp3-preview/cff7190e22f2b5015d2fbda4a53490dad87a692a",
+   "cover": null
+  },
+  {
+   "n": 177,
+   "id": "7KBfjlQ85Fqs2MCCvXSW0c",
+   "title": "Bum Bum Tam Tam",
+   "artist": "MC Fioti, Novo Império",
+   "year": 2017,
+   "preview": "https://p.scdn.co/mp3-preview/460f25191eeaa801e35f11de7750934fdcdb5d39",
+   "cover": null
+  },
+  {
+   "n": 178,
+   "id": "3GfOAdcoc3X5GPiiXmpBjK",
+   "title": "Song 2",
+   "artist": "Blur",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/292139885ad767b4b8f01d18a4bb437d0075cdf9",
+   "cover": null
+  },
+  {
+   "n": 179,
+   "id": "2UeJXZ4W2gQw94Jcm2BlQ9",
+   "title": "Glamourosa (Rap Glamurosa)",
+   "artist": "DJ Marlboro, MC Marcinho",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/315f0edd0b9853896b9ab9cf036b2806e8711833",
+   "cover": null
+  },
+  {
+   "n": 180,
+   "id": "0YBq701BXkMaK6V5UyvOpT",
+   "title": "Oração",
+   "artist": "A Banda Mais Bonita da Cidade",
+   "year": 2011,
+   "preview": "https://p.scdn.co/mp3-preview/7517e65243a095508c45e6a84a5a362598efbe6c",
+   "cover": null
+  },
+  {
+   "n": 181,
+   "id": "14iN3o8ptQ8cFVZTEmyQRV",
+   "title": "I Kissed A Girl",
+   "artist": "Katy Perry",
+   "year": 2008,
+   "preview": "https://p.scdn.co/mp3-preview/56bdae448715b177ad46f9ac3e1e74627f359c83",
+   "cover": null
+  },
+  {
+   "n": 182,
+   "id": "0G3PPOWMMPwBJIEH7Udnsu",
+   "title": "Pimpolho",
+   "artist": "Art Popular",
+   "year": 1996,
+   "preview": "https://p.scdn.co/mp3-preview/62a726d205e2d78a0f44ffeca1fdf917188c7361",
+   "cover": null
+  },
+  {
+   "n": 183,
+   "id": "0d28khcov6AiegSCpG5TuT",
+   "title": "Feel Good Inc.",
+   "artist": "Gorillaz, De La Soul",
+   "year": 2005,
+   "preview": "https://p.scdn.co/mp3-preview/b13a1bb2d8a04132982a49b6efee933cc9d67c7e",
+   "cover": null
+  },
+  {
+   "n": 184,
+   "id": "38DgNqC7TQkZ3Ih5Vz6K0Q",
+   "title": "Call Me Maybe",
+   "artist": "Carly Rae Jepsen",
+   "year": 2011,
+   "preview": "https://p.scdn.co/mp3-preview/c4a7b5e8b012344e607dc50991a32b4a00326739",
+   "cover": null
+  },
+  {
+   "n": 185,
+   "id": "3pUQEJXwmnooceL5DqluNA",
+   "title": "Borbulhas de Amor (Tenho um Coração) [Borbujas de Amor]",
+   "artist": "Fagner",
+   "year": 1991,
+   "preview": "https://p.scdn.co/mp3-preview/a24e65052f058d73547ad7e0ee8bc5724d69a0bd",
+   "cover": null
+  },
+  {
+   "n": 186,
+   "id": "1Eb90nmqTrxylKFhcUzW8P",
+   "title": "(Everything I Do) I Do It For You",
+   "artist": "Bryan Adams",
+   "year": 1991,
+   "preview": "https://p.scdn.co/mp3-preview/fd642b7873c9cd1367f7d77bfb78a05c3abf1fca",
+   "cover": null
+  },
+  {
+   "n": 187,
+   "id": "4w1lzcaoZ1IC2K5TwjalRP",
+   "title": "A Thousand Miles",
+   "artist": "Vanessa Carlton",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/1dab77144140b38cf360a7e770f002335884954f",
+   "cover": null
+  },
+  {
+   "n": 188,
+   "id": "6x4tKaOzfNJpEJHySoiJcs",
+   "title": "Mambo No. 5 (a Little Bit of...)",
+   "artist": "Lou Bega",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/c98bff86083944b2b50af1b5dfb04279d5342cde",
+   "cover": null
+  },
+  {
+   "n": 189,
+   "id": "6lfDlHdveFFxM67BZNMTU6",
+   "title": "O Menino da Porteira",
+   "artist": "Sérgio Reis",
+   "year": 1973,
+   "preview": "https://p.scdn.co/mp3-preview/9acb648d5c7756d35f05b15bb8179d68d119f3a2",
+   "cover": null
+  },
+  {
+   "n": 190,
+   "id": "7EknynLJTt9YMm1HL37s5D",
+   "title": "P do Pecado",
+   "artist": "Grupo Menos É Mais, Simone Mendes",
+   "year": 2025,
+   "preview": "https://p.scdn.co/mp3-preview/91bd10cef783e22fc7a3c9e17e77be6033dc9df4",
+   "cover": null
+  },
+  {
+   "n": 191,
+   "id": "4tBZUrAviVgUzeTIiJLEe9",
+   "title": "Catedral",
+   "artist": "Zélia Duncan",
+   "year": 1994,
+   "preview": "https://p.scdn.co/mp3-preview/c85bba462f0a7bc1aee05e62e32369dfa3cb82c3",
+   "cover": null
+  },
+  {
+   "n": 192,
+   "id": "6kWJvPfC4DgUpRsXKNa9z9",
+   "title": "All That She Wants",
+   "artist": "Ace of Base",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/eef43d18f73d83ff358852d874dd564f55e86932",
+   "cover": null
+  },
+  {
+   "n": 193,
+   "id": "4OSBTYWVwsQhGLF9NHvIbR",
+   "title": "Rolling in the Deep",
+   "artist": "Adele",
+   "year": 2010,
+   "preview": "https://p.scdn.co/mp3-preview/d3964ab8ba7782f5b910ba82c7a6f1ac27464664",
+   "cover": null
+  },
+  {
+   "n": 194,
+   "id": "01XFgRZfZI7oBagNf1Loml",
+   "title": "Harlem Shake",
+   "artist": "Baauer",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/e0c24266e89050d6705e76e0b1a588dbb08dd2da",
+   "cover": null
+  },
+  {
+   "n": 195,
+   "id": "02jcEwywffn3Tsb48fXmlW",
+   "title": "Get the Party Started",
+   "artist": "P!nk",
+   "year": 2001,
+   "preview": "https://p.scdn.co/mp3-preview/8d0a2dd9c081c59db027f235d8baf1a2cec602c1",
+   "cover": null
+  },
+  {
+   "n": 196,
+   "id": "2L7olK36yxdqHnNpvXhPdN",
+   "title": "Tchubaruba - Bonus Track",
+   "artist": "Mallu Magalhães",
+   "year": 2008,
+   "preview": "https://p.scdn.co/mp3-preview/9a566cb058a0422d89430f8b33cee55f965f80ab",
+   "cover": null
+  },
+  {
+   "n": 197,
+   "id": "1H5tvpoApNDxvxDexoaAUo",
+   "title": "Who Let The Dogs Out",
+   "artist": "Baha Men",
+   "year": 2000,
+   "preview": "https://p.scdn.co/mp3-preview/0c16f15b590639023663ed46d3aa1dfe184a1efe",
+   "cover": null
+  },
+  {
+   "n": 198,
+   "id": "2UUTsZ8uY9kAXGawvp4OeP",
+   "title": "Sunday Bloody Sunday",
+   "artist": "Sambô",
+   "year": 2010,
+   "preview": "https://p.scdn.co/mp3-preview/898b41957496a39d36359d71c831fc1b2766638b",
+   "cover": null
+  },
+  {
+   "n": 199,
+   "id": "7N3PAbqfTjSEU1edb2tY8j",
+   "title": "Jump",
+   "artist": "Van Halen",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/86b253d59e8485604c5cdcba34b67caa9307c17f",
+   "cover": null
+  },
+  {
+   "n": 200,
+   "id": "1zf8Xmj66XRiI6Etw2Ddu7",
+   "title": "Don't Rain On My Parade",
+   "artist": "Barbra Streisand",
+   "year": 1968,
+   "preview": "https://p.scdn.co/mp3-preview/32a3cd3fd1304205c59f3561b641db190d465d4b",
+   "cover": null
+  },
+  {
+   "n": 201,
+   "id": "3YKptz29AsOlm7WAVnztBh",
+   "title": "Kiss from a Rose",
+   "artist": "Seal",
+   "year": 1994,
+   "preview": "https://p.scdn.co/mp3-preview/7902464c33351dafb17949c3f699bf035ba57d22",
+   "cover": null
+  },
+  {
+   "n": 202,
+   "id": "0KjWEUxJHS78pGOWLR2ZkW",
+   "title": "Nós vamos invadir sua praia",
+   "artist": "Ultraje a Rigor",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/1e1776b43fbd87daae50edb9afbe81f27aada061",
+   "cover": null
+  },
+  {
+   "n": 203,
+   "id": "5nX5RLzxc6nw5SpGWl181Q",
+   "title": "Piradinha",
+   "artist": "Gabriel Valim",
+   "year": 2013,
+   "preview": "https://p.scdn.co/mp3-preview/0b6734f41cc575ca41d24937ceafdd0f9a6e02a5",
+   "cover": null
+  },
+  {
+   "n": 204,
+   "id": "7qQ6Wp7uu44QpfKZHdC15I",
+   "title": "Entre tapas e beijos",
+   "artist": "Leandro & Leonardo, Continental",
+   "year": 1989,
+   "preview": "https://p.scdn.co/mp3-preview/3c6dd6a8e7d09d65e2a64f3ec57ccc6278aa31f2",
+   "cover": null
+  },
+  {
+   "n": 205,
+   "id": "1Jwc3ODLQxtbnS8M9TflSP",
+   "title": "Walk Like an Egyptian",
+   "artist": "The Bangles",
+   "year": 1986,
+   "preview": "https://p.scdn.co/mp3-preview/2ecc4eeba924523b629dcea72155b249788e024f",
+   "cover": null
+  },
+  {
+   "n": 206,
+   "id": "03UrZgTINDqvnUMbbIMhql",
+   "title": "Gangnam Style (강남스타일)",
+   "artist": "PSY",
+   "year": 2012,
+   "preview": "https://p.scdn.co/mp3-preview/4ed443643fee0e9e3217630789a03b7a8f58b4a7",
+   "cover": null
+  },
+  {
+   "n": 207,
+   "id": "3TlIt0ReIxPsVZcOEivT5U",
+   "title": "It's Not Unusual",
+   "artist": "Tom Jones",
+   "year": 1965,
+   "preview": "https://p.scdn.co/mp3-preview/f17723085ec14102961588629e84d0f6bbadb8a6",
+   "cover": null
+  },
+  {
+   "n": 208,
+   "id": "5WgnqMS5UHZqnHoJ4XrrjH",
+   "title": "I Saw You Saying - That You Say That You Saw",
+   "artist": "Raimundos",
+   "year": 1995,
+   "preview": "https://p.scdn.co/mp3-preview/e58e48e71386c441bf13cdc1ba575a0c7e7028c0",
+   "cover": null
+  },
+  {
+   "n": 209,
+   "id": "2RzJwBCXsS1VnjDm2jKKAa",
+   "title": "I Believe I Can Fly",
+   "artist": "R. Kelly",
+   "year": 1996,
+   "preview": "https://p.scdn.co/mp3-preview/9227a7dd0e3cbff12d5af1ca1cae90d625a26f63",
+   "cover": null
+  },
+  {
+   "n": 210,
+   "id": "71hIekopkrYCGgggsBOpVG",
+   "title": "Volare",
+   "artist": "Domenico Modugno",
+   "year": 1958,
+   "preview": "https://p.scdn.co/mp3-preview/8bc8c695dd0c4b51b17da2fd25cb2ad2eef0cce5",
+   "cover": null
+  },
+  {
+   "n": 211,
+   "id": "3kdPjbnYQTWT8Pc1Df3FSD",
+   "title": "Dormi na praça",
+   "artist": "Bruno & Marrone, Continental",
+   "year": 1994,
+   "preview": "https://p.scdn.co/mp3-preview/b4ba1e165db756dbaa5b4a628961c48cf3f25445",
+   "cover": null
+  },
+  {
+   "n": 212,
+   "id": "27mZQOo1KoYewC9fVTgg5y",
+   "title": "Com o pé na estrada",
+   "artist": "Sula Miranda, Continental",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/4dc7d1c930d94e7ccbdf5ce10f54fec2e66bf2c9",
+   "cover": null
+  },
+  {
+   "n": 213,
+   "id": "6sxptembJVty4sNtcPMAVz",
+   "title": "Man! I Feel Like A Woman!",
+   "artist": "Shania Twain",
+   "year": 1997,
+   "preview": "https://p.scdn.co/mp3-preview/7741ab88338abbf62b0ab19f58230044fd52cda5",
+   "cover": null
+  },
+  {
+   "n": 214,
+   "id": "7sapKrjDij2fpDVj0GxP66",
+   "title": "She Will Be Loved",
+   "artist": "Maroon 5",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/455f42259196c2c5678b108556ba76a91988cfac",
+   "cover": null
+  },
+  {
+   "n": 215,
+   "id": "0rRboI6IRuGx56Dq3UdYY4",
+   "title": "Because I Got High",
+   "artist": "Afroman",
+   "year": 2001,
+   "preview": "https://p.scdn.co/mp3-preview/25cea76758d4c9833b021bc0a17719b674af9847",
+   "cover": null
+  },
+  {
+   "n": 216,
+   "id": "5YbgcwHjQhdT1BYQ4rxWlD",
+   "title": "Don't Worry Be Happy",
+   "artist": "Bobby McFerrin",
+   "year": 1988,
+   "preview": "https://p.scdn.co/mp3-preview/1cfb7d8c868101f9b80a4d153284bc1600b23acc",
+   "cover": null
+  },
+  {
+   "n": 217,
+   "id": "14EUcXXpqrC03Dzzdj8bGr",
+   "title": "Orinoco Flow",
+   "artist": "Enya",
+   "year": 1988,
+   "preview": "https://p.scdn.co/mp3-preview/622ffca0e0dedeeb81a99790f21e73133dc78ee9",
+   "cover": null
+  },
+  {
+   "n": 218,
+   "id": "5ZlJhOdlJgirkABaecXJQa",
+   "title": "Na Boquinha da Garrafa",
+   "artist": "Companhia do Pagode",
+   "year": 1995,
+   "preview": null,
+   "cover": null
+  },
+  {
+   "n": 219,
+   "id": "7Hxn53rQRmBETCbhIxFp44",
+   "title": "Eu me amarrei",
+   "artist": "João Paulo & Daniel, Continental",
+   "year": 1995,
+   "preview": "https://p.scdn.co/mp3-preview/19221674b70cb5a93a6b66e65891f4fc42b26a91",
+   "cover": null
+  },
+  {
+   "n": 220,
+   "id": "1AlDa4Cn86XcUrTFgxkJI8",
+   "title": "Rasputin",
+   "artist": "Boney M.",
+   "year": 1978,
+   "preview": "https://p.scdn.co/mp3-preview/f440d9fc3c5bc88ca440dbdc82cb457cd9f2751d",
+   "cover": null
+  },
+  {
+   "n": 221,
+   "id": "77Oww6V7jooOd7aNEMnFJ3",
+   "title": "Take My Breath Away - Love Theme from \"Top Gun\"",
+   "artist": "Berlin",
+   "year": 1986,
+   "preview": "https://p.scdn.co/mp3-preview/1ed8a7daa38bece7aede32875a6213c31f1b3aca",
+   "cover": null
+  },
+  {
+   "n": 222,
+   "id": "1vxw6aYJls2oq3gW0DujAo",
+   "title": "Crazy",
+   "artist": "Gnarls Barkley, CeeLo Green, Danger Mouse",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/9fe25df6fe065ee723ea66a86dac33fbec29004c",
+   "cover": null
+  },
+  {
+   "n": 223,
+   "id": "0mrP69xWBmlnixuVLFqCSl",
+   "title": "Era um Garoto Que Como Eu Amava os Beatles e os Rolling Stones (C'era un ragazzo)",
+   "artist": "Os Incríveis",
+   "year": 1967,
+   "preview": "https://p.scdn.co/mp3-preview/7b61094f4547346d7e96b2fc73cbde33eefc3bb6",
+   "cover": null
+  },
+  {
+   "n": 224,
+   "id": "3nZiCfdFj6xsCIBGydkxDG",
+   "title": "Tô Legal",
+   "artist": "Grupo Raça",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/a996669507cd7fe7b61602ec0f3cbf3a20ab31a4",
+   "cover": null
+  },
+  {
+   "n": 225,
+   "id": "31Tp5iKrVUayn65qhg06nE",
+   "title": "She",
+   "artist": "Elvis Costello",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/2b115c3fbdb721a8d718eec4212171250b02fef3",
+   "cover": null
+  },
+  {
+   "n": 226,
+   "id": "2xF0GzAiDMEugLYqLZFWLr",
+   "title": "Push It",
+   "artist": "Salt-N-Pepa",
+   "year": 1987,
+   "preview": "https://p.scdn.co/mp3-preview/f56d6242c6fa9a995407dae416afd1585d8b5193",
+   "cover": null
+  },
+  {
+   "n": 227,
+   "id": "1eT2CjXwFXNx6oY5ydvzKU",
+   "title": "Hey Jude",
+   "artist": "The Beatles",
+   "year": 1968,
+   "preview": "https://p.scdn.co/mp3-preview/f26a5949ed7d6335db21ba92a1aa1fc806a32b90",
+   "cover": null
+  },
+  {
+   "n": 228,
+   "id": "2sUhjzuc6w4SRFwoC3LvXZ",
+   "title": "ACORDA PEDRINHO",
+   "artist": "Jovem Dionisio",
+   "year": 2022,
+   "preview": "https://p.scdn.co/mp3-preview/14a43ecf04312550abedacd4c01a7dddea736975",
+   "cover": null
+  },
+  {
+   "n": 229,
+   "id": "4sCSUQnWQ6HJsOMjfPicdn",
+   "title": "Danza Kuduro",
+   "artist": "Don Omar, Lucenzo",
+   "year": 2010,
+   "preview": "https://p.scdn.co/mp3-preview/283ea222e7b4af379ba32c62b165f0e80bb0951c",
+   "cover": null
+  },
+  {
+   "n": 230,
+   "id": "6jIXbhXH68WuTHkVYowty1",
+   "title": "Pare o Casamento (Stop The Wedding)",
+   "artist": "Wanderléa",
+   "year": 1965,
+   "preview": "https://p.scdn.co/mp3-preview/7754345e66c668437a4b12d26e687fad5c86dc45",
+   "cover": null
+  },
+  {
+   "n": 231,
+   "id": "2qzvVh6WD7pP0DUkSyANNf",
+   "title": "Beija-Flor",
+   "artist": "Timbalada",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/5f2c8b3fd75b3265e47c3f6343c3cf466dbab0aa",
+   "cover": null
+  },
+  {
+   "n": 232,
+   "id": "4Lc8ecN5ATCmPhBblBI4OO",
+   "title": "Atoladinha",
+   "artist": "DJ Marlboro, Bola de Fogo, As Fogosas",
+   "year": 2004,
+   "preview": "https://p.scdn.co/mp3-preview/f19e8fc809c9eb3ca81fe5dab65639f551e5ebe9",
+   "cover": null
+  },
+  {
+   "n": 233,
+   "id": "5prTs2HAw2G4idHZyeFp8o",
+   "title": "Total Eclipse of the Heart",
+   "artist": "Bonnie Tyler",
+   "year": 1983,
+   "preview": "https://p.scdn.co/mp3-preview/42af1cbc20498d5e7de081f39b218ab035c9a57a",
+   "cover": null
+  },
+  {
+   "n": 234,
+   "id": "0n2SEXB2qoRQg171q7XqeW",
+   "title": "Smooth (feat. Rob Thomas)",
+   "artist": "Santana, Rob Thomas",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/ad700390ab14840d38fa5d96235bd07fec26253b",
+   "cover": null
+  },
+  {
+   "n": 235,
+   "id": "2HHtWyy5CgaQbC7XSoOb0e",
+   "title": "Eye of the Tiger",
+   "artist": "Survivor",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/a25804a7e4201e835716a92445f8d9b78002e22c",
+   "cover": null
+  },
+  {
+   "n": 236,
+   "id": "6A3Q8BVAAI2PW1s6MX4ZGF",
+   "title": "Boa Sorte / Good Luck (feat. Ben Harper)",
+   "artist": "Vanessa Da Mata, Ben Harper",
+   "year": 2007,
+   "preview": "https://p.scdn.co/mp3-preview/18f37659b755bda67448948631d3cb5d97a41a32",
+   "cover": null
+  },
+  {
+   "n": 237,
+   "id": "7gSyKlI3GTxrhlFkukgDz0",
+   "title": "Meu Ursinho Blau Blau",
+   "artist": "Absyntho",
+   "year": 1983,
+   "preview": "https://p.scdn.co/mp3-preview/bbd8acbe5f9133e1dec7bc6751dfa9400d62f57a",
+   "cover": null
+  },
+  {
+   "n": 238,
+   "id": "7tFiyTwD0nx5a1eklYtX2J",
+   "title": "Bohemian Rhapsody",
+   "artist": "Queen",
+   "year": 1975,
+   "preview": "https://p.scdn.co/mp3-preview/0996a5278ec09c09774e7e8d93a3b8ae39120657",
+   "cover": null
+  },
+  {
+   "n": 239,
+   "id": "5Ihd9HrPvOADyVoonH9ZjB",
+   "title": "Un-Break My Heart",
+   "artist": "Toni Braxton",
+   "year": 1996,
+   "preview": "https://p.scdn.co/mp3-preview/c73d0311585a0ad805eee20a62dde424afc4f9ff",
+   "cover": null
+  },
+  {
+   "n": 240,
+   "id": "05XkMS2YVNfPNXepMScPRJ",
+   "title": "I Say a Little Prayer",
+   "artist": "Dionne Warwick",
+   "year": 1967,
+   "preview": "https://p.scdn.co/mp3-preview/f14858a79b8869e204c820fd9b2d4ce7e8c9418e",
+   "cover": null
+  },
+  {
+   "n": 241,
+   "id": "7c7X9kFUTP83CJ9Ptqd8Kk",
+   "title": "Blue Jeans",
+   "artist": "Angélica",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/88776c827b8c9555a65b2549a7cebf15887dac56",
+   "cover": null
+  },
+  {
+   "n": 242,
+   "id": "6JY1IdkZGeIcPegKxjSKeb",
+   "title": "Since U Been Gone",
+   "artist": "Kelly Clarkson",
+   "year": 2004,
+   "preview": "https://p.scdn.co/mp3-preview/3010d17f854dad67cb0133a5687d871366d67882",
+   "cover": null
+  },
+  {
+   "n": 243,
+   "id": "1ZPlNanZsJSPK5h9YZZFbZ",
+   "title": "Like a Virgin",
+   "artist": "Madonna",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/432313c4732bd242c04b5eafee08bdc93f616251",
+   "cover": null
+  },
+  {
+   "n": 244,
+   "id": "6SvpFmoAAehspS8RTmguFp",
+   "title": "Tua Boca",
+   "artist": "Belo",
+   "year": 2000,
+   "preview": "https://p.scdn.co/mp3-preview/68b7c189eda5959fd3a366195826c5a1aef44528",
+   "cover": null
+  },
+  {
+   "n": 245,
+   "id": "6xNwKNYZcvgV3XTIwsgNio",
+   "title": "Heartbreak Hotel",
+   "artist": "Elvis Presley",
+   "year": 1956,
+   "preview": "https://p.scdn.co/mp3-preview/fd6b0332418fb5fab13d96080f93db0763d04797",
+   "cover": null
+  },
+  {
+   "n": 246,
+   "id": "2Y0R8ey56JBZj6Au3HenCq",
+   "title": "Máscara",
+   "artist": "Pitty",
+   "year": 2003,
+   "preview": "https://p.scdn.co/mp3-preview/674acc795177ba1639affd7d5c920e159bc2ff46",
+   "cover": null
+  },
+  {
+   "n": 247,
+   "id": "6UelLqGlWMcVH1E5c4H7lY",
+   "title": "Watermelon Sugar",
+   "artist": "Harry Styles",
+   "year": 2020,
+   "preview": "https://p.scdn.co/mp3-preview/d848490c8e2807443dfe1550dd4e89fbcb1d9f6f",
+   "cover": null
+  },
+  {
+   "n": 248,
+   "id": "5IZXB5IKAD2qlvTPJYDCFB",
+   "title": "I Had Some Help (Feat. Morgan Wallen)",
+   "artist": "Post Malone, Morgan Wallen",
+   "year": 2024,
+   "preview": "https://p.scdn.co/mp3-preview/add475b56582a3bdad79050e5d170d2d7033cdb5",
+   "cover": null
+  },
+  {
+   "n": 249,
+   "id": "56bWd9eEu5xsIWETPBIA8k",
+   "title": "Inaraí",
+   "artist": "Katinguelê",
+   "year": 1998,
+   "preview": "https://p.scdn.co/mp3-preview/ae2ea19c6d7f8bb6fd5fb6ec2be8fd9a068a55e1",
+   "cover": null
+  },
+  {
+   "n": 250,
+   "id": "0ySHkodPWa8XD6vzoImba1",
+   "title": "Rubro zorro",
+   "artist": "Ira!",
+   "year": 1988,
+   "preview": "https://p.scdn.co/mp3-preview/231890d7abd3322501d522b70dd4ad329739e80d",
+   "cover": null
+  },
+  {
+   "n": 251,
+   "id": "3cfOd4CMv2snFaKAnMdnvK",
+   "title": "All Star",
+   "artist": "Smash Mouth",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/2e63cdb1c3dd5808abce774674f5c440c614f53a",
+   "cover": null
+  },
+  {
+   "n": 252,
+   "id": "1CvlVbRa6qKEvS8YL8YliV",
+   "title": "Iolanda",
+   "artist": "Simone",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/baa1a89b7a8e9b5dc5c2df624ad4062c83526803",
+   "cover": null
+  },
+  {
+   "n": 253,
+   "id": "10MsXPpQLz5ZrOEZxTtkIm",
+   "title": "Olha Onde Eu Tô",
+   "artist": "Ana Castela",
+   "year": 2025,
+   "preview": "https://p.scdn.co/mp3-preview/84799e6b6397a3655ab38aa8d67f65358b2d1a98",
+   "cover": null
+  },
+  {
+   "n": 254,
+   "id": "6habFhsOp2NvshLv26DqMb",
+   "title": "Despacito",
+   "artist": "Luis Fonsi, Daddy Yankee",
+   "year": 2017,
+   "preview": "https://p.scdn.co/mp3-preview/2ea246524bf5a1a6432d4cf1b911a98bd84e3e8e",
+   "cover": null
+  },
+  {
+   "n": 255,
+   "id": "4ppxp8rJB8eOhM9TFm6dK2",
+   "title": "Proud Mary",
+   "artist": "Ike & Tina Turner",
+   "year": 1970,
+   "preview": "https://p.scdn.co/mp3-preview/9794a7ef0fe44a1d86e179a8b8f5ec8678c14f98",
+   "cover": null
+  },
+  {
+   "n": 256,
+   "id": "1heR9QDRERteiqBBsi3fLM",
+   "title": "A Barata",
+   "artist": "Só Pra Contrariar",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/26bb375c8780c7d1ebac25dddff5f42285f21acc",
+   "cover": null
+  },
+  {
+   "n": 257,
+   "id": "2s1sdSqGcKxpPr5lCl7jAV",
+   "title": "Chandelier",
+   "artist": "Sia",
+   "year": 2014,
+   "preview": "https://p.scdn.co/mp3-preview/fa13db3d66f6daf051e9a3996090f7740532b9e8",
+   "cover": null
+  },
+  {
+   "n": 258,
+   "id": "4jDmJ51x1o9NZB5Nxxc7gY",
+   "title": "Careless Whisper",
+   "artist": "George Michael",
+   "year": 1984,
+   "preview": "https://p.scdn.co/mp3-preview/e20aa429ff2b38195c6fa89f28f462b1f3cfff07",
+   "cover": null
+  },
+  {
+   "n": 259,
+   "id": "6I9VzXrHxO9rA9A5euc8Ak",
+   "title": "Toxic",
+   "artist": "Britney Spears",
+   "year": 2003,
+   "preview": "https://p.scdn.co/mp3-preview/6de2791f84c1d637a0e24734b6df3997cc742da4",
+   "cover": null
+  },
+  {
+   "n": 260,
+   "id": "6Uj1ctrBOjOas8xZXGqKk4",
+   "title": "Woman",
+   "artist": "Doja Cat",
+   "year": 2021,
+   "preview": "https://p.scdn.co/mp3-preview/b74c03272d0e3aa392ed56bb5e8c856f01d801e2",
+   "cover": null
+  },
+  {
+   "n": 261,
+   "id": "7gEFZ2FzhVzLLzsPasKQKg",
+   "title": "Cabecinha no Ombro",
+   "artist": "Alcides Gerardi",
+   "year": 1957,
+   "preview": "https://p.scdn.co/mp3-preview/6e69306f58a31f99a728cf7061255d7451566632",
+   "cover": null
+  },
+  {
+   "n": 262,
+   "id": "5mgCMlxQW7fmHbrdJuowbB",
+   "title": "Hero",
+   "artist": "Mariah Carey",
+   "year": 1993,
+   "preview": "https://p.scdn.co/mp3-preview/a96b2286dd0467cf352636d0da00a9834651ff3d",
+   "cover": null
+  },
+  {
+   "n": 263,
+   "id": "3DRSpgSfeQlPVqPQ7YQiK3",
+   "title": "Xibom Bombom",
+   "artist": "As Meninas",
+   "year": 1999,
+   "preview": "https://p.scdn.co/mp3-preview/11199ba16ef3b6a79e729876f1e03478ee57a825",
+   "cover": null
+  },
+  {
+   "n": 264,
+   "id": "1syj5noYd0GUqHflMH6zda",
+   "title": "A Bomba",
+   "artist": "Braga Boys",
+   "year": 2000,
+   "preview": null,
+   "cover": null
+  },
+  {
+   "n": 265,
+   "id": "7hkQhMFq4EOTYwX3I7cgmA",
+   "title": "Será",
+   "artist": "Legião Urbana",
+   "year": 1985,
+   "preview": "https://p.scdn.co/mp3-preview/da876b9fc17f23d2732f986ec79feed0093ef352",
+   "cover": null
+  },
+  {
+   "n": 266,
+   "id": "0ZPquQV2aKmDfwPjvMdvRp",
+   "title": "Último Romance",
+   "artist": "Los Hermanos",
+   "year": 2003,
+   "preview": "https://p.scdn.co/mp3-preview/2926f98b223cdb5cc02fb8a9b31c4cb554b8b6c4",
+   "cover": null
+  },
+  {
+   "n": 267,
+   "id": "2yQMmtem48vOjB1OXAvbKD",
+   "title": "Quem de nós Dois (La Mia Storia Tra Le Dita)",
+   "artist": "Ana Carolina",
+   "year": 2001,
+   "preview": "https://p.scdn.co/mp3-preview/5c8e06e7cbbd75e48563ba57b88d2637749fbdf3",
+   "cover": null
+  },
+  {
+   "n": 268,
+   "id": "2DAGCHu5aoo2FOjmtU9ojo",
+   "title": "50 Reais",
+   "artist": "Naiara Azevedo, Maiara & Maraisa",
+   "year": 2016,
+   "preview": "https://p.scdn.co/mp3-preview/36eb265bc6b2538fa6bd0e85e45cff4c4f2cf179",
+   "cover": null
+  },
+  {
+   "n": 269,
+   "id": "0HZlND4giwzgolBpaNIRGV",
+   "title": "Aquarius/Let The Sunshine In (The Flesh Failures) - From the Musical \"Hair\"",
+   "artist": "The 5th Dimension",
+   "year": 1969,
+   "preview": "https://p.scdn.co/mp3-preview/9797daed39ac2728ca0dd25d3bf5ad25df553f21",
+   "cover": null
+  },
+  {
+   "n": 270,
+   "id": "127twwy3iCo1xBRQHyWetU",
+   "title": "Cotidiano",
+   "artist": "Chico Buarque",
+   "year": 1971,
+   "preview": "https://p.scdn.co/mp3-preview/409391a4b78196955c17dff4677d7b600c9ccb14",
+   "cover": null
+  },
+  {
+   "n": 271,
+   "id": "4hfIVhq0F0zFUcrbecsYmo",
+   "title": "Let's Get It Started - Spike Mix",
+   "artist": "Black Eyed Peas",
+   "year": 2004,
+   "preview": "https://p.scdn.co/mp3-preview/93f48fd10c205e8006bf8cbdd2da1bddecee919f",
+   "cover": null
+  },
+  {
+   "n": 272,
+   "id": "2Wb9ejnmy27DUTUe9YF5Ew",
+   "title": "All Night Long (All Night)",
+   "artist": "Lionel Richie",
+   "year": 1983,
+   "preview": "https://p.scdn.co/mp3-preview/a1b7a67aa91cc95fc0c4e534bb10e1fbe528e7ee",
+   "cover": null
+  },
+  {
+   "n": 273,
+   "id": "3PR79C1jVvLLLmgdyHkXl3",
+   "title": "That's the Way (I Like It)",
+   "artist": "KC & The Sunshine Band",
+   "year": 1975,
+   "preview": "https://p.scdn.co/mp3-preview/ff437fc7b580d0f78125ff8f8e097462baf16bc3",
+   "cover": null
+  },
+  {
+   "n": 274,
+   "id": "5MMnwYs0hIxkENRsbkWJ2G",
+   "title": "Smoke On The Water",
+   "artist": "Deep Purple",
+   "year": 1973,
+   "preview": "https://p.scdn.co/mp3-preview/ddbbf4686b54a51c8085b0239030f788c9186d32",
+   "cover": null
+  },
+  {
+   "n": 275,
+   "id": "5LgtJshfcCKoi4LQ40ym4d",
+   "title": "Homem Com H",
+   "artist": "Ney Matogrosso",
+   "year": 1981,
+   "preview": "https://p.scdn.co/mp3-preview/42ad6f4724e70fa22147639ebfe3f94d616b4768",
+   "cover": null
+  },
+  {
+   "n": 276,
+   "id": "5ubvP9oKmxLUVq506fgLhk",
+   "title": "Stayin Alive",
+   "artist": "Bee Gees",
+   "year": 1977,
+   "preview": "https://p.scdn.co/mp3-preview/80f18af7b4bdd7bd2e95d55bb85dcec92dfdfff0",
+   "cover": null
+  },
+  {
+   "n": 277,
+   "id": "79f21uRzn79zWCxrsF17hj",
+   "title": "Carla",
+   "artist": "Ls Jack",
+   "year": 2002,
+   "preview": "https://p.scdn.co/mp3-preview/3e5e563617b208367c8187ec980d4b50250fbd40",
+   "cover": null
+  },
+  {
+   "n": 278,
+   "id": "5QQzvk1759dAwL4T7jxDhg",
+   "title": "Marvada Pinga (Moda Da Pinga)",
+   "artist": "Inezita Barroso",
+   "year": 1953,
+   "preview": "https://p.scdn.co/mp3-preview/406a439a1c2ea6f9a6df7abf420c87f3d128e465",
+   "cover": null
+  },
+  {
+   "n": 279,
+   "id": "75FYqcxt1YEAtqDLrOeIJn",
+   "title": "Three Little Birds",
+   "artist": "Bob Marley & The Wailers",
+   "year": 1977,
+   "preview": "https://p.scdn.co/mp3-preview/30af46efcab458c3535755bc384cef034e2519b1",
+   "cover": null
+  },
+  {
+   "n": 280,
+   "id": "49MHCPzvMLXhRjDantBMVH",
+   "title": "Just the Way You Are",
+   "artist": "Billy Joel",
+   "year": 1977,
+   "preview": "https://p.scdn.co/mp3-preview/3dba540dafbc6039399332c8b8389b4bd0b99070",
+   "cover": null
+  },
+  {
+   "n": 281,
+   "id": "0AQqrtK1pULuwZUXhwaaDz",
+   "title": "All By Myself",
+   "artist": "Eric Carmen",
+   "year": 1975,
+   "preview": "https://p.scdn.co/mp3-preview/50305329f53635164339467ed91322fab8434712",
+   "cover": null
+  },
+  {
+   "n": 282,
+   "id": "3CwnUKUnWDAVbEyxBY1Zc4",
+   "title": "Rei Lacoste",
+   "artist": "MD Chefe, Offlei Sounds, DomLaike",
+   "year": 2021,
+   "preview": "https://p.scdn.co/mp3-preview/a2f0ad54548674a3f35d400d1617cd2db391fce7",
+   "cover": null
+  },
+  {
+   "n": 283,
+   "id": "71iogkuXi7nAfFbqMGDTri",
+   "title": "Meu Sol",
+   "artist": "Vanguart",
+   "year": 2013,
+   "preview": "https://p.scdn.co/mp3-preview/b03c91cd3da347ba07e8b3aa49e71cea603f5973",
+   "cover": null
+  },
+  {
+   "n": 284,
+   "id": "4JfuiOWlWCkjP6OKurHjSn",
+   "title": "Walk This Way",
+   "artist": "Aerosmith",
+   "year": 1975,
+   "preview": "https://p.scdn.co/mp3-preview/d65a71bce3857d4221fd2d81ff03cc4e7f3a025e",
+   "cover": null
+  },
+  {
+   "n": 285,
+   "id": "4xISjdYpFEMsAFC2ax7OVE",
+   "title": "Shimbalaiê",
+   "artist": "Maria Gadú",
+   "year": 2009,
+   "preview": "https://p.scdn.co/mp3-preview/9dba2a8cd3bfce4f5d78e6042851fb84a958151c",
+   "cover": null
+  },
+  {
+   "n": 286,
+   "id": "7pu8AhGUxHZSCWTkQ2eb5M",
+   "title": "Bad Reputation",
+   "artist": "Joan Jett & the Blackhearts",
+   "year": 1980,
+   "preview": "https://p.scdn.co/mp3-preview/0341feb1f4c6feb847d68a7d8949ec345e4dd152",
+   "cover": null
+  },
+  {
+   "n": 287,
+   "id": "1gZ7i4qxXkHZb1r6eioaAP",
+   "title": "Don't Cha",
+   "artist": "The Pussycat Dolls, Busta Rhymes",
+   "year": 2005,
+   "preview": "https://p.scdn.co/mp3-preview/dc2498ab4f3c73371fe72457bf7ba7afbc3f0898",
+   "cover": null
+  },
+  {
+   "n": 288,
+   "id": "55ZjdmU2X8iClV61wAdHX6",
+   "title": "O Canto da Cidade",
+   "artist": "Daniela Mercury",
+   "year": 1992,
+   "preview": "https://p.scdn.co/mp3-preview/9135286e0feb712c12565e6ef81548cc22ccd094",
+   "cover": null
+  },
+  {
+   "n": 289,
+   "id": "1b95iTuFa05xohamPS1qzK",
+   "title": "Lua e flor",
+   "artist": "Oswaldo Montenegro",
+   "year": 1988,
+   "preview": "https://p.scdn.co/mp3-preview/43947b820241d3e13b61ec8799d61a6ce51ff0ac",
+   "cover": null
+  },
+  {
+   "n": 290,
+   "id": "1j5N75y26nH2l0uPa9JlKe",
+   "title": "O Sol",
+   "artist": "Vitor Kley",
+   "year": 2017,
+   "preview": "https://p.scdn.co/mp3-preview/5acd088a19d058da046e2898a228d2bff6579434",
+   "cover": null
+  },
+  {
+   "n": 291,
+   "id": "3iYYzy24uam6YzRgAbG0KD",
+   "title": "Cremosa",
+   "artist": "Banda Uó, Mateus Carrilho, Candy Mel, Davi Sabbag",
+   "year": 2015,
+   "preview": "https://p.scdn.co/mp3-preview/5bf0f76ba422f4c889af08e1061f1345dcf09c28",
+   "cover": null
+  },
+  {
+   "n": 292,
+   "id": "3zHq9ouUJQFQRf3cm1rRLu",
+   "title": "Love Me Like You Do - From \"Fifty Shades Of Grey\"",
+   "artist": "Ellie Goulding",
+   "year": 2015,
+   "preview": "https://p.scdn.co/mp3-preview/af7a33094ec0c2743a50e007c66acb07ded6b3ca",
+   "cover": null
+  },
+  {
+   "n": 293,
+   "id": "2gam98EZKrF9XuOkU13ApN",
+   "title": "Promiscuous",
+   "artist": "Nelly Furtado, Timbaland",
+   "year": 2006,
+   "preview": "https://p.scdn.co/mp3-preview/bc151048f2138d6cd93d690fcbd95227a85ef5b9",
+   "cover": null
+  },
+  {
+   "n": 294,
+   "id": "3nI0piSOxAik2RCpHGloB7",
+   "title": "Só Os Loucos Sabem",
+   "artist": "Charlie Brown Jr.",
+   "year": 2009,
+   "preview": "https://p.scdn.co/mp3-preview/76af14d219fa736339ff530e3a90b0c810b10557",
+   "cover": null
+  },
+  {
+   "n": 295,
+   "id": "1CPZ5BxNNd0n0nF4Orb9JS",
+   "title": "Golden",
+   "artist": "HUNTR/X, EJAE, AUDREY NUNA, REI AMI, KPop Demon Hunters Cast",
+   "year": 2025,
+   "preview": "https://p.scdn.co/mp3-preview/dd67a9a4df4f0dea7365b346ed45787b8da4b35a",
+   "cover": null
+  },
+  {
+   "n": 296,
+   "id": "228BxWXUYQPJrJYHDLOHkj",
+   "title": "Gasolina",
+   "artist": "Daddy Yankee",
+   "year": 2004,
+   "preview": "https://p.scdn.co/mp3-preview/887b2e1f195333800d3c8a7537097cc7bd7bdc3d",
+   "cover": null
+  },
+  {
+   "n": 297,
+   "id": "7K8QsHbmUpSX37oOCL4e2g",
+   "title": "Kung Fu Fighting",
+   "artist": "Carl Douglas",
+   "year": 1974,
+   "preview": "https://p.scdn.co/mp3-preview/9986a744a86515731713d009f2d113810fae3a5d",
+   "cover": null
+  },
+  {
+   "n": 298,
+   "id": "4DIabg0zSDn6xoq810Spqn",
+   "title": "Chega Mais",
+   "artist": "Rita Lee, Roberto De Carvalho",
+   "year": 1979,
+   "preview": "https://p.scdn.co/mp3-preview/63a49d07ec9f05921ebd8bc2e7bbf7a251358284",
+   "cover": null
+  },
+  {
+   "n": 299,
+   "id": "2AW37v0bDyuOzGP3XnmFuA",
+   "title": "It's Gonna Be Me",
+   "artist": "*NSYNC",
+   "year": 2000,
+   "preview": "https://p.scdn.co/mp3-preview/0b53cb5f8d5aa8e2faa47277822623e2efd815a4",
+   "cover": null
+  },
+  {
+   "n": 300,
+   "id": "7K5rZnp7C07SVotXqMaKFp",
+   "title": "Asa Morena",
+   "artist": "Zizi Possi",
+   "year": 1982,
+   "preview": "https://p.scdn.co/mp3-preview/6316caf4c922e793df5c656a1f275efe03222e9d",
+   "cover": null
+  },
+  {
+   "n": 301,
+   "id": "0cqRj7pUJDkTCEsJkx8snD",
+   "title": "Shake It Off",
+   "artist": "Taylor Swift",
+   "year": 2014,
+   "preview": "https://p.scdn.co/mp3-preview/b2f4ace48deea16c8c94a7dee85f5db6cd90b8dc",
+   "cover": null
+  },
+  {
+   "n": 302,
+   "id": "1wfzOH54LylpiG8hAOjKcS",
+   "title": "Big Yellow Taxi",
+   "artist": "Joni Mitchell",
+   "year": 1970,
+   "preview": "https://p.scdn.co/mp3-preview/b9fc83c8941b323ccf7ae4387beb24bcc1e3b939",
+   "cover": null
+  },
+  {
+   "n": 303,
+   "id": "2Z2xeJsAOVmTy0UTYA21C5",
+   "title": "Ela É Carioca",
+   "artist": "Os Cariocas",
+   "year": 1963,
+   "preview": "https://p.scdn.co/mp3-preview/0ae28de2bb40465a3d85fa12a92a209393db9dfc",
+   "cover": null
+  },
+  {
+   "n": 304,
+   "id": "7cv28LXcjAC3GsXbUvXKbX",
+   "title": "I Will Survive",
+   "artist": "Gloria Gaynor",
+   "year": 1978,
+   "preview": "https://p.scdn.co/mp3-preview/dbb95f59bd69ddc2a024d2bec1478e20d3c5819c",
+   "cover": null
+  },
+  {
+   "n": 305,
+   "id": "6yEBV6MlSODqJPXK6BilZo",
+   "title": "Eu Quero É Botar Meu Bloco Na Rua",
+   "artist": "Sérgio Sampaio",
+   "year": 1973,
+   "preview": "https://p.scdn.co/mp3-preview/455fef2e95f867327f93f3d68ba120e2e5dc25d8",
+   "cover": null
+  },
+  {
+   "n": 306,
+   "id": "0HuRTyI3kEP5K1ecfVKRyP",
+   "title": "Juventude Transviada",
+   "artist": "Luiz Melodia",
+   "year": 1976,
+   "preview": "https://p.scdn.co/mp3-preview/9d6ef3bef8ba6e664b2ee9af40eddbe9fa016508",
+   "cover": null
+  },
+  {
+   "n": 307,
+   "id": "7gVzhRCrLRUBEGdS7zNTp0",
+   "title": "Malvada",
+   "artist": "Zé Felipe",
+   "year": 2022,
+   "preview": "https://p.scdn.co/mp3-preview/af468444593b48a615acd7307d8da35158a98cd3",
+   "cover": null
+  },
+  {
+   "n": 308,
+   "id": "1EzrEOXmMH3G43AXT1y7pA",
+   "title": "I'm Yours",
+   "artist": "Jason Mraz",
+   "year": 2008,
+   "preview": "https://p.scdn.co/mp3-preview/0952568e496914bb61383588ac417ec70abefc1d",
+   "cover": null
+  }
+ ]
+}
