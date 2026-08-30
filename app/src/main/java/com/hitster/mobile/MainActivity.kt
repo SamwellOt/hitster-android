@@ -1,7 +1,17 @@
 package com.hitster.mobile
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -71,6 +81,16 @@ class MainActivity : ComponentActivity() {
                 val viewingTimelineOf by vm.viewingTimelineOf.collectAsStateWithLifecycle()
                 val sessions by vm.sessions.collectAsStateWithLifecycle()
                 val hostAddress by vm.hostAddress.collectAsStateWithLifecycle()
+
+                // Landscape = game table mode: hide the system bars so the whole height goes to the game.
+                val orientation = LocalConfiguration.current.orientation
+                val view = LocalView.current
+                LaunchedEffect(orientation) {
+                    val c = WindowCompat.getInsetsController(window, view)
+                    c.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                    if (orientation == Configuration.ORIENTATION_LANDSCAPE) c.hide(WindowInsetsCompat.Type.systemBars())
+                    else c.show(WindowInsetsCompat.Type.systemBars())
+                }
 
                 val snackbar = remember { SnackbarHostState() }
                 var confirmLeave by remember { mutableStateOf(false) }
@@ -156,8 +176,18 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
+                    // Custom layout: message takes the width, the close button stays pinned at the end
+                    // (the default Snackbar lets the X fall inline when the text wraps).
                     SnackbarHost(hostState = snackbar, modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 8.dp)) { data ->
-                        Snackbar(snackbarData = data, containerColor = Surface3, contentColor = TextPrimary, actionColor = NeonPink, dismissActionContentColor = NeonPink, modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp))
+                        Snackbar(
+                            containerColor = Surface3, contentColor = TextPrimary,
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
+                            dismissAction = {
+                                IconButton(onClick = { data.dismiss() }) {
+                                    Icon(Icons.Default.Close, contentDescription = "Fechar", tint = NeonPink)
+                                }
+                            },
+                        ) { Text(data.visuals.message, color = TextPrimary) }
                     }
                 }
             }

@@ -60,9 +60,11 @@ class PreviewPlayer(context: Context) {
         })
     }
 
+    /** Start (or resume) the clip. Resuming after a pause continues where it stopped; only a finished clip restarts. */
     fun play(url: String) {
-        if (_state.value.url == url && !_state.value.ended && player.playbackState != Player.STATE_IDLE) {
-            player.seekTo(0); player.play(); return
+        if (_state.value.url == url && player.playbackState != Player.STATE_IDLE) {
+            if (player.playbackState == Player.STATE_ENDED) player.seekTo(0)
+            player.play(); return
         }
         _state.value = PlaybackState(url = url, isBuffering = true)
         player.setMediaItem(MediaItem.fromUri(url))

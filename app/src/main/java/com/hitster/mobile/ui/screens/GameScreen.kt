@@ -2,8 +2,10 @@ package com.hitster.mobile.ui.screens
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -11,44 +13,38 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.filled.SkipNext
-import androidx.compose.ui.text.style.TextOverflow
-import com.hitster.mobile.ui.components.CardWidth
-import com.hitster.mobile.ui.components.CardHeight
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.EmojiEvents
@@ -56,20 +52,20 @@ import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Replay
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -77,10 +73,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.hitster.mobile.audio.PlaybackState
 import com.hitster.mobile.net.Card
 import com.hitster.mobile.net.GamePlayer
@@ -89,6 +91,8 @@ import com.hitster.mobile.net.Phase
 import com.hitster.mobile.net.Room
 import com.hitster.mobile.ui.components.Avatar
 import com.hitster.mobile.ui.components.Banner
+import com.hitster.mobile.ui.components.CardHeight
+import com.hitster.mobile.ui.components.CardWidth
 import com.hitster.mobile.ui.components.Countdown
 import com.hitster.mobile.ui.components.GhostButton
 import com.hitster.mobile.ui.components.HiddenCard
@@ -157,6 +161,12 @@ class GameActions(
     val leave: () -> Unit,
 )
 
+/** Per‑screen layout facts derived once from the window size. */
+private class Layout(val compact: Boolean) {
+    val cardW: Dp get() = if (compact) 78.dp else CardWidth
+    val cardH: Dp get() = if (compact) 104.dp else CardHeight
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameScreen(ui: GameUi, a: GameActions) {
@@ -169,25 +179,26 @@ fun GameScreen(ui: GameUi, a: GameActions) {
 
     BoxWithConstraints(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
         val landscape = maxWidth > maxHeight
+        val lay = Layout(compact = landscape)
         if (!landscape) {
             // ---------------------------------------------------------- portrait: stacked
             Column(Modifier.fillMaxSize()) {
-                Header(g, a)
+                Header(g, me, a, lay)
                 PlayersStrip(ui, a, goal)
                 Box(Modifier.weight(1f).fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp)) {
-                    CenterPanel(ui, a, me, current, myTurn)
+                    CenterPanel(ui, a, me, current, myTurn, lay)
                 }
-                if (me != null && t != null) MyTimeline(ui, a, me, t.phase, myTurn, compact = false)
+                if (me != null && t != null) MyTimeline(ui, a, me, t.phase, myTurn, lay)
             }
         } else {
-            // ---------------------------------------------------------- landscape: panel + players on top, full‑width timeline below
+            // ---------------------------------------------------------- landscape: compact header, panel + players, full‑width timeline
             Column(Modifier.fillMaxSize()) {
-                Header(g, a, compact = true)
+                Header(g, me, a, lay)
                 Row(Modifier.weight(1f).fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Box(Modifier.weight(1f).fillMaxHeight()) { CenterPanel(ui, a, me, current, myTurn) }
+                    Box(Modifier.weight(1f).fillMaxHeight()) { CenterPanel(ui, a, me, current, myTurn, lay) }
                     PlayersColumn(ui, a, goal, modifier = Modifier.width(150.dp).fillMaxHeight())
                 }
-                if (me != null && t != null) MyTimeline(ui, a, me, t.phase, myTurn, compact = true)
+                if (me != null && t != null) MyTimeline(ui, a, me, t.phase, myTurn, lay)
             }
         }
     }
@@ -221,20 +232,49 @@ fun GameScreen(ui: GameUi, a: GameActions) {
     if (g.finished) WinnerOverlay(ui, a)
 }
 
-// ======================================================================= layout pieces
+// ======================================================================= header & HUD
 
+/**
+ * Always visible: wordmark, round/deck, MY TOKENS (the HUD), leave. In landscape it also carries the card
+ * count and the 3‑token trade so the timeline strip below needs no label row.
+ */
 @Composable
-private fun Header(g: GameView, a: GameActions, compact: Boolean = false) {
+private fun Header(g: GameView, me: GamePlayer?, a: GameActions, lay: Layout) {
     Row(
-        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = if (compact) 4.dp else 8.dp),
+        Modifier.fillMaxWidth().padding(start = 16.dp, end = 4.dp, top = if (lay.compact) 2.dp else 6.dp, bottom = if (lay.compact) 2.dp else 4.dp),
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        NeonTitle(size = if (compact) 18 else 22)
-        Spacer(Modifier.width(10.dp))
-        // one pill so it never wraps on narrow phones
-        Pill("Rodada ${g.round} · ${g.deckCount} cartas", color = TextSecondary)
+        NeonTitle(size = if (lay.compact) 18 else 20)
+        if (lay.compact) Pill("R${g.round} · ${g.deckCount}", color = TextSecondary)
         Spacer(Modifier.weight(1f))
-        GhostButton("Sair", color = TextSecondary, height = if (compact) 40.dp else 44.dp, onClick = a.leave)
+        if (me != null) {
+            if (lay.compact) Pill("${me.timeline.size}/${g.options.cardsToWin}", color = NeonYellow)
+            TokensHud(me.tokens, parseHex(me.color))
+            if (lay.compact) BuyButton(tokens = me.tokens, enabled = !g.finished && g.deckCount > 0, compact = true, onClick = a.buyCard)
+        }
+        IconButton(onClick = a.leave, modifier = Modifier.size(44.dp)) {
+            Icon(Icons.AutoMirrored.Filled.Logout, contentDescription = "Sair da sessão", tint = TextSecondary)
+        }
+    }
+}
+
+/** My HITSTER tokens, always on screen: "H ×2" (semantics read "2 fichas HITSTER"). */
+@Composable
+private fun TokensHud(tokens: Int, color: Color) {
+    Row(
+        Modifier
+            .height(36.dp)
+            .clip(RoundedCornerShape(50))
+            .background(Surface2)
+            .border(1.dp, if (tokens > 0) color.copy(alpha = 0.8f) else Outline, RoundedCornerShape(50))
+            .padding(horizontal = 10.dp)
+            .semantics { contentDescription = "$tokens fichas HITSTER" },
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        HitsterToken(color = color, size = 20.dp, dim = tokens == 0)
+        Text(if (tokens == 1) "1 ficha" else "$tokens fichas", color = if (tokens > 0) TextPrimary else TextTertiary, style = MaterialTheme.typography.labelLarge, maxLines = 1)
     }
 }
 
@@ -264,12 +304,12 @@ private fun PlayersColumn(ui: GameUi, a: GameActions, goal: Int, modifier: Modif
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .heightIn(min = 48.dp)
+                    .heightIn(min = 44.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(if (cur) Surface2 else Surface1)
                     .border(1.dp, if (cur) color else Outline, RoundedCornerShape(12.dp))
                     .clickable(onClickLabel = "Ver linha do tempo de ${p.name}") { a.openTimeline(p.id) }
-                    .padding(horizontal = 8.dp, vertical = 6.dp),
+                    .padding(horizontal = 8.dp, vertical = 5.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
@@ -287,7 +327,7 @@ private fun PlayersColumn(ui: GameUi, a: GameActions, goal: Int, modifier: Modif
 }
 
 @Composable
-private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: GamePlayer?, myTurn: Boolean) {
+private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: GamePlayer?, myTurn: Boolean, lay: Layout) {
     val t = ui.game.turn ?: return
     if (current == null) return
     AnimatedContent(
@@ -297,13 +337,13 @@ private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: Ga
     ) { key ->
         val phase = key.substringBefore(':')
         when {
-            phase == Phase.LISTEN && myTurn -> ListenPanel(ui, a, me)
-            phase == Phase.LISTEN -> WaitingPanel(current, "está ouvindo a música…", "Fique de olho: quando ${current.name} posicionar a carta, você pode gritar HITSTER.")
-            phase == Phase.CHALLENGE && myTurn -> OwnerChallengePanel(ui, a)
-            phase == Phase.CHALLENGE && ui.challengeMode -> ChallengePicker(ui, a, current)
-            phase == Phase.CHALLENGE -> OpponentChallengePanel(ui, a, current, me)
-            phase == Phase.VOTE -> VotePanel(ui, a, current, myTurn)
-            phase == Phase.RESULT -> ResultPanel(ui, a, current)
+            phase == Phase.LISTEN && myTurn -> ListenPanel(ui, a, me, lay)
+            phase == Phase.LISTEN -> WaitingPanel(current, lay)
+            phase == Phase.CHALLENGE && myTurn -> OwnerChallengePanel(ui, lay)
+            phase == Phase.CHALLENGE && ui.challengeMode -> ChallengePicker(ui, a, current, lay)
+            phase == Phase.CHALLENGE -> OpponentChallengePanel(ui, a, current, me, lay)
+            phase == Phase.VOTE -> VotePanel(ui, a, current, myTurn, lay)
+            phase == Phase.RESULT -> ResultPanel(ui, a, current, lay)
             else -> Box {}
         }
     }
@@ -311,151 +351,205 @@ private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: Ga
 
 // ======================================================================= panels
 
+/** Card‑like container. Scrolls only as a safety net – the compact variants are sized to fit without it. */
 @Composable
-private fun Panel(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+private fun Panel(lay: Layout, content: @Composable () -> Unit) {
     Column(
-        modifier
+        Modifier
             .fillMaxSize()
-            .clip(RoundedCornerShape(22.dp))
+            .clip(RoundedCornerShape(if (lay.compact) 18.dp else 22.dp))
             .background(Surface1)
-            .border(1.dp, Outline, RoundedCornerShape(22.dp))
-            .padding(16.dp)
+            .border(1.dp, Outline, RoundedCornerShape(if (lay.compact) 18.dp else 22.dp))
+            .padding(horizontal = if (lay.compact) 12.dp else 16.dp, vertical = if (lay.compact) 8.dp else 16.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) { content() }
 }
 
 @Composable
-private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?) {
+private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout) {
     val pb = ui.playback
     val tokens = me?.tokens ?: 0
-    Panel {
-        SectionLabel("Sua vez", color = NeonYellow)
-        VSpace(6.dp)
-        Text("Ouça e posicione a carta", style = MaterialTheme.typography.headlineSmall, color = TextPrimary, textAlign = TextAlign.Center)
-        VSpace(14.dp)
-        Waveform(active = pb.isPlaying, height = 48.dp)
-        VSpace(10.dp)
-        ProgressBar(pb.progress)
-        VSpace(4.dp)
-        Row(Modifier.fillMaxWidth()) {
-            Text(fmt(pb.positionMs), color = TextTertiary, style = MaterialTheme.typography.labelSmall)
-            Spacer(Modifier.weight(1f))
-            Text(if (pb.isBuffering) "carregando…" else if (pb.error != null) "erro ao tocar" else "prévia · 30 s", color = TextSecondary, style = MaterialTheme.typography.labelSmall)
-        }
-        VSpace(12.dp)
-        Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
-            RoundIcon(Icons.Default.Replay, "Recomeçar", size = 48.dp, enabled = pb.url != null) { a.replay() }
+    val confirmLabel = ui.selectedSlot?.let { "CONFIRMAR NA ${it + 1}ª POSIÇÃO" } ?: "TOQUE EM  +  NA LINHA DO TEMPO"
+    val controls: @Composable () -> Unit = {
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+            RoundIcon(Icons.Default.Replay, "Recomeçar", size = if (lay.compact) 40.dp else 48.dp, enabled = pb.url != null, showLabel = !lay.compact) { a.replay() }
             RoundIcon(
                 if (pb.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                if (pb.isPlaying) "Pausar" else "Tocar", size = 72.dp, brush = NeonBrush,
+                if (pb.isPlaying) "Pausar" else "Tocar", size = if (lay.compact) 56.dp else 72.dp, brush = NeonBrush, showLabel = !lay.compact,
             ) { if (pb.isPlaying) a.pause() else a.play() }
-            RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = 48.dp, enabled = tokens >= 1) { a.skip() }
+            RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = if (lay.compact) 40.dp else 48.dp, enabled = tokens >= 1, showLabel = !lay.compact) { a.skip() }
         }
-        VSpace(6.dp)
-        Text("Pular a música custa 1 ficha HITSTER (você tem $tokens)", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
-        VSpace(14.dp)
-        ClaimToggle(ui.claimsTitle, enabled = tokens < 5, onToggle = a.toggleClaim)
-        VSpace(10.dp)
-        Banner(
-            if (ui.selectedSlot == null) "Toque em um  +  da sua linha do tempo para escolher a posição"
-            else "Posição escolhida. Confirme abaixo quando estiver pronto(a).",
-            color = if (ui.selectedSlot == null) NeonCyan else NeonGreen,
-        )
+    }
+    val status = if (pb.isBuffering) "carregando…" else if (pb.error != null) "erro ao tocar" else "prévia · 30 s"
+
+    Panel(lay) {
+        if (!lay.compact) {
+            SectionLabel("Sua vez", color = NeonYellow)
+            VSpace(6.dp)
+            Text("Ouça e posicione a carta", style = MaterialTheme.typography.headlineSmall, color = TextPrimary, textAlign = TextAlign.Center)
+            VSpace(14.dp)
+            Waveform(active = pb.isPlaying, height = 48.dp)
+            VSpace(10.dp)
+            ProgressBar(pb.progress)
+            VSpace(4.dp)
+            Row(Modifier.fillMaxWidth()) {
+                Text(fmt(pb.positionMs), color = TextTertiary, style = MaterialTheme.typography.labelSmall)
+                Spacer(Modifier.weight(1f))
+                Text(status, color = TextSecondary, style = MaterialTheme.typography.labelSmall)
+            }
+            VSpace(12.dp)
+            controls()
+            VSpace(6.dp)
+            Text("Pular custa 1 ficha HITSTER", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+            VSpace(14.dp)
+            ClaimToggle(ui.claimsTitle, enabled = tokens < 5, compact = false, onToggle = a.toggleClaim)
+            VSpace(10.dp)
+            Banner(
+                if (ui.selectedSlot == null) "Toque em um  +  da sua linha do tempo para escolher a posição"
+                else "Posição escolhida. Confirme abaixo quando estiver pronto(a).",
+                color = if (ui.selectedSlot == null) NeonCyan else NeonGreen,
+            )
+        } else {
+            // landscape: two rows – [controls | waveform+progress] then [claim toggle] then [confirm]
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                controls()
+                Column(Modifier.weight(1f)) {
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        SectionLabel("Sua vez · ouça e posicione", color = NeonYellow)
+                        Spacer(Modifier.weight(1f))
+                        Text("${fmt(pb.positionMs)} · $status", color = TextSecondary, style = MaterialTheme.typography.labelSmall, maxLines = 1)
+                    }
+                    VSpace(4.dp)
+                    Waveform(active = pb.isPlaying, height = 28.dp, bars = 18)
+                    VSpace(4.dp)
+                    ProgressBar(pb.progress)
+                }
+            }
+            VSpace(8.dp)
+            ClaimToggle(ui.claimsTitle, enabled = tokens < 5, compact = true, onToggle = a.toggleClaim)
+            VSpace(8.dp)
+            NeonButton(confirmLabel, enabled = ui.selectedSlot != null, height = 44.dp, onClick = a.confirmPlacement)
+        }
     }
 }
 
 @Composable
-private fun ClaimToggle(on: Boolean, enabled: Boolean, onToggle: () -> Unit) {
+private fun ClaimToggle(on: Boolean, enabled: Boolean, compact: Boolean, onToggle: () -> Unit) {
     Row(
         Modifier
             .fillMaxWidth()
+            .heightIn(min = 44.dp)
             .clip(RoundedCornerShape(14.dp))
             .background(if (on) NeonYellow.copy(alpha = 0.14f) else Surface2)
             .border(1.dp, if (on) NeonYellow else Outline, RoundedCornerShape(14.dp))
             .clickable(enabled = enabled, onClick = onToggle)
-            .padding(horizontal = 14.dp, vertical = 12.dp),
+            .padding(horizontal = 12.dp, vertical = if (compact) 6.dp else 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        HitsterToken(color = NeonYellow, size = 26.dp, dim = !on)
-        Spacer(Modifier.width(12.dp))
+        HitsterToken(color = NeonYellow, size = 24.dp, dim = !on)
+        Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
-            Text("Sei o nome da música e o artista!", color = TextPrimary, fontWeight = FontWeight.Bold)
-            Text(
+            Text(if (compact) "Sei o nome e o artista (+1 ficha)" else "Sei o nome da música e o artista!", color = TextPrimary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            if (!compact) Text(
                 if (!enabled) "Você já tem 5 fichas (máximo)."
                 else if (on) "Diga em voz alta. Os outros confirmam depois da revelação: +1 ficha." else "Diga em voz alta para ganhar 1 ficha HITSTER.",
                 color = TextTertiary, style = MaterialTheme.typography.bodySmall,
             )
         }
+        Icon(if (on) Icons.Default.Check else Icons.Default.Close, contentDescription = null, tint = if (on) NeonYellow else TextTertiary, modifier = Modifier.size(18.dp))
     }
 }
 
 @Composable
-private fun WaitingPanel(current: GamePlayer, action: String, hint: String) {
+private fun WaitingPanel(current: GamePlayer, lay: Layout) {
     val pulse by rememberInfiniteTransition(label = "pulse").animateFloat(0.92f, 1.06f, infiniteRepeatable(tween(900), RepeatMode.Reverse), label = "p")
-    Panel {
-        SectionLabel("Vez de ${current.name}", color = parseHex(current.color))
-        VSpace(18.dp)
-        Box(Modifier.scale(pulse)) { HiddenCard(icon = Icons.Default.MusicNote) }
-        VSpace(18.dp)
-        Text("${current.name} $action", style = MaterialTheme.typography.titleLarge, color = TextPrimary, textAlign = TextAlign.Center)
-        VSpace(8.dp)
-        Text(hint, color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
-        VSpace(6.dp)
-        Text("A música toca apenas no celular de quem está jogando.", color = TextTertiary, style = MaterialTheme.typography.labelSmall)
+    val hint = "Quando ${current.name} posicionar a carta, você pode gritar HITSTER."
+    Panel(lay) {
+        if (!lay.compact) {
+            SectionLabel("Vez de ${current.name}", color = parseHex(current.color))
+            VSpace(18.dp)
+            Box(Modifier.scale(pulse)) { HiddenCard(icon = Icons.Default.MusicNote) }
+            VSpace(18.dp)
+            Text("${current.name} está ouvindo a música…", style = MaterialTheme.typography.titleLarge, color = TextPrimary, textAlign = TextAlign.Center)
+            VSpace(8.dp)
+            Text(hint, color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
+            VSpace(6.dp)
+            Text("A música toca apenas no celular de quem está jogando.", color = TextTertiary, style = MaterialTheme.typography.labelSmall)
+        } else {
+            Row(Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Box(Modifier.scale(pulse)) { HiddenCard(width = 66.dp, height = 88.dp, icon = Icons.Default.MusicNote) }
+                Column(Modifier.weight(1f)) {
+                    SectionLabel("Vez de ${current.name}", color = parseHex(current.color))
+                    VSpace(4.dp)
+                    Text("${current.name} está ouvindo a música…", style = MaterialTheme.typography.titleMedium, color = TextPrimary)
+                    VSpace(4.dp)
+                    Text(hint, color = TextTertiary, style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
     }
 }
 
 @Composable
-private fun OwnerChallengePanel(ui: GameUi, a: GameActions) {
+private fun OwnerChallengePanel(ui: GameUi, lay: Layout) {
     val t = ui.game.turn!!
-    Panel {
-        SectionLabel("Carta posicionada", color = NeonGreen)
-        VSpace(10.dp)
-        Countdown(t.deadline, ui.clockOffset, label = "para os outros gritarem HITSTER")
-        VSpace(14.dp)
-        Text("Aguardando desafios…", style = MaterialTheme.typography.headlineSmall, color = TextPrimary)
-        VSpace(10.dp)
+    Panel(lay) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Countdown(t.deadline, ui.clockOffset)
+            Column {
+                SectionLabel("Carta posicionada", color = NeonGreen)
+                Text("Aguardando desafios…", style = MaterialTheme.typography.titleMedium, color = TextPrimary)
+            }
+        }
+        VSpace(if (lay.compact) 6.dp else 12.dp)
         if (t.challenges.isEmpty()) {
             Text("Ninguém desafiou ainda.", color = TextTertiary, style = MaterialTheme.typography.bodySmall)
         } else {
             t.challenges.forEach { c ->
                 val p = ui.game.player(c.playerId)
-                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 3.dp)) {
-                    HitsterToken(color = parseHex(p?.color), size = 20.dp)
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 2.dp)) {
+                    HitsterToken(color = parseHex(p?.color), size = 18.dp)
                     Spacer(Modifier.width(8.dp))
                     Text("${p?.name} gritou HITSTER (posição ${c.slot + 1})", color = TextSecondary, style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
-        VSpace(10.dp)
+        VSpace(if (lay.compact) 4.dp else 10.dp)
         Text("A carta será revelada quando o tempo acabar ou quando todos decidirem.", color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
     }
 }
 
 @Composable
-private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlayer, me: GamePlayer?) {
+private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlayer, me: GamePlayer?, lay: Layout) {
     val t = ui.game.turn!!
     val tokens = me?.tokens ?: 0
     val alreadyChallenged = t.challenges.any { it.playerId == ui.myId }
     val passed = ui.myId in t.passed
     val glow by rememberInfiniteTransition(label = "hglow").animateFloat(0.85f, 1.05f, infiniteRepeatable(tween(600), RepeatMode.Reverse), label = "hg")
-    Panel {
-        SectionLabel("${current.name} posicionou a carta", color = parseHex(current.color))
-        VSpace(8.dp)
-        Countdown(t.deadline, ui.clockOffset, label = "para gritar HITSTER")
-        VSpace(14.dp)
-        SectionLabel("Linha do tempo de ${current.name}")
-        VSpace(6.dp)
+    Panel(lay) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Countdown(t.deadline, ui.clockOffset)
+            Column(Modifier.weight(1f)) {
+                SectionLabel("${current.name} posicionou a carta", color = parseHex(current.color))
+                Text(if (lay.compact) "Linha do tempo de ${current.name}:" else "Segundos para gritar HITSTER", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        VSpace(if (lay.compact) 4.dp else 10.dp)
+        if (!lay.compact) { SectionLabel("Linha do tempo de ${current.name}"); VSpace(6.dp) }
         Timeline(
             cards = current.timeline, selectedSlot = t.slot,
-            markers = challengeMarkers(ui), cardWidth = 78.dp, cardHeight = 104.dp,
-            modifier = Modifier.fillMaxWidth(),
+            markers = challengeMarkers(ui), cardWidth = if (lay.compact) 60.dp else 78.dp, cardHeight = if (lay.compact) 80.dp else 104.dp,
+            autoScrollTo = t.slot, modifier = Modifier.fillMaxWidth(),
         )
-        VSpace(14.dp)
+        VSpace(if (lay.compact) 6.dp else 14.dp)
         when {
             alreadyChallenged -> Banner("Você gritou HITSTER! Ficha colocada na posição ${t.challenges.first { it.playerId == ui.myId }.slot + 1}.", color = NeonPink)
             passed -> Banner("Você passou. Aguardando a revelação…", color = TextSecondary)
+            lay.compact -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                Box(Modifier.weight(1.6f).scale(glow)) { NeonButton("GRITAR HITSTER!", enabled = tokens >= 1, height = 48.dp, onClick = a.startChallenge) }
+                GhostButton("Não desafiar", modifier = Modifier.weight(1f), color = TextSecondary, onClick = a.pass)
+            }
             else -> {
                 Box(Modifier.scale(glow).fillMaxWidth()) {
                     NeonButton("GRITAR HITSTER!", enabled = tokens >= 1, height = 60.dp, onClick = a.startChallenge)
@@ -478,137 +572,164 @@ private fun challengeMarkers(ui: GameUi): Map<Int, List<String>> {
 }
 
 @Composable
-private fun ChallengePicker(ui: GameUi, a: GameActions, current: GamePlayer) {
+private fun ChallengePicker(ui: GameUi, a: GameActions, current: GamePlayer, lay: Layout) {
     val t = ui.game.turn!!
     val disabled = (t.challenges.map { it.slot } + listOfNotNull(t.slot)).toSet()
-    Panel {
-        SectionLabel("HITSTER!", color = NeonPink)
-        VSpace(6.dp)
-        Text("Onde a carta deveria estar?", style = MaterialTheme.typography.headlineSmall, color = TextPrimary)
-        VSpace(4.dp)
-        Text("Toque em um  +  na linha do tempo de ${current.name}. A posição escolhida por ${current.name} (“?”) não pode ser usada.", color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
-        VSpace(10.dp)
-        Countdown(t.deadline, ui.clockOffset)
-        VSpace(10.dp)
+    Panel(lay) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Countdown(t.deadline, ui.clockOffset)
+            Column(Modifier.weight(1f)) {
+                SectionLabel("HITSTER!", color = NeonPink)
+                Text("Onde a carta deveria estar? Toque em um  +  (a posição “?” de ${current.name} não vale).", color = TextSecondary, style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            }
+        }
+        VSpace(if (lay.compact) 4.dp else 10.dp)
         Timeline(
             cards = current.timeline, selectable = true, selectedSlot = ui.challengeSlot ?: t.slot,
             disabledSlots = disabled, markers = challengeMarkers(ui) + mapOf((t.slot ?: -1) to listOf(current.color)),
-            onSlotSelected = a.pickChallengeSlot, cardWidth = 82.dp, cardHeight = 110.dp, modifier = Modifier.fillMaxWidth(),
-            autoScrollTo = ui.challengeSlot,
+            onSlotSelected = a.pickChallengeSlot, cardWidth = if (lay.compact) 66.dp else 82.dp, cardHeight = if (lay.compact) 88.dp else 110.dp,
+            modifier = Modifier.fillMaxWidth(), autoScrollTo = ui.challengeSlot ?: t.slot,
         )
-        VSpace(14.dp)
-        NeonButton(
-            if (ui.challengeSlot != null) "COLOCAR FICHA NA POSIÇÃO ${ui.challengeSlot + 1}" else "ESCOLHA UMA POSIÇÃO",
-            enabled = ui.challengeSlot != null, brush = PurpleBrush, onClick = a.confirmChallenge,
-        )
-        VSpace(8.dp)
-        GhostButton("Cancelar", color = TextSecondary, modifier = Modifier.fillMaxWidth(), onClick = a.cancelChallenge)
-    }
-}
-
-@Composable
-private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: Boolean) {
-    val t = ui.game.turn!!
-    val card = t.card ?: return
-    val voted = ui.myId in t.votes
-    Panel {
-        SectionLabel("Revelação", color = NeonYellow)
-        VSpace(10.dp)
-        RevealCard(card, t.result?.correct)
-        VSpace(12.dp)
-        Countdown(t.deadline, ui.clockOffset, label = "para votar")
-        VSpace(12.dp)
-        if (myTurn) {
-            Text("Os outros jogadores estão confirmando se você acertou o nome e o artista…", color = TextSecondary, textAlign = TextAlign.Center)
-        } else if (voted) {
-            Banner("Voto registrado. Aguardando os demais…", color = TextSecondary)
-        } else {
-            Text("${current.name} disse o nome e o artista. Acertou?", style = MaterialTheme.typography.titleMedium, color = TextPrimary, textAlign = TextAlign.Center)
-            VSpace(12.dp)
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                NeonButton("ACERTOU", modifier = Modifier.weight(1f), brush = Brush.linearGradient(listOf(NeonGreen, NeonCyan))) { a.vote(true) }
-                NeonButton("ERROU", modifier = Modifier.weight(1f), brush = Brush.linearGradient(listOf(Danger, NeonPink))) { a.vote(false) }
+        VSpace(if (lay.compact) 6.dp else 14.dp)
+        val label = if (ui.challengeSlot != null) "COLOCAR FICHA NA ${ui.challengeSlot + 1}ª POSIÇÃO" else "ESCOLHA UMA POSIÇÃO"
+        if (lay.compact) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                NeonButton(label, modifier = Modifier.weight(1.6f), enabled = ui.challengeSlot != null, brush = PurpleBrush, height = 44.dp, onClick = a.confirmChallenge)
+                GhostButton("Cancelar", modifier = Modifier.weight(1f), color = TextSecondary, onClick = a.cancelChallenge)
             }
+        } else {
+            NeonButton(label, enabled = ui.challengeSlot != null, brush = PurpleBrush, onClick = a.confirmChallenge)
+            VSpace(8.dp)
+            GhostButton("Cancelar", color = TextSecondary, modifier = Modifier.fillMaxWidth(), onClick = a.cancelChallenge)
         }
     }
 }
 
 @Composable
-private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer) {
+private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: Boolean, lay: Layout) {
+    val t = ui.game.turn!!
+    val card = t.card ?: return
+    val voted = ui.myId in t.votes
+    val question: @Composable () -> Unit = {
+        when {
+            myTurn -> Text("Os outros estão confirmando se você acertou o nome e o artista…", color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
+            voted -> Banner("Voto registrado. Aguardando os demais…", color = TextSecondary)
+            else -> {
+                Text("${current.name} disse o nome e o artista. Acertou?", style = MaterialTheme.typography.titleSmall, color = TextPrimary, textAlign = TextAlign.Center)
+                VSpace(8.dp)
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    NeonButton("ACERTOU", modifier = Modifier.weight(1f), height = if (lay.compact) 44.dp else 56.dp, brush = Brush.linearGradient(listOf(NeonGreen, NeonCyan))) { a.vote(true) }
+                    NeonButton("ERROU", modifier = Modifier.weight(1f), height = if (lay.compact) 44.dp else 56.dp, brush = Brush.linearGradient(listOf(Danger, NeonPink))) { a.vote(false) }
+                }
+            }
+        }
+    }
+    Panel(lay) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Countdown(t.deadline, ui.clockOffset)
+            SectionLabel("Revelação · votação", color = NeonYellow)
+        }
+        VSpace(if (lay.compact) 4.dp else 10.dp)
+        if (lay.compact) {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                RevealCard(card, t.result?.correct, small = true)
+                Column(Modifier.weight(1f)) { question() }
+            }
+        } else {
+            RevealCard(card, t.result?.correct, small = false)
+            VSpace(12.dp)
+            question()
+        }
+    }
+}
+
+@Composable
+private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: Layout) {
     val t = ui.game.turn!!
     val card = t.card ?: return
     val r = t.result
     val stolenBy = r?.stolenBy?.let { ui.game.player(it) }
-    Panel {
-        SectionLabel("Resultado", color = NeonYellow)
-        VSpace(10.dp)
-        RevealCard(card, r?.correct)
-        VSpace(12.dp)
-        val who = if (current.id == ui.myId) "Você" else current.name
-        val (headline, color) = when {
-            r == null -> "" to TextSecondary
-            r.correct -> "$who acertou! A carta fica na linha do tempo." to NeonGreen
-            stolenBy != null -> "$who errou — ${if (stolenBy.id == ui.myId) "você" else stolenBy.name} gritou HITSTER e roubou a carta!" to NeonPink
-            else -> "$who errou. A carta vai para o descarte." to Danger
-        }
-        Text(headline, color = color, style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
-        VSpace(6.dp)
+    val who = if (current.id == ui.myId) "Você" else current.name
+    val (headline, color) = when {
+        r == null -> "" to TextSecondary
+        r.correct -> "$who acertou! A carta fica na linha do tempo." to NeonGreen
+        stolenBy != null -> "$who errou — ${if (stolenBy.id == ui.myId) "você" else stolenBy.name} gritou HITSTER e roubou a carta!" to NeonPink
+        else -> "$who errou. A carta vai para o descarte." to Danger
+    }
+    val details: @Composable () -> Unit = {
+        Text(headline, color = color, style = MaterialTheme.typography.titleSmall, textAlign = if (lay.compact) TextAlign.Start else TextAlign.Center)
         r?.challenges?.forEach { c ->
             val p = ui.game.player(c.playerId)
             val name = if (c.playerId == ui.myId) "Você" else p?.name
             Text(
                 if (c.correct == true) "$name desafiou na posição ${c.slot + 1} e acertou." else "$name desafiou na posição ${c.slot + 1} e errou: perdeu 1 ficha.",
-                color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center,
+                color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = if (lay.compact) TextAlign.Start else TextAlign.Center,
             )
         }
         if (r?.tokenEarned == true) {
-            VSpace(6.dp)
             Row(verticalAlignment = Alignment.CenterVertically) {
-                HitsterToken(color = NeonYellow, size = 20.dp); Spacer(Modifier.width(6.dp))
+                HitsterToken(color = NeonYellow, size = 18.dp); Spacer(Modifier.width(6.dp))
                 Text("$who ganhou 1 ficha por dizer o nome e o artista!", color = NeonYellow, style = MaterialTheme.typography.bodySmall)
             }
         } else if (t.claimsTitle && r?.tokenEarned == false) {
             Text("Os outros não confirmaram o nome/artista: sem ficha extra.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
         }
-        VSpace(14.dp)
-        if (!ui.game.finished) {
-            Countdown(t.deadline, ui.clockOffset, label = "para a próxima rodada")
-            VSpace(10.dp)
-            NeonButton("PRÓXIMA RODADA", onClick = a.continueGame)
+    }
+    Panel(lay) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            if (!ui.game.finished) Countdown(t.deadline, ui.clockOffset)
+            SectionLabel("Resultado", color = NeonYellow)
+            Spacer(Modifier.weight(1f))
+            if (lay.compact && !ui.game.finished) NeonButton("PRÓXIMA RODADA", modifier = Modifier.widthIn(max = 200.dp), height = 40.dp, onClick = a.continueGame)
+        }
+        VSpace(if (lay.compact) 4.dp else 10.dp)
+        if (lay.compact) {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                RevealCard(card, r?.correct, small = true)
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) { details() }
+            }
+        } else {
+            RevealCard(card, r?.correct, small = false)
+            VSpace(12.dp)
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) { details() }
+            VSpace(14.dp)
+            if (!ui.game.finished) NeonButton("PRÓXIMA RODADA", onClick = a.continueGame)
         }
     }
 }
 
 /** The card flips from its back ("?") to the solution side the first time it is shown. */
 @Composable
-private fun RevealCard(card: Card, correct: Boolean?) {
+private fun RevealCard(card: Card, correct: Boolean?, small: Boolean) {
     var flipped by remember(card.id) { mutableStateOf(false) }
     LaunchedEffect(card.id) { flipped = true }
     val rotation by animateFloatAsState(if (flipped) 180f else 0f, tween(650, easing = FastOutSlowInEasing), label = "flip")
     val density = LocalDensity.current.density
-    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+    val w = if (small) 84.dp else 120.dp
+    val h = if (small) 112.dp else 160.dp
+    Row(if (small) Modifier else Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         Box(Modifier.graphicsLayer { rotationY = rotation; cameraDistance = 14f * density }) {
             if (rotation <= 90f) {
-                HiddenCard(width = 120.dp, height = 160.dp)
+                HiddenCard(width = w, height = h)
             } else {
                 Box(Modifier.graphicsLayer { rotationY = 180f }) {
-                    YearCard(card, width = 120.dp, height = 160.dp)
+                    YearCard(card, width = w, height = h)
                     if (correct != null) {
                         Box(
-                            Modifier.align(Alignment.TopEnd).padding(4.dp).size(28.dp).clip(CircleShape).background(if (correct) NeonGreen else Danger),
+                            Modifier.align(Alignment.TopEnd).padding(4.dp).size(24.dp).clip(CircleShape).background(if (correct) NeonGreen else Danger),
                             contentAlignment = Alignment.Center,
                         ) {
                             Icon(
                                 if (correct) Icons.Default.Check else Icons.Default.Close,
                                 contentDescription = if (correct) "Posição certa" else "Posição errada",
-                                tint = Color.White, modifier = Modifier.size(18.dp),
+                                tint = Color.White, modifier = Modifier.size(16.dp),
                             )
                         }
                     }
                 }
             }
         }
-        AnimatedVisibility(visible = rotation > 90f, enter = fadeIn(tween(250)) + slideInVertically { it / 6 }, modifier = Modifier.weight(1f)) {
+        if (!small) AnimatedVisibility(visible = rotation > 90f, enter = fadeIn(tween(250)) + slideInVertically { it / 6 }, modifier = Modifier.weight(1f)) {
             Column(Modifier.fillMaxWidth()) {
                 Text(card.artist ?: "", color = TextSecondary, style = MaterialTheme.typography.labelMedium)
                 Text(card.title ?: "", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
@@ -622,16 +743,16 @@ private fun RevealCard(card: Card, correct: Boolean?) {
 // ======================================================================= my timeline
 
 /**
- * My timeline. Portrait: label row, cards, action row. Landscape (`compact`): the confirm button and the
- * 3‑token trade sit in the label row so the cards get the full width and the panel keeps its height.
+ * My timeline. Portrait: label row, cards, action row (confirm + 3‑token trade).
+ * Landscape: just the cards – count/tokens/trade live in the header and confirm inside the panel.
  */
 @Composable
-private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String, myTurn: Boolean, compact: Boolean) {
+private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String, myTurn: Boolean, lay: Layout) {
     val t = ui.game.turn!!
     val placing = myTurn && phase == Phase.LISTEN
     val revealedCardId = if (phase == Phase.RESULT || phase == Phase.VOTE) t.card?.id else null
     val markers = if (myTurn && phase == Phase.CHALLENGE) challengeMarkers(ui) else emptyMap()
-    val confirmLabel = ui.selectedSlot?.let { if (compact) "CONFIRMAR (${it + 1}ª)" else "CONFIRMAR NA ${it + 1}ª POSIÇÃO" } ?: (if (compact) "ESCOLHA O +" else "ESCOLHA A POSIÇÃO")
+    val confirmLabel = ui.selectedSlot?.let { "CONFIRMAR NA ${it + 1}ª POSIÇÃO" } ?: "ESCOLHA A POSIÇÃO"
     // keep the interesting item in view: the chosen slot while placing, otherwise the card just revealed/inserted
     val scrollTarget = when {
         placing -> ui.selectedSlot
@@ -639,7 +760,15 @@ private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String
         revealedCardId != null -> me.timeline.indexOfFirst { it.id == revealedCardId }.takeIf { it >= 0 }
         else -> null
     }
-    val timeline: @Composable () -> Unit = {
+    Column(Modifier.fillMaxWidth().background(Ink)) {
+        if (!lay.compact) {
+            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                SectionLabel("Sua linha do tempo")
+                Pill("${me.timeline.size}/${ui.game.options.cardsToWin}", color = NeonYellow)
+                Spacer(Modifier.weight(1f))
+                Text("Rodada ${ui.game.round} · ${ui.game.deckCount} no baralho", color = TextTertiary, style = MaterialTheme.typography.labelSmall, maxLines = 1)
+            }
+        } else VSpace(2.dp)
         Timeline(
             cards = me.timeline,
             selectable = placing,
@@ -648,26 +777,11 @@ private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String
             highlightCardId = revealedCardId,
             onSlotSelected = a.selectSlot,
             autoScrollTo = scrollTarget,
-            cardWidth = if (compact) 88.dp else CardWidth,
-            cardHeight = if (compact) 112.dp else CardHeight,
+            cardWidth = lay.cardW,
+            cardHeight = lay.cardH,
             modifier = Modifier.fillMaxWidth(),
         )
-    }
-    Column(Modifier.fillMaxWidth().background(Ink)) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            SectionLabel(if (compact) "Linha do tempo" else "Sua linha do tempo")
-            Pill("${me.timeline.size}/${ui.game.options.cardsToWin}", color = NeonYellow)
-            TokenRow(me.tokens, color = parseHex(me.color), size = if (compact) 12.dp else 16.dp)
-            Spacer(Modifier.weight(1f))
-            if (compact) {
-                BuyButton(tokens = me.tokens, enabled = !ui.game.finished && ui.game.deckCount > 0, compact = true, onClick = a.buyCard)
-                AnimatedVisibility(visible = placing) {
-                    NeonButton(confirmLabel, modifier = Modifier.widthIn(min = 150.dp, max = 220.dp), enabled = ui.selectedSlot != null, height = 44.dp, onClick = a.confirmPlacement)
-                }
-            }
-        }
-        timeline()
-        if (!compact) {
+        if (!lay.compact) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
                 AnimatedVisibility(visible = placing, modifier = Modifier.weight(1f)) {
                     NeonButton(confirmLabel, enabled = ui.selectedSlot != null, height = 50.dp, onClick = a.confirmPlacement)
@@ -675,17 +789,17 @@ private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String
                 if (!placing) Spacer(Modifier.weight(1f))
                 BuyButton(tokens = me.tokens, enabled = !ui.game.finished && ui.game.deckCount > 0, onClick = a.buyCard)
             }
-        } else VSpace(6.dp)
+        } else VSpace(4.dp)
     }
 }
 
-/** "3 fichas → carta" trade. `compact` (landscape label row) shows just the tokens and an arrow. */
+/** "3 fichas → carta" trade. `compact` (header) shows just the tokens and an arrow. */
 @Composable
 private fun BuyButton(tokens: Int, enabled: Boolean, compact: Boolean = false, onClick: () -> Unit) {
     val can = tokens >= 3 && enabled
     Row(
         Modifier
-            .height(if (compact) 44.dp else 50.dp)
+            .height(if (compact) 36.dp else 50.dp)
             .alpha(if (can) 1f else 0.55f)
             .clip(RoundedCornerShape(14.dp))
             .background(Surface2)
@@ -695,18 +809,19 @@ private fun BuyButton(tokens: Int, enabled: Boolean, compact: Boolean = false, o
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        repeat(3) { HitsterToken(color = NeonYellow, size = 16.dp, dim = !can) }
+        repeat(3) { HitsterToken(color = NeonYellow, size = 14.dp, dim = !can) }
         Text(if (compact) "→ carta" else "3 fichas → carta", color = if (can) NeonYellow else TextSecondary, style = MaterialTheme.typography.labelMedium, maxLines = 1)
     }
 }
 
 @Composable
 private fun RoundIcon(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     desc: String,
-    size: androidx.compose.ui.unit.Dp,
+    size: Dp,
     enabled: Boolean = true,
     brush: Brush = Brush.linearGradient(listOf(Surface2, Surface2)),
+    showLabel: Boolean = true,
     onClick: () -> Unit,
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -717,12 +832,12 @@ private fun RoundIcon(
                 .clip(CircleShape)
                 .background(brush)
                 .border(1.dp, Outline, CircleShape)
-                .clickable(enabled = enabled, onClick = onClick),
+                .clickable(enabled = enabled, onClickLabel = desc, onClick = onClick),
             contentAlignment = Alignment.Center,
         ) {
             Icon(icon, contentDescription = desc, tint = Color.White, modifier = Modifier.size(size * 0.5f))
         }
-        Text(desc, color = TextTertiary, style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(top = 4.dp), maxLines = 1)
+        if (showLabel) Text(desc, color = TextTertiary, style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(top = 4.dp), maxLines = 1)
     }
 }
 

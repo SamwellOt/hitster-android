@@ -110,7 +110,7 @@ class LocalHostTest {
         others[1].action(Action("pass"))
         current.until { it.game.turn!!.phase == Phase.VOTE }
         assertEquals("Song " + current.game.turn!!.card!!.id.removePrefix("trk"), current.game.turn!!.card!!.title)
-        assertEquals(1, others[0].me.tokens)
+        others[0].until { it.me.tokens == 1 }   // its own snapshot may arrive a tick after current's
 
         others[0].action(Action("vote", value = true)); others[1].action(Action("vote", value = true))
         current.until { it.game.turn!!.phase == Phase.RESULT }
