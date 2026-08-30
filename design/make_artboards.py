@@ -73,6 +73,7 @@ def svg(name, size=24, color="#fff"):
         "check": '<path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>',
         "trophy": '<path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V17h3v2H8v-2h3v-2.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3zm-1 4v1a2 2 0 0 0 2 2V7zm12 0h-2v3a2 2 0 0 0 2-2z"/>',
         "note": '<path d="M12 3v10.6A4 4 0 1 0 14 17V7h4V3z"/>',
+        "logout": '<path d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3h-8v2h8v14h-8v2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/>',
     }
     return f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="{color}" xmlns="http://www.w3.org/2000/svg">{paths[name]}</svg>'
 
@@ -112,11 +113,20 @@ def chip(name, color, tk, cards, goal, cur=False, me=False):
 def phone(body, w=390, h=844):
     return f'<div style="width: {w}px; height: {h}px; box-sizing: border-box; background: {INK}; display: flex; flex-direction: column; overflow: hidden; position: relative;">{body}</div>'
 
-def header(round_=3, deck=598, compact=False):
-    return (f'<div style="display: flex; align-items: center; gap: 10px; padding: {"8px" if compact else "32px"} {GUTTER}px {"4px" if compact else "8px"};">'
-            f'<div class="display neon" style="font-size: {18 if compact else 22}px; letter-spacing: 1.3px;">HITSTER</div>'
-            f'<span class="pill">Rodada {round_} · {deck} cartas</span>'
-            f'<div style="flex: 1;"></div><div class="ghost" style="min-height: {40 if compact else 44}px;">Sair</div></div>')
+def hud(n=2, color=PINK):
+    return (f'<div style="display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 10px; border-radius: 999px; background: {S2}; border: 1px solid {color}cc;">'
+            f'<div class="token" style="width: 20px; height: 20px; font-size: 10px; border-color: {color}; color: {color};">H</div>'
+            f'<span style="font-size: 14px; font-weight: 700; letter-spacing: .5px; white-space: nowrap;">{n} fichas</span></div>')
+
+def header(round_=3, deck=598, compact=False, tokens=2, count="4/10"):
+    return (f'<div style="display: flex; align-items: center; gap: 8px; padding: {"2px" if compact else "30px"} 4px {"2px" if compact else "4px"} {GUTTER}px;">'
+            f'<div class="display neon" style="font-size: {18 if compact else 20}px; letter-spacing: 1.2px;">HITSTER</div>'
+            + (f'<span class="pill">R{round_} · {deck}</span>' if compact else '')
+            + '<div style="flex: 1;"></div>'
+            + (f'<span class="pill" style="color: {YELLOW};">{count}</span>' if compact else '')
+            + hud(tokens)
+            + (buy(small=True, compact=True) if compact else '')
+            + f'<div class="tap">{svg("logout", 24, T2)}</div></div>')
 
 def players(cur, data=PLAYERS):
     return (f'<div style="display: flex; gap: 8px; padding: 0 {GUTTER}px; overflow: hidden;">' +
@@ -142,12 +152,12 @@ def buy(can=False, small=False, compact=False):
             + "".join(f'<div class="token{"" if can else " dim"}" style="width: 16px; height: 16px; font-size: 8px;{" border-color: " + YELLOW + "; color: " + YELLOW + ";" if can else ""}">H</div>' for _ in range(3))
             + f'<span style="font-size: 12px; font-weight: 700; color: {col}; white-space: nowrap;">{"→ carta" if compact else "3 fichas → carta"}</span></div>')
 
-def my_timeline(placing=False, selected_at=None, highlight=None, offset=0, cards_=MY_CARDS, count="4/10"):
+def my_timeline(placing=False, selected_at=None, highlight=None, offset=0, cards_=MY_CARDS, count="4/10", round_=3, deck=598):
     bar = (f'<div class="btn" style="flex: 1; min-height: 50px; background: {NEON}; font-size: 14px;">CONFIRMAR NA 4ª POSIÇÃO</div>' if selected_at is not None
            else f'<div class="btn" style="flex: 1; min-height: 50px; background: {NEON}; opacity: .4; font-size: 14px;">ESCOLHA A POSIÇÃO</div>' if placing
            else '<div style="flex: 1;"></div>')
     return (f'<div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 16px; background: {INK};">'
-            f'<div style="display: flex; align-items: center; gap: 8px; padding: 4px {GUTTER}px;"><span class="label">Sua linha do tempo</span><span class="pill" style="color: {YELLOW};">{count}</span>{tokens(2, PINK, 16)}</div>'
+            f'<div style="display: flex; align-items: center; gap: 8px; padding: 4px {GUTTER}px;"><span class="label">Sua linha do tempo</span><span class="pill" style="color: {YELLOW};">{count}</span><div style="flex: 1;"></div><span class="label" style="text-transform: none; letter-spacing: .5px;">Rodada {round_} · {deck} no baralho</span></div>'
             f'{strip(cards_, placing, selected_at, offset=offset, highlight=highlight)}'
             f'<div style="display: flex; gap: 10px; align-items: center; padding: 8px {GUTTER}px 0;">{bar}{buy()}</div></div>')
 
@@ -193,40 +203,50 @@ def lobby():
 
 def wave(active=True, h=44):
     hs = [14, 26, 38, 22, 44, 30, 18, 40, 28, 12, 36, 46, 24, 16, 34, 42, 20, 30, 44, 26, 14, 38, 22, 32]
-    return f'<div class="wave" style="height: {h}px;">' + "".join(f'<i style="height: {min(v, h) if active else 8}px;{"" if active else " background: " + OUT + ";"}"></i>' for v in hs) + '</div>'
+    k = h / 46
+    return f'<div class="wave" style="height: {h}px;">' + "".join(f'<i style="height: {max(4, round(v * k)) if active else 8}px;{"" if active else " background: " + OUT + ";"}"></i>' for v in hs[: (24 if h >= 40 else 18)]) + '</div>'
 
 def listen_panel(compact=False):
-    ctl = lambda icon, lbl, size, brush=None, dim=False: (f'<div style="display: flex; flex-direction: column; align-items: center; gap: 4px;{" opacity: .4;" if dim else ""}"><div style="width: {size}px; height: {size}px; border-radius: 50%; background: {brush or S2}; border: 1px solid {OUT}; display: flex; align-items: center; justify-content: center;{" box-shadow: 0 0 28px rgba(255,45,143,.35);" if brush else ""}">{svg(icon, size // 2)}</div><span class="label" style="text-transform: none;">{lbl}</span></div>')
-    claim = (f'<div style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 14px; background: rgba(255,210,63,.14); border: 1px solid {YELLOW};">'
-             f'<div class="token" style="width: 26px; height: 26px; font-size: 13px; border-color: {YELLOW}; color: {YELLOW}; flex: none;">H</div>'
-             f'<div style="display: flex; flex-direction: column;"><div style="font-weight: 700; font-size: 14px;">Sei o nome da música e o artista!</div><div style="font-size: 12px; color: {T2}; line-height: 18px;">Diga em voz alta. Os outros confirmam depois: +1 ficha.</div></div></div>')
-    return (f'<div class="panel" style="flex: 1; margin: {"0" if compact else "10px " + str(GUTTER) + "px"}; gap: {6 if compact else 10}px;">'
-            f'<span class="label" style="color: {YELLOW};">Sua vez</span>'
-            f'<div style="font-size: {18 if compact else 20}px; font-weight: 700; text-align: center;">Ouça e posicione a carta</div>'
-            f'{wave(True, 32 if compact else 44)}'
-            f'<div style="width: 100%; height: 6px; border-radius: 3px; background: {S2}; overflow: hidden;"><div style="width: 42%; height: 6px; background: {NEON};"></div></div>'
-            f'<div style="width: 100%; display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: {T2}; letter-spacing: 1px;"><span>0:12</span><span>prévia · 30 s</span></div>'
-            f'<div style="display: flex; align-items: center; gap: 14px;">{ctl("replay", "Recomeçar", 48)}{ctl("pause", "Pausar", 56 if compact else 72, NEON)}{ctl("skip", "Pular · 1 ficha", 48)}</div>'
-            + ("" if compact else f'<div style="font-size: 12px; color: {T2};">Pular a música custa 1 ficha HITSTER (você tem 2)</div>{claim}')
-            + '</div>')
+    ctl = lambda icon, lbl, size, brush=None, dim=False, label=True: (f'<div style="display: flex; flex-direction: column; align-items: center; gap: 4px;{" opacity: .4;" if dim else ""}"><div style="width: {size}px; height: {size}px; border-radius: 50%; background: {brush or S2}; border: 1px solid {OUT}; display: flex; align-items: center; justify-content: center;{" box-shadow: 0 0 28px rgba(255,45,143,.35);" if brush else ""}">{svg(icon, size // 2)}</div>' + (f'<span class="label" style="text-transform: none;">{lbl}</span>' if label else '') + '</div>')
+    claim_full = (f'<div style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(255,210,63,.14); border: 1px solid {YELLOW};">'
+                  f'<div class="token" style="width: 24px; height: 24px; font-size: 12px; border-color: {YELLOW}; color: {YELLOW}; flex: none;">H</div>'
+                  f'<div style="display: flex; flex-direction: column; flex: 1;"><div style="font-weight: 700; font-size: 14px;">Sei o nome da música e o artista!</div><div style="font-size: 12px; color: {T3}; line-height: 18px;">Diga em voz alta. Os outros confirmam depois da revelação: +1 ficha.</div></div>{svg("check", 18, YELLOW)}</div>')
+    claim_one = (f'<div style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 4px 12px; border-radius: 14px; background: rgba(255,210,63,.14); border: 1px solid {YELLOW};">'
+                 f'<div class="token" style="width: 24px; height: 24px; font-size: 12px; border-color: {YELLOW}; color: {YELLOW}; flex: none;">H</div>'
+                 f'<div style="font-weight: 700; font-size: 14px; flex: 1;">Sei o nome e o artista (+1 ficha)</div>{svg("check", 18, YELLOW)}</div>')
+    if not compact:
+        return (f'<div class="panel" style="flex: 1; margin: 10px {GUTTER}px;">'
+                f'<span class="label" style="color: {YELLOW};">Sua vez</span>'
+                f'<div style="font-size: 20px; font-weight: 700; text-align: center;">Ouça e posicione a carta</div>'
+                f'{wave(True, 44)}'
+                f'<div style="width: 100%; height: 6px; border-radius: 3px; background: {S2}; overflow: hidden;"><div style="width: 42%; height: 6px; background: {NEON};"></div></div>'
+                f'<div style="width: 100%; display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: {T2}; letter-spacing: 1px;"><span>0:12</span><span>prévia · 30 s</span></div>'
+                f'<div style="display: flex; align-items: center; gap: 12px;">{ctl("replay", "Recomeçar", 48)}{ctl("pause", "Pausar", 72, NEON)}{ctl("skip", "Pular · 1 ficha", 48)}</div>'
+                f'<div style="font-size: 12px; color: {T2};">Pular custa 1 ficha HITSTER</div>{claim_full}'
+                f'<div class="banner" style="background: rgba(35,195,107,.12); border: 1px solid rgba(35,195,107,.5); color: {GREEN};">Posição escolhida. Confirme abaixo quando estiver pronto(a).</div>'
+                f'</div>')
+    return (f'<div class="panel" style="flex: 1; margin: 0; padding: 8px 12px; gap: 8px; border-radius: 18px;">'
+            f'<div style="width: 100%; display: flex; align-items: center; gap: 12px;">'
+            f'<div style="display: flex; align-items: center; gap: 12px;">{ctl("replay", "", 40, label=False)}{ctl("pause", "", 56, NEON, label=False)}{ctl("skip", "", 40, label=False)}</div>'
+            f'<div style="flex: 1; display: flex; flex-direction: column; gap: 4px;"><div style="display: flex; align-items: center;"><span class="label" style="color: {YELLOW};">Sua vez · ouça e posicione</span><div style="flex: 1;"></div><span style="font-size: 11px; font-weight: 700; color: {T2}; letter-spacing: 1px;">0:12 · prévia · 30 s</span></div>'
+            f'{wave(True, 28)}<div style="width: 100%; height: 6px; border-radius: 3px; background: {S2}; overflow: hidden;"><div style="width: 42%; height: 6px; background: {NEON};"></div></div></div></div>'
+            f'{claim_one}'
+            f'<div class="btn" style="width: 100%; min-height: 44px; background: {NEON}; font-size: 14px;">CONFIRMAR NA 4ª POSIÇÃO</div>'
+            f'</div>')
 
 def game_turn():
     return phone(header() + players("Ana") + listen_panel() + my_timeline(placing=True, selected_at=3, offset=150))
 
 def game_turn_landscape():
-    # 844x390: compact header, panel + players column, full-width timeline with the actions in its label row
     pcol = "".join(
-        f'<div style="display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 6px 8px; border-radius: 12px; background: {S2 if n == "Ana" else S1}; border: 1px solid {c if n == "Ana" else OUT};">'
-        f'{avatar(n[0], c, 28, ring=(n == "Ana"))}<div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 12px; font-weight: 700;">{"Você" if n == "Ana" else n}</div>'
-        f'<div style="display: flex; align-items: center; gap: 6px;"><span style="font-size: 11px; font-weight: 700; color: {YELLOW};">{k}/10</span>{tokens(t, c, 10)}</div></div></div>'
+        f'<div style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 5px 8px; border-radius: 12px; background: {S2 if n == "Ana" else S1}; border: 1px solid {c if n == "Ana" else OUT};">'
+        f'{avatar(n[0], c, 24, ring=(n == "Ana"))}<div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 12px; font-weight: 700;">{"Você" if n == "Ana" else n}</div>'
+        f'<div style="display: flex; align-items: center; gap: 6px;"><span style="font-size: 11px; font-weight: 700; color: {YELLOW};">{k}/10</span>{tokens(t, c, 9)}</div></div></div>'
         for n, c, t, k in PLAYERS)
     body = (header(compact=True) +
             f'<div style="flex: 1; display: flex; gap: 10px; padding: 0 12px; min-height: 0;">{listen_panel(compact=True)}'
-            f'<div style="width: 132px; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; flex: none;">{pcol}</div></div>'
-            f'<div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 6px;">'
-            f'<div style="display: flex; align-items: center; gap: 8px; padding: 4px {GUTTER}px;"><span class="label">Linha do tempo</span><span class="pill" style="color: {YELLOW};">4/10</span>{tokens(2, PINK, 12)}<div style="flex: 1;"></div>{buy(small=True, compact=True)}'
-            f'<div class="btn" style="width: 200px; min-height: 44px; background: {NEON}; font-size: 14px;">CONFIRMAR (4ª)</div></div>'
-            f'{strip(MY_CARDS, placing=True, selected_at=3, w=92, h=122)}</div>')
+            f'<div style="width: 150px; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; flex: none;">{pcol}</div></div>'
+            f'<div style="padding: 2px 0 4px;">{strip(MY_CARDS, placing=True, selected_at=3, w=78, h=104)}</div>')
     return phone(body, 844, 390)
 
 def game_challenge():
@@ -286,7 +306,7 @@ if __name__ == "__main__":
         "artboards": boards,
         "annotations": [
             {"id": "brief", "x": 0, "y": -170, "w": 560,
-             "text": "Hitster Mobile — mockups estáticos gerados a partir dos tokens reais do app (Theme.kt): Ink #0B0B10, neon rosa→laranja→amarelo, cartas coloridas por década, Righteous + Poppins. Ordem: Início → Sessão → Sua vez → Gritar HITSTER → Revelação → Fim de jogo. Abaixo: a tela da vez em modo deitado (844×390) — a linha do tempo ocupa a largura toda."},
+             "text": "Hitster Mobile — mockups estáticos gerados a partir dos tokens reais do app (Theme.kt): Ink #0B0B10, neon rosa→laranja→amarelo, cartas coloridas por década, Righteous + Poppins. Ordem: Início → Sessão → Sua vez → Gritar HITSTER → Revelação → Fim de jogo. Abaixo: a tela da vez em modo deitado (844×390, v1.0.1) — cabeçalho com fichas/contagem/troca, painel compacto, linha do tempo em largura total."},
         ],
         "launch": {"view": "canvas"},
     }
