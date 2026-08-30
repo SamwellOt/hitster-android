@@ -55,6 +55,38 @@
    "w": 844,
    "h": 390,
    "title": "Sua vez · deitado"
+  },
+  {
+   "file": "AguardandoDeitado.dc.html",
+   "x": 934,
+   "y": 1004,
+   "w": 844,
+   "h": 390,
+   "title": "Aguardando · deitado"
+  },
+  {
+   "file": "DesafioDeitado.dc.html",
+   "x": 1868,
+   "y": 1004,
+   "w": 844,
+   "h": 390,
+   "title": "Gritar HITSTER · deitado"
+  },
+  {
+   "file": "ResultadoDeitado.dc.html",
+   "x": 2802,
+   "y": 1004,
+   "w": 844,
+   "h": 390,
+   "title": "Revelação · deitado"
+  },
+  {
+   "file": "VencedorDeitado.dc.html",
+   "x": 3736,
+   "y": 1004,
+   "w": 844,
+   "h": 390,
+   "title": "Fim de jogo · deitado"
   }
  ],
  "annotations": [
@@ -63,7 +95,7 @@
    "x": 0,
    "y": -170,
    "w": 560,
-   "text": "Hitster Mobile — mockups estáticos gerados a partir dos tokens reais do app (Theme.kt): Ink #0B0B10, neon rosa→laranja→amarelo, cartas coloridas por década, Righteous + Poppins. Ordem: Início → Sessão → Sua vez → Gritar HITSTER → Revelação → Fim de jogo. Abaixo: a tela da vez em modo deitado (844×390, v1.0.1) — cabeçalho com fichas/contagem/troca, painel compacto, linha do tempo em largura total."
+   "text": "Hitster Mobile — mockups estáticos gerados a partir dos tokens reais do app (Theme.kt). Linha de cima (390×844): Início → Sessão → Sua vez → Gritar HITSTER → Revelação → Fim de jogo. Linha de baixo (844×390, modo deitado): Sua vez → Aguardando → Gritar HITSTER → Revelação → Fim de jogo — cabeçalho com fichas/contagem/troca, painel compacto sem rolagem, linha do tempo em largura total."
   }
  ],
  "launch": {

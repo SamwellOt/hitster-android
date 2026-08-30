@@ -289,6 +289,68 @@ def winner():
     final = [("Ana", PINK, 1, 10), ("Bia", CYAN, 0, 6), ("Caio", GREEN, 2, 7)]
     return phone(header(round_=24, deck=548) + players("Ana", final) + '<div style="flex: 1;"></div>' + my_timeline(count="10/10") + overlay)
 
+
+# ------------------------------------------------------------------ landscape variants (844x390) of the other phases
+def pcol_html(cur="Ana", data=PLAYERS):
+    return "".join(
+        f'<div style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 5px 8px; border-radius: 12px; background: {S2 if n == cur else S1}; border: 1px solid {c if n == cur else OUT};">'
+        f'{avatar(n[0], c, 24, ring=(n == cur))}<div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 12px; font-weight: 700;">{"Você" if n == "Ana" else n}</div>'
+        f'<div style="display: flex; align-items: center; gap: 6px;"><span style="font-size: 11px; font-weight: 700; color: {YELLOW};">{k}/10</span>{tokens(t, c, 9)}</div></div></div>'
+        for n, c, t, k in data)
+
+def landscape(panel, cur="Ana", data=PLAYERS, strip_html=None, header_kw=None, overlay=""):
+    body = (header(compact=True, **(header_kw or {})) +
+            f'<div style="flex: 1; display: flex; gap: 10px; padding: 0 12px; min-height: 0;">{panel}'
+            f'<div style="width: 150px; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; flex: none;">{pcol_html(cur, data)}</div></div>'
+            f'<div style="padding: 2px 0 4px;">{strip_html or strip(MY_CARDS, w=78, h=104)}</div>' + overlay)
+    return phone(body, 844, 390)
+
+def cpanel(inner, gap=8):
+    return f'<div class="panel" style="flex: 1; margin: 0; padding: 8px 12px; gap: {gap}px; border-radius: 18px; align-items: stretch;">{inner}</div>'
+
+def timer_row(seconds, label_html):
+    return f'<div style="display: flex; align-items: center; gap: 10px;"><div class="timer">{seconds}</div><div style="flex: 1; display: flex; flex-direction: column;">{label_html}</div></div>'
+
+def waiting_landscape():
+    inner = (f'<div style="flex: 1; display: flex; align-items: center; gap: 16px;">{mystery(66, 88, icon="note")}'
+             f'<div style="flex: 1; display: flex; flex-direction: column; gap: 4px;"><span class="label" style="color: {CYAN};">Vez de Bia</span>'
+             f'<div style="font-size: 16px; font-weight: 600;">Bia está ouvindo a música…</div>'
+             f'<div style="font-size: 12px; color: {T3}; line-height: 18px;">Quando Bia posicionar a carta, você pode gritar HITSTER.</div></div></div>')
+    return landscape(cpanel(inner), cur="Bia")
+
+def challenge_landscape():
+    inner = (timer_row(8, f'<span class="label" style="color: {CYAN};">Bia posicionou a carta</span><span style="font-size: 12px; color: {T2};">Linha do tempo de Bia:</span>')
+             + f'<div style="margin: 0 -12px;">{strip(BIA_CARDS, selected_at=2, w=60, h=80, offset=40)}</div>'
+             + f'<div style="display: flex; gap: 10px; align-items: center;"><div class="btn" style="flex: 1.6; min-height: 48px; background: {NEON}; box-shadow: 0 0 24px rgba(255,45,143,.4);">GRITAR HITSTER!</div><div class="ghost" style="flex: 1;">Não desafiar</div></div>')
+    return landscape(cpanel(inner, 6), cur="Bia")
+
+def result_landscape():
+    head = (f'<div style="display: flex; align-items: center; gap: 10px;"><div class="timer">11</div><span class="label" style="color: {YELLOW};">Resultado</span><div style="flex: 1;"></div>'
+            f'<div class="btn" style="width: 200px; min-height: 40px; background: {NEON}; font-size: 14px;">PRÓXIMA RODADA</div></div>')
+    body = (f'<div style="display: flex; align-items: center; gap: 14px;"><div style="position: relative;">{card("Skank", 1994, "Jackie Tequila", 84, 112)}'
+            f'<div style="position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; border-radius: 50%; background: {GREEN}; display: flex; align-items: center; justify-content: center;">{svg("check", 16)}</div></div>'
+            f'<div style="flex: 1; display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 14px; font-weight: 600; color: {GREEN};">Você acertou! A carta fica na linha do tempo.</div>'
+            f'<div style="font-size: 12px; color: {T2};">Caio desafiou na posição 2 e errou: perdeu 1 ficha.</div>'
+            f'<div style="display: flex; align-items: center; gap: 6px;"><div class="token" style="width: 18px; height: 18px; font-size: 9px; border-color: {YELLOW}; color: {YELLOW};">H</div><span style="font-size: 12px; color: {YELLOW};">Você ganhou 1 ficha por dizer o nome e o artista!</span></div></div></div>')
+    data = [("Ana", PINK, 3, 5), ("Bia", CYAN, 1, 3), ("Caio", GREEN, 2, 2)]
+    return landscape(cpanel(head + body, 6), cur="Ana", data=data, strip_html=strip(MY_CARDS, w=78, h=104, highlight=1994, offset=90),
+                     header_kw={"deck": 597, "tokens": 3, "count": "5/10"})
+
+def winner_landscape():
+    rank = [("Ana", PINK, 10), ("Caio", GREEN, 7), ("Bia", CYAN, 6)]
+    rows = "".join(f'<div style="display: flex; align-items: center; gap: 10px; padding: 3px 0;"><span style="font-weight: 900; width: 28px; color: {YELLOW if i == 0 else T2};">{i+1}º</span>{avatar(n[0], c, 28)}<span style="flex: 1;">{"Você" if n == "Ana" else n}</span><span style="font-size: 12px; color: {T2};">{k} cartas</span></div>' for i, (n, c, k) in enumerate(rank))
+    overlay = (f'<div style="position: absolute; inset: 0; background: rgba(11,11,16,.94); display: flex; align-items: center; justify-content: center; padding: 16px;">'
+               f'<div style="width: 480px; max-height: 358px; box-sizing: border-box; padding: 14px 24px; border-radius: 26px; background: {S1}; border: 2px solid {PINK}; display: flex; flex-direction: column; align-items: center; gap: 4px; overflow: hidden; box-shadow: 0 0 40px rgba(255,45,143,.25);">'
+               f'<div style="display: flex; align-items: center; gap: 12px;">{svg("trophy", 40, YELLOW)}<div class="display neon" style="font-size: 28px; letter-spacing: 2px;">HITSTER</div></div>'
+               f'<div style="font-size: 18px; font-weight: 700;">Você é o(a) HITSTER!</div>'
+               f'<div style="width: 100%;">{rows}</div>'
+               f'<div style="width: 100%; display: flex; gap: 10px; margin-top: 4px;"><div class="btn" style="flex: 1.4; min-height: 44px; background: {NEON}; font-size: 14px;">JOGAR DE NOVO</div><div class="ghost" style="flex: 1;">Sair da sessão</div></div></div></div>')
+    final = [("Ana", PINK, 1, 10), ("Bia", CYAN, 0, 6), ("Caio", GREEN, 2, 7)]
+    return landscape(cpanel(""), cur="Ana", data=final, header_kw={"round_": 24, "deck": 548, "tokens": 1, "count": "10/10"}, overlay=overlay)
+
+LANDSCAPE = [("AguardandoDeitado", "Aguardando · deitado", waiting_landscape), ("DesafioDeitado", "Gritar HITSTER · deitado", challenge_landscape),
+             ("ResultadoDeitado", "Revelação · deitado", result_landscape), ("VencedorDeitado", "Fim de jogo · deitado", winner_landscape)]
+
 SCREENS = [("Main", "Início", home, 390, 844), ("Lobby", "Sessão", lobby, 390, 844), ("SuaVez", "Sua vez", game_turn, 390, 844),
            ("Desafio", "Gritar HITSTER", game_challenge, 390, 844), ("Resultado", "Revelação", result, 390, 844),
            ("Vencedor", "Fim de jogo", winner, 390, 844), ("SuaVezDeitado", "Sua vez · deitado", game_turn_landscape, 844, 390)]
@@ -296,17 +358,21 @@ SCREENS = [("Main", "Início", home, 390, 844), ("Lobby", "Sessão", lobby, 390,
 if __name__ == "__main__":
     boards, x = [], 0
     for stem, title, fn, w, h in SCREENS:
+        if stem == "SuaVezDeitado": continue
         with open(os.path.join(HERE, f"{stem}.dc.html"), "w") as f:
             f.write(HEAD + fn() + FOOT)
-        if stem == "SuaVezDeitado":
-            boards.append({"file": f"{stem}.dc.html", "x": 0, "y": 844 + 160, "w": w, "h": h, "title": title})
-        else:
-            boards.append({"file": f"{stem}.dc.html", "x": x, "y": 0, "w": w, "h": h, "title": title}); x += w + 90
+        boards.append({"file": f"{stem}.dc.html", "x": x, "y": 0, "w": w, "h": h, "title": title}); x += w + 90
+    row2 = [("SuaVezDeitado", "Sua vez · deitado", game_turn_landscape)] + LANDSCAPE
+    x = 0
+    for stem, title, fn in row2:
+        with open(os.path.join(HERE, f"{stem}.dc.html"), "w") as f:
+            f.write(HEAD + fn() + FOOT)
+        boards.append({"file": f"{stem}.dc.html", "x": x, "y": 844 + 160, "w": 844, "h": 390, "title": title}); x += 844 + 90
     manifest = {
         "artboards": boards,
         "annotations": [
             {"id": "brief", "x": 0, "y": -170, "w": 560,
-             "text": "Hitster Mobile — mockups estáticos gerados a partir dos tokens reais do app (Theme.kt): Ink #0B0B10, neon rosa→laranja→amarelo, cartas coloridas por década, Righteous + Poppins. Ordem: Início → Sessão → Sua vez → Gritar HITSTER → Revelação → Fim de jogo. Abaixo: a tela da vez em modo deitado (844×390, v1.0.1) — cabeçalho com fichas/contagem/troca, painel compacto, linha do tempo em largura total."},
+             "text": "Hitster Mobile — mockups estáticos gerados a partir dos tokens reais do app (Theme.kt). Linha de cima (390×844): Início → Sessão → Sua vez → Gritar HITSTER → Revelação → Fim de jogo. Linha de baixo (844×390, modo deitado): Sua vez → Aguardando → Gritar HITSTER → Revelação → Fim de jogo — cabeçalho com fichas/contagem/troca, painel compacto sem rolagem, linha do tempo em largura total."},
         ],
         "launch": {"view": "canvas"},
     }
