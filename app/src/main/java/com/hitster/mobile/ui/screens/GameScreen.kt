@@ -246,7 +246,7 @@ private fun Header(g: GameView, me: GamePlayer?, a: GameActions, lay: Layout) {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         NeonTitle(size = if (lay.compact) 18 else 20)
-        if (lay.compact) Pill("R${g.round} · ${g.deckCount}", color = TextSecondary)
+        if (lay.compact) Pill("R${g.round} · ${g.deckCount} cartas", color = TextSecondary)
         Spacer(Modifier.weight(1f))
         if (me != null) {
             if (lay.compact) Pill("${me.timeline.size}/${g.options.cardsToWin}", color = NeonYellow)
@@ -373,12 +373,12 @@ private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout
     val confirmLabel = ui.selectedSlot?.let { "CONFIRMAR NA ${it + 1}ª POSIÇÃO" } ?: "TOQUE EM  +  NA LINHA DO TEMPO"
     val controls: @Composable () -> Unit = {
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
-            RoundIcon(Icons.Default.Replay, "Recomeçar", size = if (lay.compact) 40.dp else 48.dp, enabled = pb.url != null, showLabel = !lay.compact) { a.replay() }
+            RoundIcon(Icons.Default.Replay, "Recomeçar", size = if (lay.compact) 40.dp else 48.dp, enabled = pb.url != null) { a.replay() }
             RoundIcon(
                 if (pb.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                if (pb.isPlaying) "Pausar" else "Tocar", size = if (lay.compact) 56.dp else 72.dp, brush = NeonBrush, showLabel = !lay.compact,
+                if (pb.isPlaying) "Pausar" else "Tocar", size = if (lay.compact) 56.dp else 72.dp, brush = NeonBrush,
             ) { if (pb.isPlaying) a.pause() else a.play() }
-            RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = if (lay.compact) 40.dp else 48.dp, enabled = tokens >= 1, showLabel = !lay.compact) { a.skip() }
+            RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = if (lay.compact) 40.dp else 48.dp, enabled = tokens >= 1) { a.skip() }
         }
     }
     val status = if (pb.isBuffering) "carregando…" else if (pb.error != null) "erro ao tocar" else "prévia · 30 s"

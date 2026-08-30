@@ -121,7 +121,7 @@ def hud(n=2, color=PINK):
 def header(round_=3, deck=598, compact=False, tokens=2, count="4/10"):
     return (f'<div style="display: flex; align-items: center; gap: 8px; padding: {"2px" if compact else "30px"} 4px {"2px" if compact else "4px"} {GUTTER}px;">'
             f'<div class="display neon" style="font-size: {18 if compact else 20}px; letter-spacing: 1.2px;">HITSTER</div>'
-            + (f'<span class="pill">R{round_} · {deck}</span>' if compact else '')
+            + (f'<span class="pill">R{round_} · {deck} cartas</span>' if compact else '')
             + '<div style="flex: 1;"></div>'
             + (f'<span class="pill" style="color: {YELLOW};">{count}</span>' if compact else '')
             + hud(tokens)
@@ -227,7 +227,7 @@ def listen_panel(compact=False):
                 f'</div>')
     return (f'<div class="panel" style="flex: 1; margin: 0; padding: 8px 12px; gap: 8px; border-radius: 18px;">'
             f'<div style="width: 100%; display: flex; align-items: center; gap: 12px;">'
-            f'<div style="display: flex; align-items: center; gap: 12px;">{ctl("replay", "", 40, label=False)}{ctl("pause", "", 56, NEON, label=False)}{ctl("skip", "", 40, label=False)}</div>'
+            f'<div style="display: flex; align-items: center; gap: 12px;">{ctl("replay", "Recomeçar", 40)}{ctl("pause", "Pausar", 56, NEON)}{ctl("skip", "Pular · 1 ficha", 40)}</div>'
             f'<div style="flex: 1; display: flex; flex-direction: column; gap: 4px;"><div style="display: flex; align-items: center;"><span class="label" style="color: {YELLOW};">Sua vez · ouça e posicione</span><div style="flex: 1;"></div><span style="font-size: 11px; font-weight: 700; color: {T2}; letter-spacing: 1px;">0:12 · prévia · 30 s</span></div>'
             f'{wave(True, 28)}<div style="width: 100%; height: 6px; border-radius: 3px; background: {S2}; overflow: hidden;"><div style="width: 42%; height: 6px; background: {NEON};"></div></div></div></div>'
             f'{claim_one}'
