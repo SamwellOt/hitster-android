@@ -25,7 +25,7 @@ export const PHASE = {
 
 export class GameError extends Error {}
 
-function shuffle(arr, rng = Math.random) {
+export function shuffle(arr, rng = Math.random) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -105,13 +105,13 @@ function log(state, entry) {
 
 function startTurn(state, now) {
   const card = drawCard(state);
-  if (!card) return finish(state, null);
+  // Deck (and discard) exhausted: whoever has the longest timeline wins, like finishByCount().
+  if (!card) return finish(state, state.players.reduce((a, b) => (b.timeline.length > a.timeline.length ? b : a), state.players[0])?.id ?? null);
   state.turn = {
     playerId: state.order[state.turnIndex],
     card,
     phase: PHASE.LISTEN,
     slot: null,
-    claimsTitle: false,
     challenges: [],   // [{playerId, slot}] in shout order
     passed: [],       // opponents who declined to challenge
     votes: {},        // playerId -> boolean
@@ -157,18 +157,11 @@ export function apply(state, playerId, action, now = Date.now) {
       return events;
     }
 
-    case 'claimTitle': {
-      if (!isCurrent || t.phase !== PHASE.LISTEN) throw new GameError('Ação indisponível.');
-      t.claimsTitle = !!action.value;
-      return events;
-    }
-
     case 'place': {
       if (!isCurrent || t.phase !== PHASE.LISTEN) throw new GameError('Não é sua vez de posicionar.');
       const slot = Number(action.slot);
       if (!Number.isInteger(slot) || slot < 0 || slot > me.timeline.length) throw new GameError('Posição inválida.');
       t.slot = slot;
-      if (action.claimsTitle !== undefined) t.claimsTitle = !!action.claimsTitle;
       t.phase = PHASE.CHALLENGE;
       t.deadline = now() + state.options.challengeSeconds * 1000;
       log(state, { kind: 'place', playerId, slot });
@@ -206,6 +199,9 @@ export function apply(state, playerId, action, now = Date.now) {
     }
 
     case 'buyCard': {
+      // The bought card is inserted in the buyer's timeline, so it must not move under a placement
+      // that is already locked in and about to be judged against t.slot.
+      if (isCurrent && t.phase === PHASE.CHALLENGE) throw new GameError('Espere a revelação da sua carta para trocar fichas.');
       if (me.tokens < 3) throw new GameError('Você precisa de 3 fichas HITSTER.');
       const card = drawCard(state);
       if (!card) throw new GameError('O baralho acabou.');
@@ -267,7 +263,8 @@ function reveal(state, events, now) {
   log(state, { kind: 'reveal', playerId: t.playerId, card, correct, stolenBy });
   events.push({ kind: 'reveal', playerId: t.playerId, card, correct, stolenBy });
 
-  if (t.claimsTitle && owner.tokens < MAX_TOKENS && opponents(state).length > 0) {
+  // The opponents always confirm whether the player named title + artist (nothing to press beforehand).
+  if (owner.tokens < MAX_TOKENS && opponents(state).length > 0) {
     t.phase = PHASE.VOTE;
     t.deadline = now() + state.options.voteSeconds * 1000;
   } else {
@@ -326,13 +323,14 @@ function nextTurn(state, events, now) {
 }
 
 /** Remove a player who left for good (lobby leaves are handled elsewhere). */
-export function removePlayer(state, playerId) {
+export function removePlayer(state, playerId, now = Date.now) {
+  const events = [];
   const idx = state.order.indexOf(playerId);
-  if (idx < 0) return;
+  if (idx < 0) return events;
   const wasCurrent = state.turn && state.turn.playerId === playerId;
   state.order.splice(idx, 1);
   state.players = state.players.filter(p => p.id !== playerId);
-  if (state.order.length < 2) { finish(state, state.order[0] ?? null); return; }
+  if (state.order.length < 2) { finish(state, state.order[0] ?? null); return events; }
   if (idx < state.turnIndex) state.turnIndex -= 1;
   if (wasCurrent) {
     if (state.turn.card) state.discard.push(state.turn.card);
@@ -342,7 +340,12 @@ export function removePlayer(state, playerId) {
     state.turn.challenges = state.turn.challenges.filter(c => c.playerId !== playerId);
     state.turn.passed = state.turn.passed.filter(id => id !== playerId);
     delete state.turn.votes[playerId];
+    // The one who left may have been the last player everyone was waiting for.
+    const t = state.turn;
+    if (t.phase === PHASE.CHALLENGE && everyoneDecided(state)) reveal(state, events, now);
+    else if (t.phase === PHASE.VOTE && opponents(state).every(p => p.id in t.votes)) resolveVote(state, events, now);
   }
+  return events;
 }
 
 /**

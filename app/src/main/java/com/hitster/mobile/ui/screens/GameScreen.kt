@@ -132,16 +132,13 @@ data class GameUi(
     val isHost: Boolean,
     val clockOffset: Long,
     val playback: PlaybackState,
-    val previewReady: Boolean,
     val selectedSlot: Int?,
-    val claimsTitle: Boolean,
     val viewingTimelineOf: String?,
 )
 
 class GameActions(
     val selectSlot: (Int) -> Unit,
     val confirmPlacement: () -> Unit,
-    val toggleClaim: () -> Unit,
     val skip: () -> Unit,
     val buyCard: () -> Unit,
     val play: () -> Unit,
@@ -202,7 +199,8 @@ fun GameScreen(ui: GameUi, a: GameActions) {
     val viewing = ui.viewingTimelineOf?.let { g.player(it) }
     if (viewing != null) {
         val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-        ModalBottomSheet(onDismissRequest = { a.openTimeline(null) }, sheetState = sheet, containerColor = Surface1) {
+        // sheetMaxWidth unspecified: in landscape Material would cap it at 640dp and centre it – the timeline wants the whole width.
+        ModalBottomSheet(onDismissRequest = { a.openTimeline(null) }, sheetState = sheet, containerColor = Surface1, sheetMaxWidth = Dp.Unspecified) {
             Column(Modifier.fillMaxWidth().padding(bottom = 32.dp)) {
                 Row(Modifier.padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     Avatar(viewing.name, parseHex(viewing.color), size = 40.dp)
@@ -246,7 +244,7 @@ private fun Header(g: GameView, me: GamePlayer?, a: GameActions, lay: Layout) {
         if (me != null) {
             if (lay.compact) Pill("${me.timeline.size}/${g.options.cardsToWin}", color = NeonYellow)
             TokensHud(me.tokens, parseHex(me.color))
-            if (lay.compact) BuyButton(tokens = me.tokens, enabled = !g.finished && g.deckCount > 0, compact = true, onClick = a.buyCard)
+            if (lay.compact) BuyButton(tokens = me.tokens, enabled = canBuy(g, me), compact = true, onClick = a.buyCard)
         }
         IconButton(onClick = a.leave, modifier = Modifier.size(44.dp)) {
             Icon(Icons.AutoMirrored.Filled.Logout, contentDescription = "Sair da sessão", tint = TextSecondary)
@@ -365,17 +363,25 @@ private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout
     val pb = ui.playback
     val tokens = me?.tokens ?: 0
     val confirmLabel = ui.selectedSlot?.let { "CONFIRMAR NA ${it + 1}ª POSIÇÃO" } ?: "TOQUE EM  +  NA LINHA DO TEMPO"
+    // The clip ran to the end: the main button becomes "listen again" instead of a play that looks stuck.
+    val finished = pb.ended && !pb.isPlaying
     val controls: @Composable () -> Unit = {
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
             RoundIcon(Icons.Default.Replay, "Recomeçar", size = if (lay.compact) 40.dp else 48.dp, enabled = pb.url != null) { a.replay() }
             RoundIcon(
-                if (pb.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                if (pb.isPlaying) "Pausar" else "Tocar", size = if (lay.compact) 56.dp else 72.dp, brush = NeonBrush,
-            ) { if (pb.isPlaying) a.pause() else a.play() }
+                when { pb.isPlaying -> Icons.Default.Pause; finished -> Icons.Default.Replay; else -> Icons.Default.PlayArrow },
+                when { pb.isPlaying -> "Pausar"; finished -> "Ouvir de novo"; else -> "Tocar" },
+                size = if (lay.compact) 56.dp else 72.dp, brush = NeonBrush,
+            ) { if (pb.isPlaying) a.pause() else if (finished) a.replay() else a.play() }
             RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = if (lay.compact) 40.dp else 48.dp, enabled = tokens >= 1) { a.skip() }
         }
     }
-    val status = if (pb.isBuffering) "carregando…" else if (pb.error != null) "erro ao tocar" else "prévia · 30 s"
+    val status = when {
+        pb.isBuffering -> "carregando…"
+        pb.error != null -> "erro ao tocar"
+        finished -> "fim da prévia"
+        else -> "prévia · 30 s"
+    }
 
     Panel(lay) {
         if (!lay.compact) {
@@ -397,7 +403,10 @@ private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout
             VSpace(6.dp)
             Text("Pular custa 1 ficha HITSTER", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
             VSpace(14.dp)
-            ClaimToggle(ui.claimsTitle, enabled = tokens < 5, compact = false, onToggle = a.toggleClaim)
+            Text(
+                "Diga o nome da música e o artista em voz alta: os outros confirmam depois da revelação e você ganha 1 ficha.",
+                color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center,
+            )
             VSpace(10.dp)
             Banner(
                 if (ui.selectedSlot == null) "Toque em um  +  da sua linha do tempo para escolher a posição"
@@ -420,38 +429,11 @@ private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout
                     ProgressBar(pb.progress)
                 }
             }
-            VSpace(8.dp)
-            ClaimToggle(ui.claimsTitle, enabled = tokens < 5, compact = true, onToggle = a.toggleClaim)
-            VSpace(8.dp)
+            VSpace(6.dp)
+            Text("Diga o nome e o artista em voz alta — os outros confirmam na revelação (+1 ficha).", color = TextTertiary, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            VSpace(6.dp)
             NeonButton(confirmLabel, enabled = ui.selectedSlot != null, height = 44.dp, onClick = a.confirmPlacement)
         }
-    }
-}
-
-@Composable
-private fun ClaimToggle(on: Boolean, enabled: Boolean, compact: Boolean, onToggle: () -> Unit) {
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .heightIn(min = 44.dp)
-            .clip(RoundedCornerShape(14.dp))
-            .background(if (on) NeonYellow.copy(alpha = 0.14f) else Surface2)
-            .border(1.dp, if (on) NeonYellow else Outline, RoundedCornerShape(14.dp))
-            .clickable(enabled = enabled, onClick = onToggle)
-            .padding(horizontal = 12.dp, vertical = if (compact) 6.dp else 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        HitsterToken(color = NeonYellow, size = 24.dp, dim = !on)
-        Spacer(Modifier.width(10.dp))
-        Column(Modifier.weight(1f)) {
-            Text(if (compact) "Sei o nome e o artista (+1 ficha)" else "Sei o nome da música e o artista!", color = TextPrimary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            if (!compact) Text(
-                if (!enabled) "Você já tem 5 fichas (máximo)."
-                else if (on) "Diga em voz alta. Os outros confirmam depois da revelação: +1 ficha." else "Diga em voz alta para ganhar 1 ficha HITSTER.",
-                color = TextTertiary, style = MaterialTheme.typography.bodySmall,
-            )
-        }
-        Icon(if (on) Icons.Default.Check else Icons.Default.Close, contentDescription = null, tint = if (on) NeonYellow else TextTertiary, modifier = Modifier.size(18.dp))
     }
 }
 
@@ -533,7 +515,7 @@ private fun OpponentChallengePanel(ui: GameUi, a: GameActions, current: GamePlay
         if (!lay.compact) { SectionLabel("Linha do tempo de ${current.name}"); VSpace(6.dp) }
         Timeline(
             cards = current.timeline, selectedSlot = t.slot,
-            markers = challengeMarkers(ui), cardWidth = if (lay.compact) 60.dp else 78.dp, cardHeight = if (lay.compact) 80.dp else 104.dp,
+            markers = challengeMarkers(ui), cardWidth = if (lay.compact) 66.dp else 78.dp, cardHeight = if (lay.compact) 80.dp else 104.dp,
             autoScrollTo = t.slot, modifier = Modifier.fillMaxWidth(),
         )
         VSpace(if (lay.compact) 6.dp else 14.dp)
@@ -578,7 +560,7 @@ private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: B
             myTurn -> Text("Os outros estão confirmando se você acertou o nome e o artista…", color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
             voted -> Banner("Voto registrado. Aguardando os demais…", color = TextSecondary)
             else -> {
-                Text("${current.name} disse o nome e o artista. Acertou?", style = MaterialTheme.typography.titleSmall, color = TextPrimary, textAlign = TextAlign.Center)
+                Text("${current.name} disse o nome da música e o artista corretamente?", style = MaterialTheme.typography.titleSmall, color = TextPrimary, textAlign = TextAlign.Center)
                 VSpace(8.dp)
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     NeonButton("ACERTOU", modifier = Modifier.weight(1f), height = if (lay.compact) 44.dp else 56.dp, brush = Brush.linearGradient(listOf(NeonGreen, NeonCyan))) { a.vote(true) }
@@ -635,7 +617,7 @@ private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: La
                 HitsterToken(color = NeonYellow, size = 18.dp); Spacer(Modifier.width(6.dp))
                 Text("$who ganhou 1 ficha por dizer o nome e o artista!", color = NeonYellow, style = MaterialTheme.typography.bodySmall)
             }
-        } else if (t.claimsTitle && r?.tokenEarned == false) {
+        } else if (r?.tokenEarned == false) {
             Text("Os outros não confirmaram o nome/artista: sem ficha extra.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
         }
     }
@@ -751,11 +733,18 @@ private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String
                     NeonButton(confirmLabel, enabled = ui.selectedSlot != null, height = 50.dp, onClick = a.confirmPlacement)
                 }
                 if (!placing) Spacer(Modifier.weight(1f))
-                BuyButton(tokens = me.tokens, enabled = !ui.game.finished && ui.game.deckCount > 0, onClick = a.buyCard)
+                BuyButton(tokens = me.tokens, enabled = canBuy(ui.game, me), onClick = a.buyCard)
             }
         } else VSpace(4.dp)
     }
 }
+
+/**
+ * The 3‑token trade is off while my own placement is waiting for the reveal: the bought card would slide
+ * into my timeline and move the slot the engine is about to judge (the host rejects it anyway).
+ */
+private fun canBuy(g: GameView, me: GamePlayer?): Boolean =
+    me != null && !g.finished && g.deckCount > 0 && !(g.turn?.playerId == me.id && g.turn?.phase == Phase.CHALLENGE)
 
 /** "3 fichas → carta" trade. `compact` (header) shows just the tokens and an arrow. */
 @Composable

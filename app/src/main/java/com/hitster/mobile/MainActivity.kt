@@ -73,9 +73,7 @@ class MainActivity : ComponentActivity() {
                 val isHost by vm.isHost.collectAsStateWithLifecycle()
                 val busy by vm.busy.collectAsStateWithLifecycle()
                 val playback by vm.playback.collectAsStateWithLifecycle()
-                val previewReady by vm.previewReady.collectAsStateWithLifecycle()
                 val selectedSlot by vm.selectedSlot.collectAsStateWithLifecycle()
-                val claimsTitle by vm.claimsTitle.collectAsStateWithLifecycle()
                 val viewingTimelineOf by vm.viewingTimelineOf.collectAsStateWithLifecycle()
                 val sessions by vm.sessions.collectAsStateWithLifecycle()
                 val hostAddress by vm.hostAddress.collectAsStateWithLifecycle()
@@ -100,7 +98,6 @@ class MainActivity : ComponentActivity() {
                     GameActions(
                         selectSlot = vm::selectSlot,
                         confirmPlacement = vm::confirmPlacement,
-                        toggleClaim = vm::toggleClaim,
                         skip = vm::skipSong,
                         buyCard = vm::buyCard,
                         play = vm::playPreview,
@@ -146,8 +143,7 @@ class MainActivity : ComponentActivity() {
                             s == "game" && rr != null && game != null -> GameScreen(
                                 ui = GameUi(
                                     room = rr, game = game, myId = vm.myId, isHost = isHost, clockOffset = vm.clockOffset,
-                                    playback = playback, previewReady = previewReady != null, selectedSlot = selectedSlot,
-                                    claimsTitle = claimsTitle,
+                                    playback = playback, selectedSlot = selectedSlot,
                                     viewingTimelineOf = viewingTimelineOf,
                                 ),
                                 a = actions,

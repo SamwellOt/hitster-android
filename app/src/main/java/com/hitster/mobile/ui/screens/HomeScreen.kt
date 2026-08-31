@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -65,6 +67,7 @@ import com.hitster.mobile.ui.theme.TextSecondary
 import com.hitster.mobile.ui.theme.TextTertiary
 import com.hitster.mobile.ui.theme.parseHex
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun HomeScreen(
     prefs: Prefs,
@@ -116,7 +119,12 @@ fun HomeScreen(
         VSpace(14.dp)
         SectionLabel("Sua cor", Modifier.fillMaxWidth())
         VSpace(8.dp)
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        // FlowRow, not Row: 10 × 44dp = 440dp never fit a phone, and the last colours fell off‑screen.
+        FlowRow(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
             Prefs.PALETTE.forEach { hex ->
                 val selected = hex == color
                 // 44dp tap target around a 26dp swatch

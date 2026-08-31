@@ -35,6 +35,13 @@ class GameEngineTest {
 
     private fun GameEngine.p(id: String) = players.first { it.id == id }
 
+    /** Every opponent answers the title/artist question, which is now asked on every reveal. */
+    private fun GameEngine.answerTitle(said: Boolean) {
+        if (turn?.phase != Phase.VOTE) return
+        val cur = turn!!.playerId
+        players.map { it.id }.filter { it != cur }.forEach { apply(it, Action("vote", value = said)) }
+    }
+
     @Test fun setup() {
         val g = fresh()
         assertEquals(3, g.players.size)
@@ -69,13 +76,16 @@ class GameEngineTest {
         g.apply("p1", Action("place", slot = 1))
         assertEquals(Phase.CHALLENGE, g.turn!!.phase)
         g.apply("p2", Action("pass")); g.apply("p3", Action("pass"))
+        assertEquals(Phase.VOTE, g.turn!!.phase)   // title/artist is always asked
+        g.answerTitle(false)
         assertEquals(Phase.RESULT, g.turn!!.phase)
         assertTrue(g.turn!!.result!!.correct)
         assertEquals(2, g.p("p1").timeline.size)
         g.apply("p1", Action("continue"))
         assertEquals("p2", g.turn!!.playerId)
         g.apply("p2", Action("place", slot = 0)) // wrong
-        clock += 11_000; g.tick()
+        clock += 11_000; g.tick()                 // challenge window closes → vote
+        clock += 11_000; g.tick()                 // nobody voted → no extra token
         assertEquals(Phase.RESULT, g.turn!!.phase)
         assertFalse(g.turn!!.result!!.correct)
         assertEquals(1, g.p("p2").timeline.size)
@@ -102,6 +112,7 @@ class GameEngineTest {
         assertThrows(GameError::class.java) { g.apply("p2", Action("challenge")) }
         g.apply("p3", Action("challenge"))         // p3 also bets: spends the token, p2 was first
         assertEquals(1, g.p("p3").tokens)
+        g.answerTitle(false)
         assertEquals(Phase.RESULT, g.turn!!.phase)
         assertFalse(g.turn!!.result!!.correct)
         assertEquals("p2", g.turn!!.result!!.stolenBy)
@@ -125,7 +136,7 @@ class GameEngineTest {
 
     @Test fun voteEarnsToken() {
         val g = fresh()
-        g.apply("p1", Action("place", slot = 0, claimsTitle = true))
+        g.apply("p1", Action("place", slot = 0))
         g.apply("p2", Action("pass")); g.apply("p3", Action("pass"))
         assertEquals(Phase.VOTE, g.turn!!.phase)
         assertNotNull(g.view("p2").turn!!.card!!.title)
@@ -147,11 +158,37 @@ class GameEngineTest {
         assertThrows(GameError::class.java) { g.apply("p3", Action("buyCard")) }
     }
 
+    /** Buying mid‑challenge would slide a card into the timeline the engine is about to judge. */
+    @Test fun buyCardIsBlockedWhileMyPlacementWaitsForTheReveal() {
+        val g = fresh()
+        g.p("p1").tokens = 5
+        g.p("p3").tokens = 3
+        g.apply("p1", Action("place", slot = 1))
+        assertThrows(GameError::class.java) { g.apply("p1", Action("buyCard")) }
+        g.apply("p3", Action("buyCard"))          // an opponent's timeline is unaffected: still allowed
+        g.apply("p2", Action("pass")); g.apply("p3", Action("pass"))
+        assertTrue(g.turn!!.result!!.correct)
+        assertEquals(5, g.p("p1").tokens)
+    }
+
+    /** The last undecided opponent leaving must close the window instead of stalling until the deadline. */
+    @Test fun leavingClosesTheChallengeWindow() {
+        val g = fresh()
+        g.apply("p1", Action("place", slot = 1))
+        g.apply("p2", Action("pass"))
+        assertEquals(Phase.CHALLENGE, g.turn!!.phase)
+        val ev = g.removePlayer("p3")
+        assertTrue(ev.any { it.kind == "reveal" })
+        assertEquals(Phase.VOTE, g.turn!!.phase)
+        assertTrue(g.turn!!.result!!.correct)
+    }
+
     @Test fun win() {
         val g = fresh(GameOptions(challengeSeconds = 10, voteSeconds = 10, resultSeconds = 5, cardsToWin = 3))
         fun round(cur: String, slot: Int) {
             g.apply(cur, Action("place", slot = slot))
             players.map { it.id }.filter { it != cur }.forEach { g.apply(it, Action("pass")) }
+            g.answerTitle(false)
             if (!g.finished) g.apply(cur, Action("continue"))
         }
         round("p1", 1); round("p2", 1); round("p3", 1)
@@ -166,6 +203,7 @@ class GameEngineTest {
         val g = fresh()
         g.apply("p1", Action("place", slot = 1))
         g.apply("p2", Action("pass")); g.apply("p3", Action("pass"))
+        g.answerTitle(false)
         clock += 6_000
         val ev = g.tick()
         assertEquals("p2", g.turn!!.playerId)

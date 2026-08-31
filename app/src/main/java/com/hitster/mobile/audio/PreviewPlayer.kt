@@ -72,9 +72,14 @@ class PreviewPlayer(context: Context) {
         player.playWhenReady = true
     }
 
+    /**
+     * Restart from 0. In `STATE_IDLE` (after a playback error, or after `stop()`) the media item is gone:
+     * a bare seek is ignored and `play()` only flips playWhenReady, so the clip has to be prepared again.
+     */
     fun replay() {
-        if (_state.value.url == null) return
-        player.seekTo(0); player.play()
+        val url = _state.value.url ?: return
+        if (player.playbackState == Player.STATE_IDLE) play(url)
+        else { player.seekTo(0); player.play() }
     }
 
     fun pause() = player.pause()

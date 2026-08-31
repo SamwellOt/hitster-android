@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createGame, apply, tick, viewFor, fits, insertSorted, PHASE, GameError } from '../src/game.js';
+import { createGame, apply, tick, viewFor, removePlayer, fits, insertSorted, PHASE, GameError } from '../src/game.js';
 
 // deterministic deck: years 1960, 1962, ... so we always know what is drawn
 const cards = Array.from({ length: 40 }, (_, i) => ({ id: 'id' + i, title: 'T' + i, artist: 'A' + i, year: 1960 + i * 2, preview: null }));
@@ -8,6 +8,12 @@ const players = [{ id: 'p1', name: 'Ana', color: '#f00' }, { id: 'p2', name: 'Bi
 const noShuffle = () => 0; // Math.floor(0 * (i+1)) === 0 → swaps a[i] with a[0]; still deterministic
 let clock = 1_000_000;
 const now = () => clock;
+
+/** Every opponent answers the title/artist question, which is now asked on every reveal. */
+function answerTitle(g, said) {
+  if (g.turn?.phase !== PHASE.VOTE) return;
+  for (const p of g.players) if (p.id !== g.turn.playerId) apply(g, p.id, { type: 'vote', value: said }, now);
+}
 
 function fresh(opts = {}) {
   clock = 1_000_000;
@@ -53,6 +59,8 @@ test('correct placement keeps the card; wrong placement discards it', () => {
   assert.equal(g.turn.phase, PHASE.CHALLENGE);
   apply(g, 'p2', { type: 'pass' }, now);
   apply(g, 'p3', { type: 'pass' }, now);
+  assert.equal(g.turn.phase, PHASE.VOTE, 'title/artist is always asked');
+  answerTitle(g, false);
   assert.equal(g.turn.phase, PHASE.RESULT);
   assert.equal(g.turn.result.correct, true);
   assert.equal(g.players[0].timeline.length, 2);
@@ -61,6 +69,7 @@ test('correct placement keeps the card; wrong placement discards it', () => {
   // p2 has 1962, card is 1968 → slot 0 is wrong
   apply(g, 'p2', { type: 'place', slot: 0 }, now);
   clock += 11_000; tick(g, now); // nobody answers → deadline reveals
+  clock += 11_000; tick(g, now); // nobody voted → no extra token
   assert.equal(g.turn.phase, PHASE.RESULT);
   assert.equal(g.turn.result.correct, false);
   assert.equal(g.players[1].timeline.length, 1);
@@ -87,6 +96,7 @@ test('HITSTER challenge steals the card when the owner is wrong and the challeng
   assert.throws(() => apply(g, 'p2', { type: 'challenge' }, now), /já desafiou/i);
   apply(g, 'p3', { type: 'challenge' }, now);       // p3 also bets – spends a token, but p2 was first
   assert.equal(g.players[2].tokens, 1);
+  answerTitle(g, false);
   assert.equal(g.turn.phase, PHASE.RESULT);
   assert.equal(g.turn.result.correct, false);
   assert.equal(g.turn.result.stolenBy, 'p2');
@@ -110,7 +120,7 @@ test('challenge token is lost when the owner was right', () => {
 
 test('naming title+artist earns a token via opponents vote (max 5)', () => {
   const g = fresh();
-  apply(g, 'p1', { type: 'place', slot: 0, claimsTitle: true }, now); // wrong placement, still may earn
+  apply(g, 'p1', { type: 'place', slot: 0 }, now); // wrong placement, still may earn
   apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now);
   assert.equal(g.turn.phase, PHASE.VOTE);
   assert.ok(viewFor(g, 'p2').turn.card.title, 'card is revealed during the vote');
@@ -132,17 +142,40 @@ test('3 tokens buy the top card, placed correctly, at any time', () => {
   assert.throws(() => apply(g, 'p3', { type: 'buyCard' }, now), /3 fichas/);
 });
 
+test('buying is blocked while my placement waits for the reveal', () => {
+  const g = fresh();
+  g.players[0].tokens = 5;
+  g.players[2].tokens = 3;
+  apply(g, 'p1', { type: 'place', slot: 1 }, now);
+  assert.throws(() => apply(g, 'p1', { type: 'buyCard' }, now), /revelação/);
+  apply(g, 'p3', { type: 'buyCard' }, now); // an opponent's timeline is unaffected: still allowed
+  apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now);
+  assert.equal(g.turn.result.correct, true);
+  assert.equal(g.players[0].tokens, 5);
+});
+
+test('the last undecided opponent leaving closes the challenge window', () => {
+  const g = fresh();
+  apply(g, 'p1', { type: 'place', slot: 1 }, now);
+  apply(g, 'p2', { type: 'pass' }, now);
+  assert.equal(g.turn.phase, PHASE.CHALLENGE);
+  const ev = removePlayer(g, 'p3', now);
+  assert.ok(ev.some(e => e.kind === 'reveal'));
+  assert.equal(g.turn.phase, PHASE.VOTE);
+  assert.equal(g.turn.result.correct, true);
+});
+
 test('first to 10 cards wins', () => {
   const g = fresh({ cardsToWin: 3 });
   apply(g, 'p1', { type: 'place', slot: 1 }, now);
-  apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now);
+  apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now); answerTitle(g, false);
   apply(g, 'p1', { type: 'continue' }, now);
-  apply(g, 'p2', { type: 'place', slot: 1 }, now); apply(g, 'p1', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now);
+  apply(g, 'p2', { type: 'place', slot: 1 }, now); apply(g, 'p1', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now); answerTitle(g, false);
   apply(g, 'p2', { type: 'continue' }, now);
-  apply(g, 'p3', { type: 'place', slot: 1 }, now); apply(g, 'p1', { type: 'pass' }, now); apply(g, 'p2', { type: 'pass' }, now);
+  apply(g, 'p3', { type: 'place', slot: 1 }, now); apply(g, 'p1', { type: 'pass' }, now); apply(g, 'p2', { type: 'pass' }, now); answerTitle(g, false);
   apply(g, 'p3', { type: 'continue' }, now);
   assert.equal(g.round, 2);
-  apply(g, 'p1', { type: 'place', slot: 2 }, now); apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now);
+  apply(g, 'p1', { type: 'place', slot: 2 }, now); apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now); answerTitle(g, false);
   assert.equal(g.finished, true);
   assert.equal(g.winnerId, 'p1');
   assert.throws(() => apply(g, 'p1', { type: 'continue' }, now), /terminou/);
@@ -151,7 +184,7 @@ test('first to 10 cards wins', () => {
 test('result phase auto-advances on tick', () => {
   const g = fresh();
   apply(g, 'p1', { type: 'place', slot: 1 }, now);
-  apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now);
+  apply(g, 'p2', { type: 'pass' }, now); apply(g, 'p3', { type: 'pass' }, now); answerTitle(g, false);
   clock += 6_000;
   const ev = tick(g, now);
   assert.equal(g.turn.playerId, 'p2');

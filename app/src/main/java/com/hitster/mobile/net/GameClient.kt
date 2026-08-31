@@ -148,7 +148,8 @@ class GameClient(private val scope: CoroutineScope = CoroutineScope(SupervisorJo
     fun action(action: Action) = send(ClientMessage(type = "action", action = action))
     fun setDecks(decks: List<String>) = send(ClientMessage(type = "setDecks", decks = decks))
     fun setOptions(options: GameOptions) = send(ClientMessage(type = "setOptions", options = options))
-    fun start() = send(ClientMessage(type = "start"))
+    /** @param firstPlayerId who plays first; null = random order. */
+    fun start(firstPlayerId: String?) = send(ClientMessage(type = "start", playerId = firstPlayerId))
     fun restart() = send(ClientMessage(type = "restart"))
     fun kick(playerId: String) = send(ClientMessage(type = "kick", playerId = playerId))
 

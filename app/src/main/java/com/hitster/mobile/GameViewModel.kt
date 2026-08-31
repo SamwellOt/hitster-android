@@ -67,7 +67,6 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     /** Local UI state that must survive recomposition but is not part of the server snapshot. */
     val selectedSlot = MutableStateFlow<Int?>(null)
-    val claimsTitle = MutableStateFlow(false)
     val viewingTimelineOf = MutableStateFlow<String?>(null)
     val previewReady = MutableStateFlow<String?>(null) // resolved preview url for the current card
     val busy = MutableStateFlow(false)
@@ -173,19 +172,18 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun setDecks(decks: List<String>) = client.setDecks(decks)
     fun setOptions(o: GameOptions) = client.setOptions(o)
-    fun startGame() = client.start()
+    fun startGame(firstPlayerId: String?) = client.start(firstPlayerId)
     fun restart() = client.restart()
     fun kick(id: String) = client.kick(id)
 
     // ---------------------------------------------------------------- turn actions
 
     fun selectSlot(slot: Int) { selectedSlot.value = if (selectedSlot.value == slot) null else slot }
-    fun toggleClaim() { claimsTitle.value = !claimsTitle.value; client.action(Action("claimTitle", value = claimsTitle.value)) }
 
     fun confirmPlacement() {
         val slot = selectedSlot.value ?: return
         player.pause()
-        client.action(Action("place", slot = slot, claimsTitle = claimsTitle.value))
+        client.action(Action("place", slot = slot))
     }
 
     fun skipSong() { client.action(Action("skip")) }
@@ -247,13 +245,10 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
         if (turn.phase != Phase.LISTEN && player.state.value.isPlaying) player.pause()
-        // keep local toggle in sync with the server copy
-        if (turn.playerId == myId) claimsTitle.value = turn.claimsTitle
     }
 
     private fun resetTurnUi() {
         selectedSlot.value = null
-        claimsTitle.value = false
         previewReady.value = null
         resolveJob?.cancel()
     }
@@ -271,7 +266,11 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
             "challenge" -> {
                 if (!me(e.playerId)) { _toasts.tryEmit(Toast("${name(e.playerId)} gritou HITSTER!", "hot")); vibrate(longArrayOf(0, 40, 40, 40)) }
             }
-            "bought" -> _toasts.tryEmit(Toast("${if (me(e.playerId)) "Você" else name(e.playerId)} trocou 3 fichas por uma carta (${e.card?.year})"))
+            "bought" -> {
+                // my timeline just shifted: the "+" I had chosen now points at a different gap
+                if (me(e.playerId)) selectedSlot.value = null
+                _toasts.tryEmit(Toast("${if (me(e.playerId)) "Você" else name(e.playerId)} trocou 3 fichas por uma carta (${e.card?.year})"))
+            }
             "reveal" -> vibrate(longArrayOf(0, 80))
             "finished" -> vibrate(longArrayOf(0, 100, 80, 100, 80, 300))
         }

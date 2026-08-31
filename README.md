@@ -34,14 +34,15 @@ hitster/
    e o endereço (ex.: `192.168.0.12:41234`).
 4. Nos outros celulares a sessão aparece em **Sessões por perto** → toque em **ENTRAR**.
    Se não aparecer (alguns roteadores bloqueiam mDNS), use **entrar pelo endereço** com o IP:porta e o código.
-5. O anfitrião escolhe os baralhos (pode combinar) e as opções e toca **INICIAR PARTIDA**.
+5. O anfitrião escolhe os baralhos (pode combinar), as opções e **quem começa** (ou *Aleatório*),
+   e toca **INICIAR PARTIDA**.
 6. Na sua vez o preview toca sozinho; ouça, toque em um **+** da sua linha do tempo e confirme.
-   Marque **"Sei o nome da música e o artista"** e diga em voz alta para tentar ganhar 1 ficha.
+   Diga o nome da música e o artista em voz alta: os outros confirmam depois da revelação.
 7. Enquanto a carta está escondida, os oponentes têm alguns segundos para **GRITAR HITSTER!** —
    uma aposta de 1 ficha de que a posição está errada.
 8. Revelação: acertou → a carta fica e quem gritou perdeu a ficha; errou → a carta vai para quem
-   gritou primeiro (a ficha é gasta de qualquer forma; sem desafio, vai para o descarte). Os outros
-   confirmam se título/artista estavam certos (+1 ficha, máx. 5).
+   gritou primeiro (a ficha é gasta de qualquer forma; sem desafio, vai para o descarte). Em toda
+   rodada os outros confirmam se título/artista estavam certos (+1 ficha, máx. 5).
 9. A qualquer momento, **3 fichas → carta** coloca a carta do topo direto na sua linha do tempo.
 10. Primeiro a chegar a **10 cartas** é o HITSTER. Equipes: um celular por equipe.
 
@@ -57,8 +58,11 @@ de novo na sessão: o jogador volta com as mesmas cartas e fichas.
 * Ficha 2 (na vez do adversário): gritar HITSTER **antes da revelação** é apostar 1 ficha que a
   posição está errada (regra da casa: sem escolher posição). Se o adversário errou, a carta vai para
   quem gritou primeiro; se acertou, nada. A ficha é gasta nos dois casos.
-* Ficha 3 (a qualquer momento): 3 fichas pela carta do topo, sem adivinhar o ano.
+* Ficha 3 (a qualquer momento): 3 fichas pela carta do topo, sem adivinhar o ano. Exceção: não vale
+  entre posicionar e revelar a *sua* carta — a carta comprada mexeria na posição que está sendo julgada.
 * Ganhar ficha: dizer título e artista corretamente, mesmo errando a posição. Máximo 5 fichas.
+  A confirmação é pedida aos oponentes em toda revelação (não há botão a marcar antes).
+* Ordem: o anfitrião escolhe quem começa no lobby; *Aleatório* embaralha a ordem dos jogadores.
 * Vitória: 10 cartas corretamente posicionadas (ajustável no lobby: 5–20).
 
 ## Arquitetura
@@ -118,7 +122,8 @@ cd tools && python3 build_catalog.py --db gameset_database.json --out ../catalog
 ## Protocolo (resumo)
 
 Cliente → anfitrião: `create`, `join`, `setDecks`, `setOptions`, `start`, `restart`, `kick`, `leave`,
-`action` com `{type: place|skip|claimTitle|challenge|pass|vote|buyCard|continue}`.
+`start` aceita `playerId` (quem começa; ausente = aleatório) e
+`action` leva `{type: place|skip|challenge|pass|vote|buyCard|continue}`.
 Anfitrião → cliente: `joined`, `room` (snapshot completo), `events` (toasts/animações), `error`.
 O `server/` em Node.js fala exatamente o mesmo protocolo (útil para jogar à distância: rode-o em
 qualquer host e digite `wss://…` na entrada manual).

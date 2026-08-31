@@ -81,7 +81,13 @@ class LocalHost(private val catalog: Catalog, port: Int = 0) : WebSocketServer(I
             "ping" -> send(conn, ServerMessage(type = "pong", now = System.currentTimeMillis()))
 
             "create", "join" -> {
-                if (msg.type == "join" && msg.code?.uppercase()?.trim() != code) throw GameError("Sessão não encontrada. Confira o código.")
+                // "create" may skip the code only while the room is empty (the creator's own first message)
+                // or when it comes from someone already in the room (a reconnect before "joined" arrived);
+                // otherwise anyone who reaches this ip:port would join by sending "create" instead of "join".
+                val reconnecting = msg.playerId != null && players.containsKey(msg.playerId)
+                if ((msg.type == "join" || (players.isNotEmpty() && !reconnecting)) && msg.code?.uppercase()?.trim() != code) {
+                    throw GameError("Sessão não encontrada. Confira o código.")
+                }
                 val id = msg.playerId ?: UUID.randomUUID().toString()
                 val existing = players[id]
                 if (existing != null) {
@@ -139,7 +145,10 @@ class LocalHost(private val catalog: Catalog, port: Int = 0) : WebSocketServer(I
                 val cards = catalog.cardsFor(decks)
                 if (cards.isEmpty()) throw GameError("Nenhum baralho selecionado.")
                 val infos = players.values.map { PlayerInfo(it.id, it.name, it.color, it.connected) }
-                engine = GameEngine(infos, cards, options)
+                // msg.playerId = who starts; unknown/absent means a random order (sortedBy is stable: the rest keeps lobby order).
+                val first = msg.playerId?.takeIf { players.containsKey(it) }
+                val order = if (first != null) infos.sortedBy { if (it.id == first) 0 else 1 } else infos.shuffled()
+                engine = GameEngine(order, cards, options)
                 phase = "playing"
                 broadcast(listOf(GameEvent(kind = "started"), GameEvent(kind = "turn", playerId = engine!!.turn!!.playerId)))
             }
@@ -170,9 +179,12 @@ class LocalHost(private val catalog: Catalog, port: Int = 0) : WebSocketServer(I
 
     private fun leave(playerId: String) {
         val p = players.remove(playerId) ?: return
-        engine?.takeIf { !it.finished }?.let { e -> e.removePlayer(playerId); if (e.finished) phase = "finished" }
+        // removePlayer can close the round the leaver was blocking – those events must reach the others.
+        val events = engine?.takeIf { !it.finished }?.let { e ->
+            e.removePlayer(playerId).also { if (e.finished) phase = "finished" }
+        }.orEmpty()
         if (hostId == playerId) hostId = players.keys.firstOrNull()
-        broadcast(listOf(GameEvent(kind = "left", playerId = playerId, name = p.name)))
+        broadcast(listOf(GameEvent(kind = "left", playerId = playerId, name = p.name)) + events)
     }
 
     // ---------------------------------------------------------------- snapshots & timers

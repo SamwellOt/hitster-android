@@ -11,8 +11,8 @@
 //     {type:'join',   code, name, color, playerId?}          → join lobby (or rejoin a running game)
 //     {type:'setDecks', decks:['aaaq0001', ...]}            → host only
 //     {type:'setOptions', options:{challengeSeconds,...}}    → host only
-//     {type:'start'}                                         → host only
-//     {type:'action', action:{type:'place', slot:2, claimsTitle:true}} ... (see game.js)
+//     {type:'start', playerId?}                               → host only (playerId = who starts, default random)
+//     {type:'action', action:{type:'place', slot:2}} ... (see game.js)
 //     {type:'leave'} / {type:'ping'}
 //   server → client
 //     {type:'joined', roomCode, playerId, isHost}
@@ -27,7 +27,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import crypto from 'node:crypto';
-import { createGame, apply, tick, viewFor, removePlayer, GameError } from './game.js';
+import { createGame, apply, tick, viewFor, removePlayer, shuffle, GameError } from './game.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 8080);
@@ -105,7 +105,8 @@ class Room {
     }, delay);
   }
 
-  start(byId) {
+  /** @param firstId who plays first; falsy = random order. */
+  start(byId, firstId) {
     if (byId !== this.hostId) throw new GameError('Só o anfitrião pode iniciar.');
     if (this.phase === 'playing') throw new GameError('O jogo já começou.');
     const cards = [];
@@ -118,7 +119,10 @@ class Room {
       }
     }
     if (cards.length === 0) throw new GameError('Nenhum baralho selecionado.');
-    const players = [...this.players.values()].map(p => ({ id: p.id, name: p.name, color: p.color }));
+    let players = [...this.players.values()].map(p => ({ id: p.id, name: p.name, color: p.color }));
+    // sort is stable, so everyone else keeps the lobby order
+    if (this.players.has(firstId)) players.sort((a, b) => (a.id === firstId ? 0 : 1) - (b.id === firstId ? 0 : 1));
+    else players = shuffle(players);
     this.game = createGame({ players, cards, options: this.options });
     this.phase = 'playing';
     this.broadcast([{ kind: 'started' }, { kind: 'turn', playerId: this.game.turn.playerId }]);
@@ -135,13 +139,15 @@ class Room {
     const p = this.players.get(playerId);
     if (!p) return;
     this.players.delete(playerId);
+    let events = [];
     if (this.game && !this.game.finished) {
-      removePlayer(this.game, playerId);
+      // removePlayer can close the round the leaver was blocking – those events must reach the others.
+      events = removePlayer(this.game, playerId);
       if (this.game.finished) this.phase = 'finished';
     }
     if (this.hostId === playerId) this.hostId = this.players.keys().next().value ?? null;
     if (this.players.size === 0) { clearTimeout(this.timer); rooms.delete(this.code); return; }
-    this.broadcast([{ kind: 'left', playerId, name: p.name }]);
+    this.broadcast([{ kind: 'left', playerId, name: p.name }, ...events]);
   }
 }
 
@@ -241,7 +247,7 @@ wss.on('connection', ws => {
           return;
         }
 
-        case 'start': return requireRoom(room).start(playerId);
+        case 'start': return requireRoom(room).start(playerId, msg.playerId);
 
         case 'restart': {
           requireHost(room, playerId);

@@ -5,6 +5,7 @@ app/build/
 local.properties
 *.iml
 .idea/
+.kotlin/
 captures/
 .cxx/
 *.apk

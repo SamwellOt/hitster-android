@@ -83,7 +83,7 @@ test('full session over websockets', async t => {
   const year = 1960 + Number(current.game.turn.card.id.slice(3));
   const tl = current.me.timeline;
   let slot = 0; while (slot < tl.length && tl[slot].year <= year) slot++;
-  current.action({ type: 'place', slot, claimsTitle: true });
+  current.action({ type: 'place', slot });
   await Promise.all(others.map(o => o.until(x => x.game.turn.phase === 'challenge')));
 
   // one opponent challenges a (necessarily wrong) different slot, the other passes

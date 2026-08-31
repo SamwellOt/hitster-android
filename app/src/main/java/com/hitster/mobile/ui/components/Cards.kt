@@ -68,6 +68,8 @@ fun YearCard(card: Card, modifier: Modifier = Modifier, width: Dp = CardWidth, h
     val scale by animateFloatAsState(if (highlight) 1.06f else 1f, tween(250), label = "cardScale")
     // type scales with the card: 104dp → 11/30/10, 120dp → 12/34/11, 78dp → 10/24/9
     val k = (width / CardWidth).coerceIn(0.75f, 1.3f)
+    // …but the year must never wrap ("197" + "6"): 4 Righteous digits need ~2.2em, and 8dp padding on each side.
+    val yearSize = minOf(30f * k, (width.value - 18f) / 2.2f)
     Column(
         modifier
             .scale(scale)
@@ -85,7 +87,10 @@ fun YearCard(card: Card, modifier: Modifier = Modifier, width: Dp = CardWidth, h
             color = fg, fontSize = (11 * k).sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
             maxLines = 2, overflow = TextOverflow.Ellipsis, lineHeight = (13 * k).sp,
         )
-        Text(card.year?.toString() ?: "????", color = fg, fontFamily = DisplayFont, fontSize = (30 * k).sp, lineHeight = (32 * k).sp)
+        Text(
+            card.year?.toString() ?: "????", color = fg, fontFamily = DisplayFont,
+            fontSize = yearSize.sp, lineHeight = (yearSize * 1.08f).sp, maxLines = 1, softWrap = false,
+        )
         Text(
             card.title ?: "MÚSICA",
             color = fg.copy(alpha = 0.92f), fontSize = (10 * k).sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center,
@@ -156,6 +161,7 @@ fun Timeline(
                     markers = markers[slot].orEmpty(),
                     cardWidth = cardWidth,
                     height = cardHeight,
+                    label = "Posicionar na ${slot + 1}ª posição",
                     onClick = { onSlotSelected(slot) },
                 )
             }
@@ -171,7 +177,7 @@ fun Timeline(
 }
 
 @Composable
-private fun Slot(selectable: Boolean, selected: Boolean, markers: List<String>, cardWidth: Dp, height: Dp, onClick: () -> Unit) {
+private fun Slot(selectable: Boolean, selected: Boolean, markers: List<String>, cardWidth: Dp, height: Dp, label: String, onClick: () -> Unit) {
     val w by animateFloatAsState(if (selected) 1f else 0f, tween(220), label = "slot")
     // 36dp keeps the "+" tappable (≥44dp tall column, 8dp gap from the cards); grows to a card when selected
     val slotWidth = 36.dp + (cardWidth - 36.dp) * w
@@ -183,7 +189,7 @@ private fun Slot(selectable: Boolean, selected: Boolean, markers: List<String>, 
             .padding(horizontal = 4.dp)
             // Only selectable slots react to taps: a disabled slot that is merely displayed as selected
             // (e.g. the owner's "?" while an opponent picks a challenge position) must not be pickable.
-            .then(if (selectable) Modifier.clip(RoundedCornerShape(12.dp)).clickable(onClick = onClick) else Modifier),
+            .then(if (selectable) Modifier.clip(RoundedCornerShape(12.dp)).clickable(onClickLabel = label, onClick = onClick) else Modifier),
         contentAlignment = Alignment.Center,
     ) {
         if (selected) {

@@ -98,7 +98,6 @@ data class Turn(
     val card: Card? = null,
     val phase: String = "listen",
     val slot: Int? = null,
-    val claimsTitle: Boolean = false,
     val challenges: List<Challenge> = emptyList(),
     val passed: List<String> = emptyList(),
     val votes: Map<String, Boolean> = emptyMap(),
@@ -148,7 +147,6 @@ data class Action(
     val type: String,
     val slot: Int? = null,
     val value: Boolean? = null,
-    val claimsTitle: Boolean? = null,
 )
 
 @Serializable
@@ -156,6 +154,7 @@ data class ClientMessage(
     val type: String,
     val name: String? = null,
     val color: String? = null,
+    /** join/kick: who. `start`: who plays first (null = random). */
     val playerId: String? = null,
     val code: String? = null,
     val decks: List<String>? = null,

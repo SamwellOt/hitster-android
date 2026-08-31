@@ -43,7 +43,8 @@ Everything is one process; the roles are separated by package:
   the countdowns so every phone agrees on deadlines.
 - **`host/`** – the authoritative game, run only on the creator's phone.
   `GameEngine.kt` is a pure rules engine (no Android deps): deck/discard, turn phases
-  `listen → challenge → vote → result`, token actions (`skip`, `challenge`, `buyCard`, `claimTitle`),
+  `listen → challenge → vote → result` (the title/artist vote runs on every reveal), token actions
+  (`skip`, `challenge`, `buyCard`),
   `tick()` for deadlines, `view(forPlayerId)` which **hides the current card** (only `id`+`preview` go to
   the active player, nothing to opponents) until the reveal. `LocalHost.kt` wraps it in a Java‑WebSocket
   `WebSocketServer`: one room, 4‑letter code, host = first player, reconnect by `playerId`, a scheduler
@@ -71,6 +72,9 @@ Implemented rules are listed in README.md; tests in `app/src/test` encode them �
 House rule (user decision, 2026‑08‑30): shouting HITSTER is a pure bet — no position is chosen; the token
 is spent either way, and if the active player was wrong the *first* challenger takes the card. `Challenge.slot`
 is therefore always null; keep the JS engine (`server/src/game.js`) in sync with `GameEngine.kt`.
+House rule (user decision, 2026‑08‑31): there is no "I know the title" button — the opponents are asked to
+confirm title + artist after *every* reveal (players kept forgetting to press it). The host also picks who
+plays first in the lobby: `start` carries `playerId` (absent = the player order is shuffled).
 
 ## Catalog (`catalog/`, `tools/`)
 
@@ -87,6 +91,9 @@ face value. The deck JSONs are bundled into the APK via `sourceSets["main"].asse
 
 - Kotlin nests block comments: `/*` inside a KDoc (e.g. `catalog/*.json`) breaks compilation.
 - `LocalHost` clamps options (`challengeSeconds` 5–60, `cardsToWin` 5–20); tests must respect the clamps.
+- `buyCard` is rejected for the active player during `challenge`: `insertSorted` would move the timeline
+  that `reveal()` judges against the already locked `turn.slot`. `GameScreen.canBuy()` greys the button out.
+- `removePlayer` returns events and may itself reveal/resolve: the leaver can be the last undecided player.
 - The host phone must keep the app open; `shutdown()` sends `ended` so guests return home instead of
   reconnecting forever.
 - Two cards in Lado B have no pre‑recorded preview URL; the resolver fetches at play time.

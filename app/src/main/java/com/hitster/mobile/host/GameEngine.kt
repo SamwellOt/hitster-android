@@ -25,7 +25,8 @@ class GameError(message: String) : Exception(message)
  *  • Token 2 – opponent's turn: shout HITSTER before the reveal = bet that the placement is wrong. The token is
  *    spent either way; if the owner was wrong the (first) challenger takes the card into their own timeline.
  *  • Token 3 – any time: 3 tokens for the top card, placed correctly.
- *  • +1 token for naming title + artist (max 5). First to `cardsToWin` cards wins.
+ *  • After every reveal the opponents confirm whether the player named title + artist: +1 token (max 5).
+ *    First to `cardsToWin` cards wins.
  */
 class GameEngine(
     players: List<PlayerInfo>,
@@ -41,7 +42,6 @@ class GameEngine(
         var card: Card,
         var phase: String = Phase.LISTEN,
         var slot: Int? = null,
-        var claimsTitle: Boolean = false,
         val challenges: MutableList<Challenge> = mutableListOf(),
         val passed: MutableList<String> = mutableListOf(),
         val votes: MutableMap<String, Boolean> = mutableMapOf(),
@@ -83,7 +83,8 @@ class GameEngine(
     }
 
     private fun startTurn() {
-        val card = drawCard() ?: return finish(null)
+        // Deck (and discard) exhausted: whoever has the longest timeline wins, like finishByCount().
+        val card = drawCard() ?: return finish(players.maxByOrNull { it.timeline.size }?.id)
         turn = TurnState(playerId = order[turnIndex], card = card)
     }
 
@@ -114,17 +115,11 @@ class GameEngine(
                 events += GameEvent(kind = "skip", playerId = playerId)
             }
 
-            "claimTitle" -> {
-                if (!isCurrent || t.phase != Phase.LISTEN) throw GameError("Ação indisponível.")
-                t.claimsTitle = action.value == true
-            }
-
             "place" -> {
                 if (!isCurrent || t.phase != Phase.LISTEN) throw GameError("Não é sua vez de posicionar.")
                 val slot = action.slot ?: throw GameError("Posição inválida.")
                 if (slot < 0 || slot > me.timeline.size) throw GameError("Posição inválida.")
                 t.slot = slot
-                action.claimsTitle?.let { t.claimsTitle = it }
                 t.phase = Phase.CHALLENGE
                 t.deadline = now() + options.challengeSeconds * 1000L
                 events += GameEvent(kind = "placed", playerId = playerId, slot = slot)
@@ -156,6 +151,9 @@ class GameEngine(
             }
 
             "buyCard" -> {
+                // The bought card is inserted in the buyer's timeline, so it must not move under a placement
+                // that is already locked in and about to be judged against `t.slot`.
+                if (isCurrent && t.phase == Phase.CHALLENGE) throw GameError("Espere a revelação da sua carta para trocar fichas.")
                 if (me.tokens < 3) throw GameError("Você precisa de 3 fichas HITSTER.")
                 val card = drawCard() ?: throw GameError("O baralho acabou.")
                 me.tokens -= 3
@@ -214,7 +212,8 @@ class GameEngine(
         t.result = TurnResult(correct = correct, stolenBy = stolenBy, challenges = results, tokenEarned = null)
         events += GameEvent(kind = "reveal", playerId = t.playerId, card = card, correct = correct, stolenBy = stolenBy)
 
-        if (t.claimsTitle && owner.tokens < MAX_TOKENS && opponents().isNotEmpty()) {
+        // The opponents always confirm whether the player named title + artist (nothing to press beforehand).
+        if (owner.tokens < MAX_TOKENS && opponents().isNotEmpty()) {
             t.phase = Phase.VOTE
             t.deadline = now() + options.voteSeconds * 1000L
         } else {
@@ -269,13 +268,14 @@ class GameEngine(
     }
 
     /** Remove a player who left for good. */
-    fun removePlayer(playerId: String) {
+    fun removePlayer(playerId: String): List<GameEvent> {
+        val events = mutableListOf<GameEvent>()
         val idx = order.indexOf(playerId)
-        if (idx < 0) return
+        if (idx < 0) return events
         val wasCurrent = turn?.playerId == playerId
         order.removeAt(idx)
         players.removeAll { it.id == playerId }
-        if (order.size < 2) { finish(order.firstOrNull()); return }
+        if (order.size < 2) { finish(order.firstOrNull()); return events }
         if (idx < turnIndex) turnIndex -= 1
         if (wasCurrent) {
             turn?.card?.let { discard.addLast(it) }
@@ -285,7 +285,13 @@ class GameEngine(
             t.challenges.removeAll { it.playerId == playerId }
             t.passed.remove(playerId)
             t.votes.remove(playerId)
+            // The one who left may have been the last player everyone was waiting for.
+            when {
+                t.phase == Phase.CHALLENGE && everyoneDecided() -> reveal(events)
+                t.phase == Phase.VOTE && opponents().all { it.id in t.votes } -> resolveVote(events)
+            }
         }
+        return events
     }
 
     /** Snapshot for one client – the current card is hidden until the reveal. */
@@ -299,7 +305,7 @@ class GameEngine(
                 else -> null
             }
             Turn(
-                playerId = it.playerId, card = card, phase = it.phase, slot = it.slot, claimsTitle = it.claimsTitle,
+                playerId = it.playerId, card = card, phase = it.phase, slot = it.slot,
                 challenges = it.challenges.toList(), passed = it.passed.toList(), votes = it.votes.toMap(),
                 deadline = it.deadline, result = it.result, skips = it.skips,
             )

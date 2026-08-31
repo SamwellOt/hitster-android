@@ -6,7 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -66,6 +69,7 @@ import com.hitster.mobile.ui.theme.TextSecondary
 import com.hitster.mobile.ui.theme.TextTertiary
 import com.hitster.mobile.ui.theme.parseHex
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun LobbyScreen(
     room: Room,
@@ -76,11 +80,14 @@ fun LobbyScreen(
     onSetDecks: (List<String>) -> Unit,
     onSetOptions: (GameOptions) -> Unit,
     onKick: (String) -> Unit,
-    onStart: () -> Unit,
+    onStart: (String?) -> Unit,
     onLeave: () -> Unit,
 ) {
     val ctx = LocalContext.current
     var showOptions by remember { mutableStateOf(false) }
+    // null = random. Kept host‑local: it only matters at the moment START is pressed.
+    var firstPlayer by remember { mutableStateOf<String?>(null) }
+    if (firstPlayer != null && room.players.none { it.id == firstPlayer }) firstPlayer = null
     val canStart = room.players.size >= 2 && room.decks.isNotEmpty()
 
     Column(
@@ -173,6 +180,19 @@ fun LobbyScreen(
         }
         VSpace(20.dp)
 
+        // ---- who starts (host only; the rest of the order follows the lobby list)
+        if (isHost) {
+            SectionLabel("Quem começa")
+            VSpace(8.dp)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                ChoiceChip("Aleatório", firstPlayer == null) { firstPlayer = null }
+                room.players.forEach { p ->
+                    ChoiceChip(if (p.id == myId) "${p.name} (você)" else p.name, firstPlayer == p.id) { firstPlayer = p.id }
+                }
+            }
+            VSpace(20.dp)
+        }
+
         // ---- decks
         SectionLabel("Baralhos")
         VSpace(8.dp)
@@ -224,13 +244,29 @@ fun LobbyScreen(
         VSpace(28.dp)
 
         if (isHost) {
-            NeonButton("INICIAR PARTIDA", enabled = canStart, onClick = onStart)
+            NeonButton("INICIAR PARTIDA", enabled = canStart) { onStart(firstPlayer) }
         } else {
             Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Surface1).padding(16.dp), contentAlignment = Alignment.Center) {
                 Text("Aguardando o anfitrião iniciar…", color = NeonGreen, fontWeight = FontWeight.Bold)
             }
         }
         VSpace(28.dp)
+    }
+}
+
+@Composable
+private fun ChoiceChip(text: String, selected: Boolean, onClick: () -> Unit) {
+    Box(
+        Modifier
+            .heightIn(min = 44.dp)
+            .clip(RoundedCornerShape(50))
+            .background(if (selected) Surface2 else Surface1)
+            .border(1.dp, if (selected) NeonPink else Outline, RoundedCornerShape(50))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text, color = if (selected) TextPrimary else TextSecondary, style = MaterialTheme.typography.labelLarge, maxLines = 1)
     }
 }
 

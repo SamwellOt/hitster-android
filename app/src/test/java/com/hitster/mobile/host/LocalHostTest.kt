@@ -90,10 +90,11 @@ class LocalHostTest {
 
         a.sendMsg(ClientMessage(type = "setOptions", options = GameOptions(challengeSeconds = 5, voteSeconds = 10, resultSeconds = 5, cardsToWin = 3)))
         a.until { it.room!!.options.challengeSeconds == 5 && it.room!!.options.cardsToWin == 5 }
-        a.sendMsg(ClientMessage(type = "start"))
+        a.sendMsg(ClientMessage(type = "start", playerId = "bia-1"))   // host picked who starts
         listOf(a, b, c).forEach { x -> x.until { it.room?.phase == "playing" && it.room?.game != null } }
 
         val turnOf = a.game.turn!!.playerId
+        assertEquals("bia-1", turnOf)
         val current = listOf(a, b, c).first { it.playerId == turnOf }
         val others = listOf(a, b, c).filter { it !== current }
         assertNotNull(current.game.turn!!.card!!.id)
@@ -103,7 +104,7 @@ class LocalHostTest {
         val year = 1960 + current.game.turn!!.card!!.id.removePrefix("trk").toInt()
         val tl = current.me.timeline
         var slot = 0; while (slot < tl.size && tl[slot].year!! <= year) slot++
-        current.action(Action("place", slot = slot, claimsTitle = true))
+        current.action(Action("place", slot = slot))
         others.forEach { o -> o.until { it.game.turn!!.phase == Phase.CHALLENGE } }
 
         others[0].action(Action("challenge"))   // bets that the placement is wrong

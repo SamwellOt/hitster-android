@@ -221,7 +221,7 @@ fun PlayerChip(
 @Composable
 fun Countdown(deadline: Long?, clockOffset: Long, modifier: Modifier = Modifier, color: Color = NeonYellow, label: String? = null) {
     var left by remember(deadline) { mutableLongStateOf(0L) }
-    LaunchedEffect(deadline) {
+    LaunchedEffect(deadline, clockOffset) {   // a late clock sync must restart the countdown, not be ignored
         while (deadline != null) {
             left = ((deadline - (System.currentTimeMillis() + clockOffset)) / 1000L).coerceAtLeast(0)
             delay(200)
