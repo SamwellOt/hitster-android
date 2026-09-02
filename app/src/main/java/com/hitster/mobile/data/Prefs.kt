@@ -1,10 +1,9 @@
 package com.hitster.mobile.data
 
 import android.content.Context
-import com.hitster.mobile.BuildConfig
 import java.util.UUID
 
-/** Small persistent settings: identity for reconnects, server URL, last session. */
+/** Small persistent settings: identity for reconnects, last address, last session. */
 class Prefs(context: Context) {
     private val sp = context.getSharedPreferences("hitster", Context.MODE_PRIVATE)
 
@@ -19,9 +18,7 @@ class Prefs(context: Context) {
         get() = sp.getString("color", PALETTE.first()) ?: PALETTE.first()
         set(v) = sp.edit().putString("color", v).apply()
 
-    var serverUrl: String
-        get() = sp.getString("serverUrl", BuildConfig.DEFAULT_SERVER_URL) ?: BuildConfig.DEFAULT_SERVER_URL
-        set(v) = sp.edit().putString("serverUrl", v).apply()
+
 
     /** Last host address typed manually ("ip:port"). */
     var lastAddress: String?

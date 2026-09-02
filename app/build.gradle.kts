@@ -15,10 +15,8 @@ android {
         applicationId = "com.hitster.mobile"
         minSdk = 26
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.2.0"
-        // Default sync server. Change here or in the app's settings screen.
-        buildConfigField("String", "DEFAULT_SERVER_URL", "\"\"")
+        versionCode = 6
+        versionName = "1.3.0"
     }
 
     // Release signing: put a keystore.properties in the project root (git‑ignored) with

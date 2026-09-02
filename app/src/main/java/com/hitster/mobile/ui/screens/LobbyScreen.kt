@@ -68,6 +68,7 @@ import com.hitster.mobile.ui.theme.TextPrimary
 import com.hitster.mobile.ui.theme.TextSecondary
 import com.hitster.mobile.ui.theme.TextTertiary
 import com.hitster.mobile.ui.theme.parseHex
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -121,7 +122,8 @@ fun LobbyScreen(
         ) {
             SectionLabel("Código da sessão")
             VSpace(6.dp)
-            Text(room.code, style = MaterialTheme.typography.displayLarge, color = TextPrimary, letterSpacing = 10.sp)
+            // letterSpacing also trails the last glyph: pad the start by the same amount so the code sits centred
+            Text(room.code, style = MaterialTheme.typography.displayLarge, color = TextPrimary, letterSpacing = 10.sp, modifier = Modifier.padding(start = 10.dp))
             VSpace(6.dp)
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -226,7 +228,7 @@ fun LobbyScreen(
         VSpace(20.dp)
 
         // ---- options
-        Row(Modifier.fillMaxWidth().clickable { showOptions = !showOptions }, verticalAlignment = Alignment.CenterVertically) {
+        Row(Modifier.fillMaxWidth().heightIn(min = 44.dp).clickable { showOptions = !showOptions }, verticalAlignment = Alignment.CenterVertically) {
             SectionLabel("Opções da partida")
             Spacer(Modifier.weight(1f))
             Text(if (showOptions) "ocultar" else "mostrar", color = NeonCyan, style = MaterialTheme.typography.labelSmall)
@@ -274,9 +276,10 @@ private fun ChoiceChip(text: String, selected: Boolean, onClick: () -> Unit) {
 private fun OptionSlider(label: String, value: Int, min: Int, max: Int, enabled: Boolean, onChange: (Int) -> Unit) {
     var local by remember(value) { mutableStateOf(value.toFloat()) }
     Column(Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
-        Row { Text(label, color = TextSecondary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f)); Text(local.toInt().toString(), color = NeonYellow, fontWeight = FontWeight.Bold) }
+        // roundToInt, not toInt: the slider snaps by float interpolation, so a stop can land on 7.9999
+        Row { Text(label, color = TextSecondary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f)); Text(local.roundToInt().toString(), color = NeonYellow, fontWeight = FontWeight.Bold) }
         Slider(
-            value = local, onValueChange = { local = it }, onValueChangeFinished = { onChange(local.toInt()) },
+            value = local, onValueChange = { local = it }, onValueChangeFinished = { onChange(local.roundToInt()) },
             valueRange = min.toFloat()..max.toFloat(), steps = max - min - 1, enabled = enabled,
             colors = SliderDefaults.colors(thumbColor = NeonPink, activeTrackColor = NeonPink, inactiveTrackColor = Surface2, activeTickColor = Color.Transparent, inactiveTickColor = Color.Transparent),
         )

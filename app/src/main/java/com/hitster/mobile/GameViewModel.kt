@@ -152,7 +152,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
             delay(200); waited += 200
         }
         if (client.room.value == null && busy.value) {
-            _toasts.tryEmit(Toast("Não foi possível conectar ao servidor. Confira a URL nas configurações.", "error"))
+            _toasts.tryEmit(Toast("Não foi possível conectar ao anfitrião. Confira o Wi‑Fi e o endereço.", "error"))
             client.leave()
         }
         busy.value = false

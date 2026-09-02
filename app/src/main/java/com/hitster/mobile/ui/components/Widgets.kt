@@ -117,7 +117,11 @@ fun NeonButton(
             .padding(horizontal = 16.dp, vertical = 12.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, color = textColor, style = MaterialTheme.typography.labelLarge.copy(fontSize = 16.sp, letterSpacing = 1.sp), textAlign = TextAlign.Center)
+        // the gradient ends in yellow (and the vote buttons in cyan): white text needs a shadow to stay ≥ 3:1 there
+        Text(
+            text, color = textColor, textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.labelLarge.copy(fontSize = 16.sp, letterSpacing = 1.sp, shadow = Shadow(Color.Black.copy(alpha = 0.45f), Offset(0f, 1f), blurRadius = 3f)),
+        )
     }
 }
 
@@ -195,13 +199,17 @@ fun PlayerChip(
     goal: Int,
     onClick: () -> Unit,
 ) {
-    val glow = rememberInfiniteTransition(label = "glow").animateFloat(0.55f, 1f, infiniteRepeatable(tween(900), RepeatMode.Reverse), label = "g")
+    // only the active player's chip pulses – 10 always‑on infinite transitions were pure battery drain
+    val borderColor = if (isCurrent) {
+        val glow by rememberInfiniteTransition(label = "glow").animateFloat(0.55f, 1f, infiniteRepeatable(tween(900), RepeatMode.Reverse), label = "g")
+        color.copy(alpha = glow)
+    } else Outline
     Column(
         Modifier
             .width(96.dp)
             .clip(RoundedCornerShape(14.dp))
             .background(if (isCurrent) Surface2 else Surface1)
-            .border(1.5.dp, if (isCurrent) color.copy(alpha = glow.value) else Outline, RoundedCornerShape(14.dp))
+            .border(1.5.dp, borderColor, RoundedCornerShape(14.dp))
             .clickable(onClick = onClick)
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -220,10 +228,11 @@ fun PlayerChip(
 /** Countdown to a server deadline (epoch ms + clock offset). */
 @Composable
 fun Countdown(deadline: Long?, clockOffset: Long, modifier: Modifier = Modifier, color: Color = NeonYellow, label: String? = null) {
-    var left by remember(deadline) { mutableLongStateOf(0L) }
+    fun remaining() = if (deadline == null) 0L else ((deadline - (System.currentTimeMillis() + clockOffset)) / 1000L).coerceAtLeast(0)
+    var left by remember(deadline) { mutableLongStateOf(remaining()) }   // start at the real value, not a "0" frame
     LaunchedEffect(deadline, clockOffset) {   // a late clock sync must restart the countdown, not be ignored
         while (deadline != null) {
-            left = ((deadline - (System.currentTimeMillis() + clockOffset)) / 1000L).coerceAtLeast(0)
+            left = remaining()
             delay(200)
         }
     }
@@ -239,9 +248,10 @@ fun Countdown(deadline: Long?, clockOffset: Long, modifier: Modifier = Modifier,
 /** Animated equalizer bars – used while the preview plays. */
 @Composable
 fun Waveform(active: Boolean, modifier: Modifier = Modifier, bars: Int = 24, color: Brush = NeonBrush, height: Dp = 44.dp) {
-    val t by rememberInfiniteTransition(label = "wave").animateFloat(
+    // no animation clock while paused – the bars are flat anyway
+    val t = if (active) rememberInfiniteTransition(label = "wave").animateFloat(
         0f, 1f, infiniteRepeatable(tween(1400, easing = LinearEasing)), label = "t",
-    )
+    ).value else 0f
     Row(modifier.height(height), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(3.dp)) {
         repeat(bars) { i ->
             val phase = (t * 2 * Math.PI + i * 0.7).toFloat()

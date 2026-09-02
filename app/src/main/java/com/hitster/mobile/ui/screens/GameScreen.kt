@@ -159,15 +159,18 @@ private class Layout(val compact: Boolean) {
     val cardH: Dp get() = if (compact) 104.dp else CardHeight
 }
 
+/** Which card already played its flip: vote → result recreates the panel and must not flip it a second time. */
+private class RevealMemo { var flippedCardId: String? = null }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameScreen(ui: GameUi, a: GameActions) {
     val g = ui.game
     val t = g.turn
     val me = g.player(ui.myId)
-    val current = g.currentPlayer
     val myTurn = t?.playerId == ui.myId
     val goal = g.options.cardsToWin
+    val reveal = remember { RevealMemo() }
 
     BoxWithConstraints(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
         val landscape = maxWidth > maxHeight
@@ -178,7 +181,7 @@ fun GameScreen(ui: GameUi, a: GameActions) {
                 Header(g, me, a, lay)
                 PlayersStrip(ui, a, goal)
                 Box(Modifier.weight(1f).fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp)) {
-                    CenterPanel(ui, a, me, current, myTurn, lay)
+                    CenterPanel(ui, a, lay, reveal)
                 }
                 if (me != null && t != null) MyTimeline(ui, a, me, t.phase, myTurn, lay)
             }
@@ -187,7 +190,7 @@ fun GameScreen(ui: GameUi, a: GameActions) {
             Column(Modifier.fillMaxSize()) {
                 Header(g, me, a, lay)
                 Row(Modifier.weight(1f).fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Box(Modifier.weight(1f).fillMaxHeight()) { CenterPanel(ui, a, me, current, myTurn, lay) }
+                    Box(Modifier.weight(1f).fillMaxHeight()) { CenterPanel(ui, a, lay, reveal) }
                     PlayersColumn(ui, a, goal, modifier = Modifier.width(150.dp).fillMaxHeight())
                 }
                 if (me != null && t != null) MyTimeline(ui, a, me, t.phase, myTurn, lay)
@@ -320,22 +323,28 @@ private fun PlayersColumn(ui: GameUi, a: GameActions, goal: Int, modifier: Modif
 }
 
 @Composable
-private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: GamePlayer?, myTurn: Boolean, lay: Layout) {
-    val t = ui.game.turn ?: return
-    if (current == null) return
+private fun CenterPanel(ui: GameUi, a: GameActions, lay: Layout, reveal: RevealMemo) {
+    if (ui.game.turn == null || ui.game.currentPlayer == null) return
+    // The whole snapshot is the state (keyed by phase): during the fade‑out the outgoing panel keeps rendering
+    // the turn it was showing instead of the next one (a revealed card flashing to "????", an empty result line).
     AnimatedContent(
-        targetState = "${t.phase}:${myTurn}",
+        targetState = ui,
+        contentKey = { "${it.game.turn?.phase}:${it.game.turn?.playerId == it.myId}" },
         transitionSpec = { (fadeIn(tween(220)) + slideInVertically { it / 12 }) togetherWith fadeOut(tween(150)) },
         label = "phase",
-    ) { key ->
-        val phase = key.substringBefore(':')
+    ) { s ->
+        val t = s.game.turn
+        val current = s.game.currentPlayer
+        if (t == null || current == null) return@AnimatedContent
+        val me = s.game.player(s.myId)
+        val myTurn = t.playerId == s.myId
         when {
-            phase == Phase.LISTEN && myTurn -> ListenPanel(ui, a, me, lay)
-            phase == Phase.LISTEN -> WaitingPanel(current, lay)
-            phase == Phase.CHALLENGE && myTurn -> OwnerChallengePanel(ui, lay)
-            phase == Phase.CHALLENGE -> OpponentChallengePanel(ui, a, current, me, lay)
-            phase == Phase.VOTE -> VotePanel(ui, a, current, myTurn, lay)
-            phase == Phase.RESULT -> ResultPanel(ui, a, current, lay)
+            t.phase == Phase.LISTEN && myTurn -> ListenPanel(s, a, me, lay)
+            t.phase == Phase.LISTEN -> WaitingPanel(current, lay)
+            t.phase == Phase.CHALLENGE && myTurn -> OwnerChallengePanel(s, lay)
+            t.phase == Phase.CHALLENGE -> OpponentChallengePanel(s, a, current, me, lay)
+            t.phase == Phase.VOTE -> VotePanel(s, a, current, myTurn, lay, reveal)
+            t.phase == Phase.RESULT -> ResultPanel(s, a, current, lay, reveal)
             else -> Box {}
         }
     }
@@ -343,19 +352,23 @@ private fun CenterPanel(ui: GameUi, a: GameActions, me: GamePlayer?, current: Ga
 
 // ======================================================================= panels
 
-/** Card‑like container. Scrolls only as a safety net – the compact variants are sized to fit without it. */
+/**
+ * Card‑like container. Short content is centred vertically (Box, not Column arrangement: a scrollable column measures
+ * with infinite height, so `Arrangement.Center` would be a no‑op); tall content scrolls as a safety net.
+ */
 @Composable
 private fun Panel(lay: Layout, content: @Composable () -> Unit) {
-    Column(
+    Box(
         Modifier
             .fillMaxSize()
             .clip(RoundedCornerShape(if (lay.compact) 18.dp else 22.dp))
             .background(Surface1)
             .border(1.dp, Outline, RoundedCornerShape(if (lay.compact) 18.dp else 22.dp))
-            .padding(horizontal = if (lay.compact) 12.dp else 16.dp, vertical = if (lay.compact) 8.dp else 16.dp)
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) { content() }
+            .padding(horizontal = if (lay.compact) 12.dp else 16.dp, vertical = if (lay.compact) 8.dp else 16.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) { content() }
+    }
 }
 
 @Composable
@@ -367,20 +380,20 @@ private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout
     val finished = pb.ended && !pb.isPlaying
     val controls: @Composable () -> Unit = {
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
-            RoundIcon(Icons.Default.Replay, "Recomeçar", size = if (lay.compact) 40.dp else 48.dp, enabled = pb.url != null) { a.replay() }
+            RoundIcon(Icons.Default.Replay, "Recomeçar", size = if (lay.compact) 44.dp else 48.dp, enabled = pb.url != null) { a.replay() }
             RoundIcon(
                 when { pb.isPlaying -> Icons.Default.Pause; finished -> Icons.Default.Replay; else -> Icons.Default.PlayArrow },
                 when { pb.isPlaying -> "Pausar"; finished -> "Ouvir de novo"; else -> "Tocar" },
                 size = if (lay.compact) 56.dp else 72.dp, brush = NeonBrush,
             ) { if (pb.isPlaying) a.pause() else if (finished) a.replay() else a.play() }
-            RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = if (lay.compact) 40.dp else 48.dp, enabled = tokens >= 1) { a.skip() }
+            RoundIcon(Icons.Default.SkipNext, "Pular · 1 ficha", size = if (lay.compact) 44.dp else 48.dp, enabled = tokens >= 1) { a.skip() }
         }
     }
     val status = when {
         pb.isBuffering -> "carregando…"
         pb.error != null -> "erro ao tocar"
         finished -> "fim da prévia"
-        else -> "prévia · 30 s"
+        else -> "30 s"
     }
 
     Panel(lay) {
@@ -400,9 +413,8 @@ private fun ListenPanel(ui: GameUi, a: GameActions, me: GamePlayer?, lay: Layout
             }
             VSpace(12.dp)
             controls()
-            VSpace(6.dp)
-            Text("Pular custa 1 ficha HITSTER", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
-            VSpace(14.dp)
+            VSpace(10.dp)
+            // ("Pular custa 1 ficha" dropped: the skip button's own label says it, and small phones need the height for the banner)
             Text(
                 "Diga o nome da música e o artista em voz alta: os outros confirmam depois da revelação e você ganha 1 ficha.",
                 color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center,
@@ -551,7 +563,7 @@ private fun challengeMarkers(ui: GameUi): Map<Int, List<String>> {
 }
 
 @Composable
-private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: Boolean, lay: Layout) {
+private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: Boolean, lay: Layout, reveal: RevealMemo) {
     val t = ui.game.turn!!
     val card = t.card ?: return
     val voted = ui.myId in t.votes
@@ -577,11 +589,11 @@ private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: B
         VSpace(if (lay.compact) 4.dp else 10.dp)
         if (lay.compact) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-                RevealCard(card, t.result?.correct, small = true)
+                RevealCard(card, t.result?.correct, small = true, reveal = reveal)
                 Column(Modifier.weight(1f)) { question() }
             }
         } else {
-            RevealCard(card, t.result?.correct, small = false)
+            RevealCard(card, t.result?.correct, small = false, reveal = reveal)
             VSpace(12.dp)
             question()
         }
@@ -589,7 +601,7 @@ private fun VotePanel(ui: GameUi, a: GameActions, current: GamePlayer, myTurn: B
 }
 
 @Composable
-private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: Layout) {
+private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: Layout, reveal: RevealMemo) {
     val t = ui.game.turn!!
     val card = t.card ?: return
     val r = t.result
@@ -618,7 +630,12 @@ private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: La
                 Text("$who ganhou 1 ficha por dizer o nome e o artista!", color = NeonYellow, style = MaterialTheme.typography.bodySmall)
             }
         } else if (r?.tokenEarned == false) {
-            Text("Os outros não confirmaram o nome/artista: sem ficha extra.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+            // the engine skips the vote when the player already holds the maximum – that is not a "no" from the table
+            Text(
+                if (current.tokens >= 5) "$who já tem o máximo de 5 fichas: sem votação nesta rodada."
+                else "Os outros não confirmaram o nome/artista: sem ficha extra.",
+                color = TextSecondary, style = MaterialTheme.typography.bodySmall,
+            )
         }
     }
     Panel(lay) {
@@ -626,16 +643,16 @@ private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: La
             if (!ui.game.finished) Countdown(t.deadline, ui.clockOffset)
             SectionLabel("Resultado", color = NeonYellow)
             Spacer(Modifier.weight(1f))
-            if (lay.compact && !ui.game.finished) NeonButton("PRÓXIMA RODADA", modifier = Modifier.widthIn(max = 200.dp), height = 40.dp, onClick = a.continueGame)
+            if (lay.compact && !ui.game.finished) NeonButton("PRÓXIMA RODADA", modifier = Modifier.widthIn(max = 200.dp), height = 44.dp, onClick = a.continueGame)
         }
         VSpace(if (lay.compact) 4.dp else 10.dp)
         if (lay.compact) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-                RevealCard(card, r?.correct, small = true)
+                RevealCard(card, r?.correct, small = true, reveal = reveal)
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) { details() }
             }
         } else {
-            RevealCard(card, r?.correct, small = false)
+            RevealCard(card, r?.correct, small = false, reveal = reveal)
             VSpace(12.dp)
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) { details() }
             VSpace(14.dp)
@@ -644,11 +661,11 @@ private fun ResultPanel(ui: GameUi, a: GameActions, current: GamePlayer, lay: La
     }
 }
 
-/** The card flips from its back ("?") to the solution side the first time it is shown. */
+/** The card flips from its back ("?") to the solution side the first time it is shown (once per card, see RevealMemo). */
 @Composable
-private fun RevealCard(card: Card, correct: Boolean?, small: Boolean) {
-    var flipped by remember(card.id) { mutableStateOf(false) }
-    LaunchedEffect(card.id) { flipped = true }
+private fun RevealCard(card: Card, correct: Boolean?, small: Boolean, reveal: RevealMemo) {
+    var flipped by remember(card.id) { mutableStateOf(reveal.flippedCardId == card.id) }
+    LaunchedEffect(card.id) { flipped = true; reveal.flippedCardId = card.id }
     val rotation by animateFloatAsState(if (flipped) 180f else 0f, tween(650, easing = FastOutSlowInEasing), label = "flip")
     val density = LocalDensity.current.density
     val w = if (small) 84.dp else 120.dp
@@ -699,11 +716,11 @@ private fun MyTimeline(ui: GameUi, a: GameActions, me: GamePlayer, phase: String
     val revealedCardId = if (phase == Phase.RESULT || phase == Phase.VOTE) t.card?.id else null
     val markers = if (myTurn && phase == Phase.CHALLENGE) challengeMarkers(ui) else emptyMap()
     val confirmLabel = ui.selectedSlot?.let { "CONFIRMAR NA ${it + 1}ª POSIÇÃO" } ?: "ESCOLHA A POSIÇÃO"
-    // keep the interesting item in view: the chosen slot while placing, otherwise the card just revealed/inserted
+    // keep the interesting item in view: the chosen slot while placing; the revealed/inserted card is
+    // centred by Timeline itself from `highlightCardId` (a card index is not a slot index)
     val scrollTarget = when {
         placing -> ui.selectedSlot
         myTurn && phase == Phase.CHALLENGE -> t.slot
-        revealedCardId != null -> me.timeline.indexOfFirst { it.id == revealedCardId }.takeIf { it >= 0 }
         else -> null
     }
     Column(Modifier.fillMaxWidth().background(Ink)) {
@@ -752,7 +769,7 @@ private fun BuyButton(tokens: Int, enabled: Boolean, compact: Boolean = false, o
     val can = tokens >= 3 && enabled
     Row(
         Modifier
-            .height(if (compact) 36.dp else 50.dp)
+            .height(if (compact) 44.dp else 50.dp)
             .alpha(if (can) 1f else 0.55f)
             .clip(RoundedCornerShape(14.dp))
             .background(Surface2)

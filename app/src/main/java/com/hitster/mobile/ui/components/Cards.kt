@@ -35,6 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
@@ -70,6 +71,10 @@ fun YearCard(card: Card, modifier: Modifier = Modifier, width: Dp = CardWidth, h
     val k = (width / CardWidth).coerceIn(0.75f, 1.3f)
     // …but the year must never wrap ("197" + "6"): 4 Righteous digits need ~2.2em, and 8dp padding on each side.
     val yearSize = minOf(30f * k, (width.value - 18f) / 2.2f)
+    // Small cards (66–78dp: opponent's timeline, landscape) would scale artist/title down to 7.5sp – unreadable.
+    // Floor at 9sp and drop to one line so the three blocks still fit an 80dp‑tall card.
+    val textSize = maxOf(10f * k, 9f)
+    val lines = if (k < 0.85f) 1 else 2
     Column(
         modifier
             .scale(scale)
@@ -84,8 +89,8 @@ fun YearCard(card: Card, modifier: Modifier = Modifier, width: Dp = CardWidth, h
     ) {
         Text(
             card.artist ?: "CANTOR(A)",
-            color = fg, fontSize = (11 * k).sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
-            maxLines = 2, overflow = TextOverflow.Ellipsis, lineHeight = (13 * k).sp,
+            color = fg, fontSize = maxOf(11f * k, 9.5f).sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
+            maxLines = lines, overflow = TextOverflow.Ellipsis, lineHeight = maxOf(13f * k, 11.5f).sp,
         )
         Text(
             card.year?.toString() ?: "????", color = fg, fontFamily = DisplayFont,
@@ -93,8 +98,8 @@ fun YearCard(card: Card, modifier: Modifier = Modifier, width: Dp = CardWidth, h
         )
         Text(
             card.title ?: "MÚSICA",
-            color = fg.copy(alpha = 0.92f), fontSize = (10 * k).sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center,
-            maxLines = 2, overflow = TextOverflow.Ellipsis, lineHeight = (12 * k).sp,
+            color = fg.copy(alpha = 0.92f), fontSize = textSize.sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center,
+            maxLines = lines, overflow = TextOverflow.Ellipsis, lineHeight = (textSize * 1.2f).sp,
         )
     }
 }
@@ -139,13 +144,19 @@ fun Timeline(
     autoScrollTo: Int? = null,
 ) {
     val density = LocalDensity.current
-    LaunchedEffect(autoScrollTo, cards.size) {
-        val target = autoScrollTo ?: return@LaunchedEffect
-        // centre the target (slot i = item 2i) in the viewport instead of pinning it to the left edge
+    // the highlighted card (just revealed / stolen / bought) is the scroll target when no slot is
+    val highlightIndex = highlightCardId?.let { id -> cards.indexOfFirst { it.id == id }.takeIf { it >= 0 } }
+    LaunchedEffect(autoScrollTo, highlightIndex, cards.size) {
+        // slot i = item 2i, card i = item 2i+1; centre the target in the viewport instead of pinning it to the left edge
+        val (item, itemDp) = when {
+            autoScrollTo != null -> (autoScrollTo * 2) to (if (selectedSlot == autoScrollTo) cardWidth else 36.dp)
+            highlightIndex != null -> (highlightIndex * 2 + 1) to cardWidth
+            else -> return@LaunchedEffect
+        }
         val viewport = listState.layoutInfo.viewportEndOffset - listState.layoutInfo.viewportStartOffset
-        val itemPx = with(density) { (if (selectedSlot == target) cardWidth else 36.dp).roundToPx() }
+        val itemPx = with(density) { itemDp.roundToPx() }
         val offset = -((viewport - itemPx) / 2).coerceAtLeast(0)
-        listState.animateScrollToItem((target * 2).coerceIn(0, cards.size * 2), offset)
+        listState.animateScrollToItem(item.coerceIn(0, cards.size * 2), offset)
     }
     LazyRow(
         modifier = modifier,
@@ -193,7 +204,8 @@ private fun Slot(selectable: Boolean, selected: Boolean, markers: List<String>, 
         contentAlignment = Alignment.Center,
     ) {
         if (selected) {
-            HiddenCard(width = slotWidth - 8.dp, height = height)
+            // fade in with the width animation – a 40sp "?" inside a 28dp‑wide box is visibly clipped otherwise
+            Box(Modifier.alpha(w)) { HiddenCard(width = slotWidth - 8.dp, height = height) }
         } else {
             // dotted connector + optional "+" affordance
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {

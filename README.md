@@ -85,7 +85,7 @@ gravado no catálogo serve de *fallback*.
 
 ## Instalar
 
-APK pronto em **Releases** deste repositório (`hitster-mobile-v1.0.0.apk`). Instale o mesmo arquivo em
+APK pronto em **Releases** deste repositório (`hitster-mobile-v1.3.0.apk`). Instale o mesmo arquivo em
 todos os celulares (permitir "fontes desconhecidas" na primeira vez).
 
 ## Build

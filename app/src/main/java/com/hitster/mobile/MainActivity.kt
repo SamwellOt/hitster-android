@@ -22,11 +22,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
@@ -57,6 +59,7 @@ import com.hitster.mobile.ui.theme.NeonYellow
 import com.hitster.mobile.ui.theme.Surface2
 import com.hitster.mobile.ui.theme.Surface3
 import com.hitster.mobile.ui.theme.TextPrimary
+import kotlinx.coroutines.flow.collectLatest
 
 class MainActivity : ComponentActivity() {
     private val vm: GameViewModel by viewModels()
@@ -89,9 +92,15 @@ class MainActivity : ComponentActivity() {
                 }
 
                 val snackbar = remember { SnackbarHostState() }
+                var toastKind by remember { mutableStateOf("info") }
                 var confirmLeave by remember { mutableStateOf(false) }
                 LaunchedEffect(Unit) {
-                    vm.toasts.collect { snackbar.showSnackbar(message = it.text, withDismissAction = true) }
+                    // Latest wins: a burst of events must not queue 4 s snackbars that arrive long after the fact.
+                    vm.toasts.collectLatest {
+                        snackbar.currentSnackbarData?.dismiss()
+                        toastKind = it.kind
+                        snackbar.showSnackbar(message = it.text, withDismissAction = true)
+                    }
                 }
 
                 val actions = remember {
@@ -160,18 +169,26 @@ class MainActivity : ComponentActivity() {
                             onDismissRequest = { confirmLeave = false },
                             containerColor = Surface2,
                             title = { Text("Sair da sessão?", color = TextPrimary) },
-                            text = { Text("Você sairá da partida. Se sair sem querer, entre de novo com o mesmo código para retomar.", color = TextPrimary) },
+                            text = {
+                                Text(
+                                    if (isHost) "Você é o anfitrião: o jogo roda no seu celular. Sair encerra a sessão para todos."
+                                    else "Você sairá da partida. Se sair sem querer, entre de novo com o mesmo código para retomar.",
+                                    color = TextPrimary,
+                                )
+                            },
                             confirmButton = { TextButton(onClick = { confirmLeave = false; vm.leaveSession() }) { Text("Sair", color = Danger) } },
                             dismissButton = { TextButton(onClick = { confirmLeave = false }) { Text("Ficar", color = NeonYellow) } },
                         )
                     }
 
                     // Custom layout: message takes the width, the close button stays pinned at the end
-                    // (the default Snackbar lets the X fall inline when the text wraps).
-                    SnackbarHost(hostState = snackbar, modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 8.dp)) { data ->
+                    // (the default Snackbar lets the X fall inline when the text wraps). Anchored at the top:
+                    // the bottom of the game screen is the CONFIRM / 3‑token row, which a snackbar must not cover.
+                    val accent = when (toastKind) { "error" -> Danger; "warn" -> NeonYellow; "hot" -> NeonPink; else -> Surface3 }
+                    SnackbarHost(hostState = snackbar, modifier = Modifier.align(Alignment.TopCenter).statusBarsPadding().padding(top = 52.dp)) { data ->
                         Snackbar(
-                            containerColor = Surface3, contentColor = TextPrimary,
-                            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
+                            containerColor = Surface3, contentColor = TextPrimary, shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp).border(1.dp, accent, RoundedCornerShape(12.dp)),
                             dismissAction = {
                                 IconButton(onClick = { data.dismiss() }) {
                                     Icon(Icons.Default.Close, contentDescription = "Fechar", tint = NeonPink)

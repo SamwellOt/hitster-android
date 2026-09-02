@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -39,6 +40,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -58,6 +60,7 @@ import com.hitster.mobile.ui.components.VSpace
 import com.hitster.mobile.ui.theme.NeonCyan
 import com.hitster.mobile.ui.theme.NeonGreen
 import com.hitster.mobile.ui.theme.NeonPink
+import com.hitster.mobile.ui.theme.NeonYellow
 import com.hitster.mobile.ui.theme.Outline
 import com.hitster.mobile.ui.theme.PurpleBrush
 import com.hitster.mobile.ui.theme.Surface1
@@ -108,7 +111,7 @@ fun HomeScreen(
         Text("O JOGO DE MÚSICAS DO SEU TEMPO", color = TextSecondary, style = MaterialTheme.typography.labelMedium, letterSpacing = 2.sp)
         VSpace(6.dp)
         Text(
-            "Seja o primeiro a construir uma linha do tempo com 10 músicas.",
+            "Seja o primeiro a completar a sua linha do tempo musical.",
             color = TextTertiary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center,
         )
         VSpace(28.dp)
@@ -177,12 +180,15 @@ fun HomeScreen(
         VSpace(8.dp)
         if (sessions.isEmpty()) {
             Text("Procurando anfitriões na rede… Os dois celulares precisam estar na mesma rede Wi‑Fi.", color = TextTertiary, style = MaterialTheme.typography.bodySmall)
+        } else if (!canPlay) {
+            Text("Digite seu nome acima para entrar.", color = NeonYellow, style = MaterialTheme.typography.bodySmall)
         }
         sessions.forEach { s ->
             Row(
                 Modifier
                     .fillMaxWidth()
                     .padding(vertical = 4.dp)
+                    .alpha(if (canPlay) 1f else 0.5f)
                     .clip(RoundedCornerShape(14.dp))
                     .background(Surface1)
                     .border(1.dp, Outline, RoundedCornerShape(14.dp))
@@ -192,7 +198,7 @@ fun HomeScreen(
             ) {
                 Column(Modifier.weight(1f)) {
                     Text("Sessão ${s.code}", color = TextPrimary, fontWeight = FontWeight.Bold)
-                    Text("Sessão de ${s.hostName} · ${s.address}", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+                    Text("Anfitrião: ${s.hostName} · ${s.address}", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
                 }
                 Text("ENTRAR", color = NeonCyan, style = MaterialTheme.typography.labelLarge)
             }
@@ -200,11 +206,9 @@ fun HomeScreen(
         VSpace(12.dp)
 
         // ---- manual fallback
-        Text(
-            if (manual) "Ocultar entrada manual" else "Não apareceu? Entrar pelo endereço",
-            color = NeonCyan, style = MaterialTheme.typography.labelSmall,
-            modifier = Modifier.clickable { manual = !manual }.padding(4.dp),
-        )
+        Box(Modifier.heightIn(min = 44.dp).clip(RoundedCornerShape(8.dp)).clickable { manual = !manual }.padding(horizontal = 8.dp), contentAlignment = Alignment.Center) {
+            Text(if (manual) "Ocultar entrada manual" else "Não apareceu? Entrar pelo endereço", color = NeonCyan, style = MaterialTheme.typography.labelSmall)
+        }
         if (manual) {
             VSpace(10.dp)
             Text("O anfitrião vê o endereço e o código na tela da sessão.", color = TextTertiary, style = MaterialTheme.typography.bodySmall)
