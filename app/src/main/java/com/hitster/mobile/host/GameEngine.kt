@@ -83,7 +83,7 @@ class GameEngine(
     }
 
     private fun startTurn() {
-        // Deck (and discard) exhausted: whoever has the longest timeline wins, like finishByCount().
+        // Deck (and discard) exhausted: whoever has the longest timeline wins.
         val card = drawCard() ?: return finish(players.maxByOrNull { it.timeline.size }?.id)
         turn = TurnState(playerId = order[turnIndex], card = card)
     }
@@ -107,9 +107,10 @@ class GameEngine(
             "skip" -> {
                 if (!isCurrent || t.phase != Phase.LISTEN) throw GameError("Só é possível pular na sua vez, antes de posicionar.")
                 if (me.tokens < 1) throw GameError("Você precisa de 1 ficha HITSTER para pular a música.")
+                // Draw first: with nothing else to draw, refuse without spending the token or losing the song.
+                val next = drawCard() ?: throw GameError("Não há outra música no baralho para pular.")
                 me.tokens -= 1
                 deck.addLast(t.card)
-                val next = drawCard() ?: return finishByCount(events)
                 t.card = next
                 t.skips += 1
                 events += GameEvent(kind = "skip", playerId = playerId)
@@ -252,13 +253,6 @@ class GameEngine(
         return true
     }
 
-    private fun finishByCount(events: MutableList<GameEvent>): List<GameEvent> {
-        val best = players.maxByOrNull { it.timeline.size }!!
-        finish(best.id)
-        events += GameEvent(kind = "finished", winnerId = winnerId, reason = "deck")
-        return events
-    }
-
     private fun nextTurn(events: MutableList<GameEvent>) {
         turnIndex = (turnIndex + 1) % order.size
         if (turnIndex == 0) round += 1
@@ -275,12 +269,20 @@ class GameEngine(
         val wasCurrent = turn?.playerId == playerId
         order.removeAt(idx)
         players.removeAll { it.id == playerId }
-        if (order.size < 2) { finish(order.firstOrNull()); return events }
+        if (order.size < 2) {
+            finish(order.firstOrNull())
+            events += GameEvent(kind = "finished", winnerId = winnerId, reason = "players")
+            return events
+        }
         if (idx < turnIndex) turnIndex -= 1
         if (wasCurrent) {
-            turn?.card?.let { discard.addLast(it) }
+            // Only LISTEN/CHALLENGE cards are still loose; after the reveal the card is already in a timeline or the discard.
+            val t = turn!!
+            if (t.phase == Phase.LISTEN || t.phase == Phase.CHALLENGE) discard.addLast(t.card)
             turnIndex %= order.size
             startTurn()
+            if (finished) events += GameEvent(kind = "finished", winnerId = winnerId, reason = "deck")
+            else events += GameEvent(kind = "turn", playerId = turn!!.playerId)
         } else turn?.let { t ->
             t.challenges.removeAll { it.playerId == playerId }
             t.passed.remove(playerId)

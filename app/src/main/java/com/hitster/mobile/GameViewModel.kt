@@ -140,7 +140,9 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun stopHost() {
         discovery.stopAdvertising()
-        host?.shutdown(); host = null
+        // stop() blocks while joining threads; keep it off the main thread
+        host?.let { h -> kotlin.concurrent.thread(name = "host-shutdown") { h.shutdown() } }
+        host = null
         hostAddress.value = null
     }
 

@@ -165,6 +165,39 @@ test('the last undecided opponent leaving closes the challenge window', () => {
   assert.equal(g.turn.result.correct, true);
 });
 
+test('leaver in RESULT after a steal: the stolen card is not also put in the discard', () => {
+  const g = fresh();
+  apply(g, 'p1', { type: 'place', slot: 0 }, now); // wrong
+  apply(g, 'p2', { type: 'challenge' }, now);       // p2 steals
+  apply(g, 'p3', { type: 'pass' }, now);
+  answerTitle(g, false);
+  assert.equal(g.turn.phase, PHASE.RESULT);
+  assert.equal(g.turn.result.stolenBy, 'p2');
+  const stolen = g.turn.card.id;
+  removePlayer(g, 'p1', now);
+  const everywhere = [...g.deck, ...g.discard, ...g.players.flatMap(p => p.timeline), g.turn.card];
+  assert.equal(everywhere.filter(c => c.id === stolen).length, 1);
+});
+
+test('leaving until one player is left finishes the game with an event', () => {
+  const g = fresh();
+  removePlayer(g, 'p1', now);
+  const ev = removePlayer(g, 'p3', now);
+  assert.equal(g.finished, true);
+  assert.equal(g.winnerId, 'p2');
+  assert.ok(ev.some(e => e.kind === 'finished' && e.winnerId === 'p2' && e.reason === 'players'));
+});
+
+test('skip is refused when no other song is left; token and card are kept', () => {
+  const g = fresh();
+  const current = g.turn.card.id;
+  g.deck.length = 0; g.discard.length = 0;
+  assert.throws(() => apply(g, 'p1', { type: 'skip' }, now), /outra música/);
+  assert.equal(g.players[0].tokens, 2);
+  assert.equal(g.turn.card.id, current);
+  assert.equal(g.finished, false);
+});
+
 test('first to 10 cards wins', () => {
   const g = fresh({ cardsToWin: 3 });
   apply(g, 'p1', { type: 'place', slot: 1 }, now);

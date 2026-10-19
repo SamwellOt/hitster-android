@@ -151,6 +151,7 @@ class GameActions(
     val openTimeline: (String?) -> Unit,
     val restart: () -> Unit,
     val leave: () -> Unit,
+    val kick: (String) -> Unit,
 )
 
 /** Per‑screen layout facts derived once from the window size. */
@@ -220,6 +221,19 @@ fun GameScreen(ui: GameUi, a: GameActions) {
                     viewing.timeline.joinToString("  ·  ") { it.year.toString() },
                     color = TextTertiary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 20.dp),
                 )
+                // Host-only: a dropped player's turn has no deadline, so the host must be able to remove them to unfreeze the game.
+                if (ui.isHost && viewing.id != ui.myId && ui.room.players.firstOrNull { it.id == viewing.id }?.connected == false) {
+                    VSpace(16.dp)
+                    Text(
+                        "${viewing.name} perdeu a conexão. Se não voltar, remova para o jogo continuar.",
+                        color = TextTertiary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 20.dp),
+                    )
+                    VSpace(8.dp)
+                    GhostButton(
+                        "Remover ${viewing.name} da partida", color = Danger,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
+                    ) { a.kick(viewing.id); a.openTimeline(null) }
+                }
             }
         }
     }
@@ -822,7 +836,7 @@ private fun fmt(ms: Long): String {
 private fun WinnerOverlay(ui: GameUi, a: GameActions) {
     val g = ui.game
     val winner = g.player(g.winnerId)
-    val ranking = g.players.sortedByDescending { it.timeline.size }
+    val ranking = g.players.sortedWith(compareByDescending<GamePlayer> { it.timeline.size }.thenBy { it.id != g.winnerId })
     // A scrim that swallows every touch (an *enabled* no‑op clickable, no ripple) so the game below is inert.
     val scrimInteraction = remember { MutableInteractionSource() }
     Box(

@@ -99,9 +99,15 @@ class Room {
     if (!this.game || this.game.finished || !t?.deadline) return;
     const delay = Math.max(0, t.deadline - Date.now()) + 50;
     this.timer = setTimeout(() => {
-      const events = tick(this.game);
-      if (this.game.finished) this.phase = 'finished';
-      this.broadcast(events);
+      const g = this.game;
+      if (!g) return;
+      try {
+        const events = tick(g);
+        if (g.finished) this.phase = 'finished';
+        this.broadcast(events);
+      } catch (e) {
+        console.error('tick failed', e);
+      }
     }, delay);
   }
 
@@ -173,6 +179,7 @@ wss.on('connection', ws => {
   let playerId = null;
   ws.isAlive = true;
   ws.on('pong', () => { ws.isAlive = true; });
+  ws.on('error', err => console.warn('ws error', err.message));
 
   ws.on('message', raw => {
     let msg;

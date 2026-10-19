@@ -31,7 +31,9 @@ class GameClient(private val scope: CoroutineScope = CoroutineScope(SupervisorJo
         .connectTimeout(8, TimeUnit.SECONDS)
         .build()
 
-    private var socket: WebSocket? = null
+    @Volatile private var socket: WebSocket? = null
+    /** Bumped on every open()/leave(); callbacks from older sockets are ignored. */
+    @Volatile private var generation = 0
     private var serverUrl: String = ""
     private var reconnectJob: Job? = null
     private var wantConnection = false
@@ -74,23 +76,28 @@ class GameClient(private val scope: CoroutineScope = CoroutineScope(SupervisorJo
         socket?.cancel()
         connection.value = ConnState.CONNECTING
         val req = Request.Builder().url(serverUrl).build()
+        val gen = ++generation
         socket = http.newWebSocket(req, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
+                if (gen != generation) return
                 connection.value = ConnState.CONNECTED
                 rejoin?.let { send(it) }
             }
 
             override fun onMessage(webSocket: WebSocket, text: String) {
+                if (gen != generation) return
                 handle(text)
             }
 
             override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                if (gen != generation) return
                 Log.w("GameClient", "ws failure: ${t.message}")
                 connection.value = ConnState.DISCONNECTED
                 if (wantConnection) scheduleReconnect(t.message)
             }
 
             override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                if (gen != generation) return
                 connection.value = ConnState.DISCONNECTED
                 if (wantConnection) scheduleReconnect(null)
             }
@@ -155,6 +162,7 @@ class GameClient(private val scope: CoroutineScope = CoroutineScope(SupervisorJo
 
     fun leave() {
         wantConnection = false
+        generation++
         reconnectJob?.cancel()
         runCatching { send(ClientMessage(type = "leave")) }
         socket?.close(1000, "bye")

@@ -15,8 +15,8 @@ android {
         applicationId = "com.hitster.mobile"
         minSdk = 26
         targetSdk = 34
-        versionCode = 6
-        versionName = "1.3.0"
+        versionCode = 7
+        versionName = "1.3.1"
     }
 
     // Release signing: put a keystore.properties in the project root (git‑ignored) with

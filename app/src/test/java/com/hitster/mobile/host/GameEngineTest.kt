@@ -220,4 +220,38 @@ class GameEngineTest {
         assertTrue(g.finished)
         assertEquals("p2", g.winnerId)
     }
+
+    /** The leaver's card was already stolen into p2's timeline: it must not also land in the discard. */
+    @Test fun leaverInResultDoesNotDuplicateStolenCard() {
+        val g = fresh()
+        g.apply("p1", Action("place", slot = 0)) // wrong
+        g.apply("p2", Action("challenge"))         // p2 steals
+        g.apply("p3", Action("pass"))
+        g.answerTitle(false)
+        assertEquals(Phase.RESULT, g.turn!!.phase)
+        assertEquals("p2", g.turn!!.result!!.stolenBy)
+        val stolen = g.turn!!.card.id
+        g.removePlayer("p1")
+        val everywhere = g.deck + g.discard + g.players.flatMap { it.timeline } + listOf(g.turn!!.card)
+        assertEquals(1, everywhere.count { it.id == stolen })
+    }
+
+    @Test fun leavingUntilOneLeftFinishesWithEvent() {
+        val g = fresh()
+        g.removePlayer("p1")
+        val ev = g.removePlayer("p3")
+        assertTrue(g.finished)
+        assertEquals("p2", g.winnerId)
+        assertTrue(ev.any { it.kind == "finished" && it.winnerId == "p2" && it.reason == "players" })
+    }
+
+    @Test fun skipRefusedWhenNoOtherSongLeftKeepsTokenAndCard() {
+        val g = fresh()
+        val current = g.turn!!.card.id
+        g.deck.clear(); g.discard.clear()
+        assertThrows(GameError::class.java) { g.apply("p1", Action("skip")) }
+        assertEquals(2, g.p("p1").tokens)
+        assertEquals(current, g.turn!!.card.id)
+        assertFalse(g.finished)
+    }
 }

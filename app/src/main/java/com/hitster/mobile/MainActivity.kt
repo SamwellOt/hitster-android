@@ -118,6 +118,7 @@ class MainActivity : ComponentActivity() {
                         continueGame = vm::continueGame,
                         openTimeline = vm::openTimeline,
                         restart = vm::restart,
+                        kick = vm::kick,
                         leave = { confirmLeave = true },
                     )
                 }

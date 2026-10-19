@@ -105,7 +105,7 @@ function log(state, entry) {
 
 function startTurn(state, now) {
   const card = drawCard(state);
-  // Deck (and discard) exhausted: whoever has the longest timeline wins, like finishByCount().
+  // Deck (and discard) exhausted: whoever has the longest timeline wins.
   if (!card) return finish(state, state.players.reduce((a, b) => (b.timeline.length > a.timeline.length ? b : a), state.players[0])?.id ?? null);
   state.turn = {
     playerId: state.order[state.turnIndex],
@@ -146,10 +146,11 @@ export function apply(state, playerId, action, now = Date.now) {
     case 'skip': {
       if (!isCurrent || t.phase !== PHASE.LISTEN) throw new GameError('Só é possível pular na sua vez, antes de posicionar.');
       if (me.tokens < 1) throw new GameError('Você precisa de 1 ficha HITSTER para pular a música.');
+      // Draw first: with nothing else to draw, refuse without spending the token or losing the song.
+      const next = drawCard(state);
+      if (!next) throw new GameError('Não há outra música no baralho para pular.');
       me.tokens -= 1;
       state.deck.push(t.card); // unused card goes to the bottom of the pile
-      const next = drawCard(state);
-      if (!next) return finishByCount(state, events);
       t.card = next;
       t.skips += 1;
       log(state, { kind: 'skip', playerId });
@@ -159,6 +160,7 @@ export function apply(state, playerId, action, now = Date.now) {
 
     case 'place': {
       if (!isCurrent || t.phase !== PHASE.LISTEN) throw new GameError('Não é sua vez de posicionar.');
+      if (action.slot == null) throw new GameError('Posição inválida.');
       const slot = Number(action.slot);
       if (!Number.isInteger(slot) || slot < 0 || slot > me.timeline.length) throw new GameError('Posição inválida.');
       t.slot = slot;
@@ -193,7 +195,7 @@ export function apply(state, playerId, action, now = Date.now) {
 
     case 'vote': {
       if (isCurrent || t.phase !== PHASE.VOTE) throw new GameError('Ação indisponível.');
-      t.votes[playerId] = !!action.value;
+      t.votes[playerId] = action.value === true;
       if (opponents(state).every(p => p.id in t.votes)) resolveVote(state, events, now);
       return events;
     }
@@ -302,16 +304,10 @@ function checkWin(state) {
   const reached = state.players.filter(p => p.timeline.length >= goal);
   if (reached.length === 0) return false;
   // Ties inside the same round: most cards, then the active player.
-  reached.sort((a, b) => b.timeline.length - a.timeline.length || (a.id === state.turn.playerId ? -1 : 1));
+  const cur = state.turn?.playerId;
+  reached.sort((a, b) => b.timeline.length - a.timeline.length || (a.id === cur ? -1 : b.id === cur ? 1 : 0));
   finish(state, reached[0].id);
   return true;
-}
-
-function finishByCount(state, events) {
-  const best = [...state.players].sort((a, b) => b.timeline.length - a.timeline.length)[0];
-  finish(state, best.id);
-  events.push({ kind: 'finished', winnerId: state.winnerId, reason: 'deck' });
-  return events;
 }
 
 function nextTurn(state, events, now) {
@@ -330,12 +326,19 @@ export function removePlayer(state, playerId, now = Date.now) {
   const wasCurrent = state.turn && state.turn.playerId === playerId;
   state.order.splice(idx, 1);
   state.players = state.players.filter(p => p.id !== playerId);
-  if (state.order.length < 2) { finish(state, state.order[0] ?? null); return events; }
+  if (state.order.length < 2) {
+    finish(state, state.order[0] ?? null);
+    events.push({ kind: 'finished', winnerId: state.winnerId, reason: 'players' });
+    return events;
+  }
   if (idx < state.turnIndex) state.turnIndex -= 1;
   if (wasCurrent) {
-    if (state.turn.card) state.discard.push(state.turn.card);
+    // Only LISTEN/CHALLENGE cards are still loose; after the reveal the card is already in a timeline or the discard.
+    if (state.turn.phase === PHASE.LISTEN || state.turn.phase === PHASE.CHALLENGE) state.discard.push(state.turn.card);
     state.turnIndex = state.turnIndex % state.order.length;
-    startTurn(state, Date.now);
+    startTurn(state, now);
+    if (state.finished) events.push({ kind: 'finished', winnerId: state.winnerId, reason: 'deck' });
+    else events.push({ kind: 'turn', playerId: state.turn.playerId });
   } else if (state.turn) {
     state.turn.challenges = state.turn.challenges.filter(c => c.playerId !== playerId);
     state.turn.passed = state.turn.passed.filter(id => id !== playerId);
